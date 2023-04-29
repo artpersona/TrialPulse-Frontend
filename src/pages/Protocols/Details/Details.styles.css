@@ -1,0 +1,42 @@
+.details {
+  position: relative;
+}
+
+.details__topBar {
+  position: fixed;
+  height: 60px;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.details__topBarLeft {
+  width: 400px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding-left: 20px;
+}
+
+.details__sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  padding-top: 140px;
+  width: 450px;
+  border-right: 1px solid black;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.details__content {
+  padding-left: 470px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100px;
+}

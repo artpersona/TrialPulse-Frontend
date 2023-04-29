@@ -1,0 +1,14 @@
+.overview {
+  position: relative;
+}
+
+.overview__sidebar {
+  position: fixed;
+  left: 0;
+  padding: 20px;
+  padding-top: 30px;
+  width: 450px;
+  border-right: 1px solid black;
+  height: 100vh;
+  overflow: scroll;
+}

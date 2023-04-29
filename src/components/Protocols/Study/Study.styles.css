@@ -1,0 +1,56 @@
+.study {
+  border: 1px solid gray;
+  border-radius: 35px;
+  padding: 20px;
+  width: 360px;
+  position: relative;
+  background-color: #ffffff;
+  margin: 10px 0;
+  cursor: pointer;
+  box-shadow: 1px 2px 15px #ededed;
+}
+
+.study__top {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.study__content {
+  margin-bottom: 30px;
+}
+
+.study__topIcon {
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.study__topRight p {
+  font-style: italic;
+  color: gray;
+  font-size: 12px;
+}
+
+.study__bottomUsers {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  padding: 5px 8px;
+  font-size: 12px;
+}
+
+.study__bottom {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: space-between;
+}
+
+.study__bottom p {
+  font-weight: 500;
+  font-size: 14px;
+}

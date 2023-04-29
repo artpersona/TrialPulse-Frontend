@@ -1,0 +1,14 @@
+.overview {
+  border: 1px solid #333;
+  border-radius: 30px;
+  padding: 20px;
+  width: 400px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 14px;
+}

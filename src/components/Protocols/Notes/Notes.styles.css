@@ -1,0 +1,27 @@
+.notes {
+  border: 1px solid #333;
+  border-radius: 35px;
+  padding: 20px;
+  width: 400px;
+  margin-top: 50px;
+}
+
+.notes__top {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.notes__topIcon {
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.notes__description {
+  font-size: 14px;
+  color: gray;
+  line-height: 20px;
+}
