@@ -42,8 +42,8 @@ const studyStats = [
 function Stats() {
   return (
     <OverviewSection title="Study Stats">
-      {studyStats.map(({ id, label }) => (
-        <div key={id} className="row">
+      {studyStats.map(({ label }) => (
+        <div key={label} className="row">
           <p>{label}</p>
           <p>120</p>
         </div>

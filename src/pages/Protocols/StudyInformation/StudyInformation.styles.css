@@ -1,0 +1,51 @@
+.studyInformation {
+  position: relative;
+}
+
+.studyInformation__topBar {
+  position: fixed;
+  height: 60px;
+  top: 80px;
+  left: 450px;
+  width: calc(100vw - 450px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.studyInformation__navbar {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.studyInformation__navbar ul {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 100%;
+}
+
+.studyInformation__navbar li {
+  list-style-type: none;
+  color: #ffffff;
+  font-weight: 200;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  font-size: 14px;
+}
+
+.studyInformation__navbar li:hover {
+  background-color: #909090;
+}
+
+.studyInformation__navbar li.active {
+  background-color: #909090;
+}

@@ -6,7 +6,7 @@ function Sponsor(props) {
   return (
     <OverviewSection title="Sponsor">
       {sponsors?.map(({ id, label }) => (
-        <div key={id} className="row">
+        <div key={"sponsor" + id} className="row">
           <p>{label}</p>
           <p>120</p>
         </div>

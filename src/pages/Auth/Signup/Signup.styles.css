@@ -1,0 +1,88 @@
+.signup {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(#0e69b4, #55acf5, #9dbfb5);
+}
+.signup__logoContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.signup__logoContainer h1 {
+  color: #ffffff;
+  font-size: 56px;
+}
+.signup form {
+  background-color: #ffffff;
+  border-radius: 25px;
+  width: 450px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup form label {
+  text-align: left;
+  margin-bottom: 5px;
+  margin-left: 15px;
+}
+
+.signup form input {
+  border-radius: 25px;
+  padding: 15px 15px;
+  margin-bottom: 30px;
+  border-color: #2d87d2;
+}
+
+.signup form button {
+  margin: auto;
+  background-color: #fda92a;
+  color: #ffffff;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.signup__forgotPassword,
+.signup__createAccount {
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.signup__forgotPassword {
+  color: darkred;
+  margin: 20px 0;
+}
+
+.signup__createAccount {
+  color: #fda92a;
+}
+
+.signup__formHeader {
+  color: #2d87d2;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.signup__formDescription,
+.signup__formTerms {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.signup__formTerms span {
+  color: #fda92a;
+  font-weight: 500;
+  cursor: pointer;
+}

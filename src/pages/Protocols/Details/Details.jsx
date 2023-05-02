@@ -1,5 +1,5 @@
 import "./Details.styles.css";
-import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 import details1 from "src/assets/images/details/details1.jpg";
 import details2 from "src/assets/images/details/details2.jpg";
@@ -55,24 +55,24 @@ function Details() {
 
   return (
     <div className="details">
-      {/* TOP BAR */}
-      <div
-        className="details__topBar"
-        style={{ backgroundColor: colorPalette.GRAY_DARK }}
-      >
-        <div className="details__topBarLeft">
-          <ChevronLeftIcon
-            width={25}
-            height={25}
-            color={colorPalette.SECONDARY_COLOR}
-            style={{ cursor: "pointer" }}
-            onClick={handleGoback}
-          />
-        </div>
-        <div className="details__topBarRight"></div>
-      </div>
       {/* SIDEBAR */}
       <div className="details__sidebar">
+        {/* TOP BAR */}
+        <div
+          className="details__topBar"
+          style={{ backgroundColor: colorPalette.GRAY_DARK }}
+        >
+          <div className="details__topBarLeft">
+            <ChevronLeftIcon
+              width={25}
+              height={25}
+              color={colorPalette.SECONDARY_COLOR}
+              style={{ cursor: "pointer" }}
+              onClick={handleGoback}
+            />
+          </div>
+          <div className="details__topBarRight"></div>
+        </div>
         {detailsList.map((item) => (
           <DetailsCard
             key={item.id}

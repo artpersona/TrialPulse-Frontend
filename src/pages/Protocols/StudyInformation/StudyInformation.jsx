@@ -1,11 +1,67 @@
-import StudyDetails from "src/components/Protocols/StudyDetails";
-import GeneralInfo from "src/components/Protocols/GeneralInfo";
+import "./StudyInformation.styles.css";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import colorPalette from "src/utils/styles/colorPalette";
+import BlackNavbar from "src/components/Protocols/BlackNavbar";
+
+const tabs = [
+  {
+    id: "general-info",
+    label: "General Info",
+    path: "",
+  },
+  {
+    id: "schedule-of-activity",
+    label: "Schedule of Activity",
+    path: "schedule",
+  },
+  {
+    id: "table-of-contents",
+    label: "Table of Contents",
+    path: "table-of-contents",
+  },
+];
 
 function StudyInformation() {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  function handleNavigate(path) {
+    navigate(path);
+  }
+
+  const isActive = (path) => {
+    const currentPath = pathname.split("/").slice(-1)[0];
+    if (
+      path.length < 1 &&
+      !tabs.map((item) => item.path).includes(currentPath)
+    ) {
+      return true;
+    } else if (path === currentPath) {
+      return true;
+    }
+  };
+
   return (
-    <div>
-      <GeneralInfo />
-      <StudyDetails />
+    <div className="studyInformation">
+      <BlackNavbar>
+        <nav className="studyInformation__navbar">
+          <ul>
+            {tabs.map((item) => (
+              <li
+                className={isActive(item.path) ? "active" : "inactive"}
+                key={item.id}
+                onClick={() => handleNavigate(item.path)}
+              >
+                {item.label}
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </BlackNavbar>
+
+      <div style={{ width: "100%" }}>
+        <Outlet />
+      </div>
     </div>
   );
 }

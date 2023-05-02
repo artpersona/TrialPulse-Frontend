@@ -1,0 +1,41 @@
+.activitySchedule {
+  border: 1px solid gray;
+  border-radius: 25px;
+}
+
+.activitySchedule th {
+  min-width: 120px;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px 12px;
+}
+
+td {
+  border: 1px solid gray;
+  border-collapse: collapse;
+}
+
+th {
+  color: #035eaa;
+}
+
+table {
+  border-radius: 25px;
+}
+
+td {
+  text-align: center;
+}
+
+td.left {
+  text-align: left;
+}

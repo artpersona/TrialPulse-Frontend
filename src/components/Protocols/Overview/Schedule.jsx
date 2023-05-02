@@ -2,19 +2,19 @@ import OverviewSection from "./OverviewSection";
 
 const activitySchedule = [
   {
-    id: "",
+    id: "1",
     label: "Number of Weeks",
   },
   {
-    id: "",
+    id: "2",
     label: "Number of Visits",
   },
   {
-    id: "",
+    id: "3",
     label: "Number of Tests",
   },
   {
-    id: "",
+    id: "4",
     label: "Number of Procedures",
   },
 ];
@@ -22,8 +22,8 @@ const activitySchedule = [
 function Schedule() {
   return (
     <OverviewSection title="Schedule of Activity">
-      {activitySchedule.map(({ id, label }) => (
-        <div key={id} className="row">
+      {activitySchedule.map(({ label }) => (
+        <div key={label} className="row">
           <p>{label}</p>
           <p>120</p>
         </div>

@@ -1,5 +1,5 @@
 import "./TopNavbar.styles.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Squares2X2Icon,
   TagIcon,
@@ -59,11 +59,15 @@ const routes = [
 
 function TopNavbar() {
   const { pathname } = useLocation();
-  console.log(pathname.split("/")[1]);
+  const navigate = useNavigate();
 
   const isActive = (path) => {
     return pathname.split("/")[1] === path;
   };
+
+  function handleNavigate(path) {
+    navigate(`/${path}`);
+  }
 
   return (
     <div
@@ -76,12 +80,13 @@ function TopNavbar() {
           <ul>
             {routes.map((item) => (
               <li
-                key={item.id}
+                key={"topNavbar" + item.id}
                 className={
                   isActive(item.path)
                     ? "topNavbar__link__active"
                     : "topNavbar__link"
                 }
+                onClick={() => handleNavigate(item.path)}
               >
                 <item.icon
                   height={28}
