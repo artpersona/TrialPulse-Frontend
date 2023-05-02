@@ -26,12 +26,3 @@
   height: 100vh;
   overflow: scroll;
 }
-
-.details__content {
-  padding-left: 470px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding-top: 100px;
-}

@@ -3,10 +3,20 @@
 }
 
 .protocols__sidebar {
-  position: fixed;
+  /* position: fixed;
   left: 0;
   padding: 20px;
   padding-top: 30px;
+  width: 450px;
+  border-right: 1px solid black;
+  height: 100vh;
+  overflow: scroll; */
+
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  padding-top: 150px;
   width: 450px;
   border-right: 1px solid black;
   height: 100vh;
@@ -20,6 +30,7 @@
 
 .protocols__filter {
   position: absolute;
+  padding-top: 140px;
   right: 10px;
   top: 20px;
 }
@@ -27,4 +38,62 @@
 .protocols__filterItem {
   padding: 2px 0;
   font-size: 12px;
+}
+
+.details__content {
+  padding-left: 470px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100px;
+}
+
+.protocols__navbar {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.protocols__navbar ul {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 100%;
+}
+
+.protocols__navbar li {
+  list-style-type: none;
+  color: #ffffff;
+  font-weight: 200;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  font-size: 14px;
+}
+
+.protocols__navbar li:hover {
+  background-color: #909090;
+}
+
+.protocols__navbar li.active {
+  background-color: #909090;
+}
+
+.protocols__topBar {
+  position: fixed;
+  height: 60px;
+  top: 80px;
+  left: 0;
+  width: 450px;
+  z-index: 999;
+  border-right: 1px solid white;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
 }
