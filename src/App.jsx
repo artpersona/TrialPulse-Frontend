@@ -21,6 +21,7 @@ import Login from "./pages/Auth/Login";
 import { useAuthContext } from "./contexts/AuthContext";
 import NotFound from "./pages/Error/NotFound";
 import Signup from "./pages/Auth/Signup";
+import Inclusion from "./pages/Protocols/EligibilityCriteria/Inclusion";
 
 function App() {
   const { user } = useAuthContext();
@@ -81,6 +82,16 @@ function App() {
                 {
                   path: "eligibility-criteria",
                   element: <EligibilityCriteria />,
+                  children: [
+                    {
+                      path: "",
+                      element: <Inclusion />,
+                    },
+                    {
+                      path: "exclusion",
+                      element: <Inclusion />,
+                    },
+                  ],
                 },
                 {
                   path: "sites-link",
