@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "./Study.styles.css";
 import { useNavigate } from "react-router-dom";
 import {
@@ -9,12 +10,12 @@ import {
 import colorPalette from "src/utils/styles/colorPalette";
 
 function Study(props) {
-  const { title } = props;
+  const { data } = props;
 
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate("details/1");
+    navigate(`details/${data.id}`);
   }
 
   return (
@@ -27,13 +28,13 @@ function Study(props) {
           <ClipboardDocumentIcon width={16} height={16} color="white" />
         </div>
         <div className="study__topRight">
-          <h4 style={{ color: colorPalette.PRIMARY_COLOR }}>{title}</h4>
+          <h4 style={{ color: colorPalette.PRIMARY_COLOR }}>{data.title}</h4>
           <p>Last viewed August 24</p>
         </div>
       </div>
 
       <div className="study__content">
-        <p>Hello world</p>
+        <p>{data.studyInfo}</p>
       </div>
 
       <div style={{ display: "flex", gap: 10 }}>
@@ -79,3 +80,7 @@ function Study(props) {
 }
 
 export default Study;
+
+Study.propTypes = {
+  data: PropTypes.object,
+};

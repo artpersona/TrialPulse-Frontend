@@ -1,0 +1,30 @@
+.sitesLink__modal {
+  background-color: #ffffff;
+  border: 1px solid gray;
+  border-radius: 25px;
+  padding: 20px;
+  width: 450px;
+}
+
+.sitesLink__site {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  border: 1px solid lightgray;
+  padding: 5px 20px;
+  border-radius: 25px;
+}
+
+.sitesLink__site button {
+  outline: none;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 15px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.sitesLink__site p {
+  font-size: 14px;
+}

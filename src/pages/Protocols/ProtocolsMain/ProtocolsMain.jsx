@@ -2,6 +2,7 @@ import Study from "src/components/Protocols/Study";
 import "./ProtocolsMain.styles.css";
 import colorPalette from "src/utils/styles/colorPalette";
 import { useState } from "react";
+import { useProtocolContext } from "src/contexts/ProtocolContext";
 
 const getLetters = () => {
   let letters = [];
@@ -27,6 +28,8 @@ const tabs = [
 ];
 
 function ProtocolsMain() {
+  const { protocols } = useProtocolContext();
+
   const [currentTab, setCurrentTab] = useState(0);
 
   const isActive = (tab) => currentTab === tab;
@@ -60,9 +63,9 @@ function ProtocolsMain() {
         </div>
         {/* STUDIES LIST */}
         <div className="protocols__sidebarLists">
-          <Study title="Clinic Study" />
-          <Study title="Clinic Study" />
-          <Study title="Clinic Study" />
+          {protocols.map((protocol) => (
+            <Study data={protocol} key={protocol.id} />
+          ))}
         </div>
 
         {/* LETTERS FILTER */}

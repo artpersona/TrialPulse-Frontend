@@ -32,7 +32,7 @@ function Signup() {
         <label htmlFor="password">Verify Password</label>
         <input type="password" name="password" />
         <p className="signup__formTerms">
-          By clicking Create Account, you agree with TrialPulse's{" "}
+          By clicking Create Account, you agree with TrialPulse&apos;s{" "}
           <span>Terms and Conditions</span> and <span>Privacy Policy</span>
         </p>
         <button type="submit">Create Account</button>

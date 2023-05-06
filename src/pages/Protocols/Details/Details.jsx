@@ -1,5 +1,5 @@
 import "./Details.styles.css";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 import details1 from "src/assets/images/details/details1.jpg";
 import details2 from "src/assets/images/details/details2.jpg";
@@ -8,6 +8,8 @@ import details4 from "src/assets/images/details/details4.jpg";
 import details5 from "src/assets/images/details/details5.jpg";
 import DetailsCard from "../../../components/Protocols/DetailsCard/DetailsCard";
 import colorPalette from "src/utils/styles/colorPalette";
+import { useProtocolContext } from "../../../contexts/ProtocolContext";
+import { useEffect } from "react";
 
 const detailsList = [
   {
@@ -43,7 +45,14 @@ const detailsList = [
 ];
 
 function Details() {
+  const { protocolId } = useParams();
   const navigate = useNavigate();
+
+  const { setProtocol } = useProtocolContext();
+
+  useEffect(() => {
+    if (protocolId) setProtocol(protocolId);
+  }, [protocolId]);
 
   function handleGoback() {
     navigate("/protocols");

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "./SitesLink.styles.css";
 import { useNavigate } from "react-router-dom";
 import {
@@ -9,12 +10,12 @@ import {
 import colorPalette from "src/utils/styles/colorPalette";
 
 function SitesLink(props) {
-  const { title } = props;
+  const { data } = props;
 
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate("1/info");
+    navigate(`${data.id}/info`);
   }
 
   return (
@@ -30,7 +31,7 @@ function SitesLink(props) {
         >
           <BuildingOfficeIcon width={20} height={20} color="white" />
         </div>
-        <h4 style={{ color: colorPalette.PRIMARY_COLOR }}>{title}</h4>
+        <h4 style={{ color: colorPalette.PRIMARY_COLOR }}>{data.name}</h4>
       </div>
       <div className="sitesLink__bottom">
         <div
@@ -55,3 +56,7 @@ function SitesLink(props) {
 }
 
 export default SitesLink;
+
+SitesLink.propTypes = {
+  data: PropTypes.object,
+};

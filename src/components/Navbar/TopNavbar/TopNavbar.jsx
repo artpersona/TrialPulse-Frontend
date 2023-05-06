@@ -18,7 +18,7 @@ const routes = [
   {
     id: "Home",
     icon: Squares2X2Icon,
-    path: "home",
+    path: "",
   },
   {
     id: "Sponsors",

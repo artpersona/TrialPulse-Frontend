@@ -2,6 +2,7 @@ import "./StudyInformation.styles.css";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import colorPalette from "src/utils/styles/colorPalette";
 import BlackNavbar from "src/components/Protocols/BlackNavbar";
+import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 
 const tabs = [
   {
@@ -43,21 +44,35 @@ function StudyInformation() {
 
   return (
     <div className="studyInformation">
-      <BlackNavbar>
-        <nav className="studyInformation__navbar">
-          <ul>
-            {tabs.map((item) => (
-              <li
-                className={isActive(item.path) ? "active" : "inactive"}
-                key={item.id}
-                onClick={() => handleNavigate(item.path)}
-              >
-                {item.label}
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </BlackNavbar>
+      {pathname.split("/").slice(-1)[0] === "edit-treatments" ? (
+        <BlackNavbar>
+          <div style={{ width: "100%", paddingLeft: 10 }}>
+            <ChevronLeftIcon
+              height={25}
+              width={25}
+              color={colorPalette.SECONDARY_COLOR}
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate(-1)}
+            />
+          </div>
+        </BlackNavbar>
+      ) : (
+        <BlackNavbar>
+          <nav className="studyInformation__navbar">
+            <ul>
+              {tabs.map((item) => (
+                <li
+                  className={isActive(item.path) ? "active" : "inactive"}
+                  key={item.id}
+                  onClick={() => handleNavigate(item.path)}
+                >
+                  {item.label}
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </BlackNavbar>
+      )}
 
       <div style={{ width: "100%" }}>
         <Outlet />

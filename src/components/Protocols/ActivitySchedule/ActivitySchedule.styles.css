@@ -39,3 +39,18 @@ td {
 td.left {
   text-align: left;
 }
+
+.note__modal {
+  background-color: #ffffff;
+  border: 1px solid gray;
+  border-radius: 25px;
+  padding: 20px;
+  width: 450px;
+}
+
+.note__modalHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}

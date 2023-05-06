@@ -2,15 +2,19 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import "./Login.styles.css";
 import Logo from "src/assets/images/logo-white.png";
+import { useState } from "react";
 
 function Login() {
   const navigate = useNavigate();
 
   const { login } = useAuthContext();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   function handleLogin(e) {
     e.preventDefault();
-    login();
+    login({ email, password });
   }
 
   return (
@@ -22,9 +26,19 @@ function Login() {
 
       <form onSubmit={handleLogin}>
         <label htmlFor="email">Email</label>
-        <input type="text" name="email" />
+        <input
+          type="text"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
         <label htmlFor="password">Password</label>
-        <input type="password" name="password" />
+        <input
+          type="password"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <button type="submit">Login</button>
         <p className="login__forgotPassword">Forgot Password</p>
 

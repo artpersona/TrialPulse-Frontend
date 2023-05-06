@@ -1,13 +1,15 @@
 import "./GeneralInfo.styles.css";
 
-function GeneralInfo() {
+function GeneralInfo(props) {
+  const { data } = props;
+
   return (
     <div className="generalInfo">
       <h2 style={{ textAlign: "center", marginBottom: 20 }}>General Info</h2>
 
       <div className="generalInfo__section">
         <p>Study Name</p>
-        <input />
+        <input value={data.title} readOnly />
         <p>Sponsor</p>
         <select></select>
       </div>
@@ -23,7 +25,7 @@ function GeneralInfo() {
 
       <div className="generalInfo__section">
         <p>Eligibility Overview</p>
-        <textarea></textarea>
+        <textarea value={data.eligibilityOverview} />
       </div>
 
       <div

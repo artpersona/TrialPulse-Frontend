@@ -1,10 +1,14 @@
 import "./App.css";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  redirect,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useAuthContext } from "./contexts/AuthContext";
+
 import Layout from "./components/Layout/Layout";
+import NotFound from "./pages/Error/NotFound";
+
+import Login from "./pages/Auth/Login";
+import Signup from "./pages/Auth/Signup";
+
+// PROTOCOLS
 import Protocols from "./pages/Protocols";
 import Overview from "./pages/Protocols/Overview";
 import ProtocolsMain from "./pages/Protocols/ProtocolsMain/ProtocolsMain";
@@ -17,11 +21,18 @@ import SitesLinkMain from "./pages/Protocols/SitesLink/SitesLinkMain";
 import SiteInfo from "./pages/Protocols/SitesLink/SiteInfo";
 import Schedule from "./pages/Protocols/StudyInformation/Schedule";
 import GeneralInfo from "./pages/Protocols/StudyInformation/GeneralInfo";
-import Login from "./pages/Auth/Login";
-import { useAuthContext } from "./contexts/AuthContext";
-import NotFound from "./pages/Error/NotFound";
-import Signup from "./pages/Auth/Signup";
 import Inclusion from "./pages/Protocols/EligibilityCriteria/Inclusion";
+import EditTreatments from "./pages/Protocols/StudyInformation/Schedule/EditTreatments";
+import ScheduleMain from "./pages/Protocols/StudyInformation/Schedule/ScheduleMain";
+import Exclusion from "./pages/Protocols/EligibilityCriteria/Exclusion";
+
+// SITES
+import Sites from "./pages/Sites";
+import SitesMain from "./pages/Sites/SitesMain";
+
+// USERS
+import Users from "./pages/Users";
+import UsersMain from "./pages/Users/UsersMain";
 
 function App() {
   const { user } = useAuthContext();
@@ -54,7 +65,7 @@ function App() {
               element: <ProtocolsMain />,
             },
             {
-              path: "details/:protocolsId",
+              path: "details/:protocolId",
               element: <Details />,
               children: [
                 {
@@ -71,7 +82,17 @@ function App() {
                     },
                     {
                       path: "schedule",
-                      element: <Schedule />,
+                      element: <ScheduleMain />,
+                      children: [
+                        {
+                          path: "",
+                          element: <Schedule />,
+                        },
+                        {
+                          path: "edit-treatments",
+                          element: <EditTreatments />,
+                        },
+                      ],
                     },
                     {
                       path: "table-of-contents",
@@ -89,7 +110,7 @@ function App() {
                     },
                     {
                       path: "exclusion",
-                      element: <Inclusion />,
+                      element: <Exclusion />,
                     },
                   ],
                 },
@@ -117,6 +138,32 @@ function App() {
         },
 
         // END OF PROTOCOLS
+
+        // START OF SITES
+        {
+          path: "sites",
+          element: <Sites />,
+          children: [
+            {
+              path: "",
+              element: <SitesMain />,
+            },
+          ],
+        },
+
+        // END OF SITES
+
+        // START OF USERS
+        {
+          path: "users",
+          element: <Users />,
+          children: [
+            {
+              path: "",
+              element: <UsersMain />,
+            },
+          ],
+        },
       ],
     },
   ]);
