@@ -1,11 +1,11 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
+import { SiteContextProvider } from "src/contexts/SiteContext";
 
 function Sites() {
   return (
-    <div>
+    <SiteContextProvider>
       <Outlet />
-    </div>
+    </SiteContextProvider>
   );
 }
 

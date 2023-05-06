@@ -54,7 +54,13 @@ export const ProtocolContextProvider = ({ children }) => {
 
   return (
     <ProtocolContext.Provider
-      value={{ protocols, setProtocol, getSelectedProtocol, addCriteria }}
+      value={{
+        protocols,
+        setProtocol,
+        getSelectedProtocol,
+        addCriteria,
+        fetchProtocols,
+      }}
     >
       {children}
     </ProtocolContext.Provider>

@@ -33,6 +33,12 @@ import SitesMain from "./pages/Sites/SitesMain";
 // USERS
 import Users from "./pages/Users";
 import UsersMain from "./pages/Users/UsersMain";
+import Sponsors from "./pages/Sponsors";
+import SponsorsMain from "./pages/Sponsors/SponsorsMain";
+import SponsorDetails from "./pages/Sponsors/SponsorDetails";
+import SponsorInfo from "./pages/Sponsors/SponsorInfo";
+import SponsorProtocols from "./pages/Sponsors/SponsorProtocols";
+import Home from "./pages/Home/Home";
 
 function App() {
   const { user } = useAuthContext();
@@ -55,6 +61,45 @@ function App() {
       errorElement: <NotFound />,
       element: <Layout />,
       children: [
+        {
+          path: "",
+          element: <Home />,
+        },
+        // START OF SPONSORS
+
+        {
+          path: "sponsors",
+          element: <Sponsors />,
+          children: [
+            {
+              path: "",
+              element: <SponsorsMain />,
+              children: [
+                {
+                  path: ":sponsorId",
+                  element: <SponsorDetails />,
+                  children: [
+                    {
+                      path: "",
+                      element: <SponsorInfo />,
+                    },
+                    {
+                      path: "protocols",
+                      element: <SponsorProtocols />,
+                    },
+                    {
+                      path: "staff",
+                      element: <SponsorDetails />,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+
+        // END OF SPONSORS
+
         // START OF PROTOCOLS
         {
           path: "protocols",

@@ -3,6 +3,7 @@ import "./ProtocolsMain.styles.css";
 import colorPalette from "src/utils/styles/colorPalette";
 import { useState } from "react";
 import { useProtocolContext } from "src/contexts/ProtocolContext";
+import AddProtocol from "./AddProtocol";
 
 const getLetters = () => {
   let letters = [];
@@ -80,6 +81,11 @@ function ProtocolsMain() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* CONTENT */}
+      <div className="protocols__content">
+        <AddProtocol />
       </div>
     </div>
   );

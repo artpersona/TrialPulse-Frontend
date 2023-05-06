@@ -94,11 +94,14 @@ function EditTreatments() {
             />
 
             <div className="modal__actions">
-              <button className="modal__okButton" onClick={handleAddTreatment}>
+              <button
+                className="modal-button bg-primary"
+                onClick={handleAddTreatment}
+              >
                 Save
               </button>
               <button
-                className="modal__cancelButton"
+                className="modal-button bg-gray-dark"
                 onClick={() => setShowAddTreatmentModal(false)}
               >
                 Cancel

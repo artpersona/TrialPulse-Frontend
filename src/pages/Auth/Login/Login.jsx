@@ -40,7 +40,7 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">Login</button>
-        <p className="login__forgotPassword">Forgot Password</p>
+        {/* <p className="login__forgotPassword">Forgot Password</p>
 
         <div
           style={{
@@ -54,7 +54,7 @@ function Login() {
 
         <p className="login__createAccount" onClick={() => navigate("/signup")}>
           Create Account
-        </p>
+        </p> */}
       </form>
     </div>
   );

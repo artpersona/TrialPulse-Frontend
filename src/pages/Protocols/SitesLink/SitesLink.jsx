@@ -4,7 +4,7 @@ import SitesLinkComponent from "src/components/Protocols/SitesLink";
 import BlackNavbar from "src/components/Protocols/BlackNavbar/BlackNavbar";
 import { useProtocolContext } from "src/contexts/ProtocolContext";
 import { privateClient } from "src/api";
-import FloatingPlusButton from "src/components/Protocols/FloatingPlusButton/FloatingPlusButton";
+import FloatingPlusButton from "src/components/FloatingPlusButton/FloatingPlusButton";
 import Modal from "../../../components/Modal/Modal";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import colorPalette from "src/utils/styles/colorPalette";
@@ -83,12 +83,12 @@ function SitesLink() {
             <h4 className="modal__title">Add Site</h4>
             <div>
               {getAvailableSites().map((item) => (
-                <div key={item.id} className="sitesLink__site">
+                <div
+                  key={item.id}
+                  className="card py-2 px-4 flex items-center justify-between my-2"
+                >
                   <p>{item.name}</p>
-                  <button
-                    style={{ backgroundColor: colorPalette.SECONDARY_COLOR }}
-                    onClick={() => handleAddProtocolSite(item.id)}
-                  >
+                  <button className="bg-secondary flex gap-2 text-md items-center justify-center px-3 py-1 cursor-pointer rounded-2xl text-white">
                     <PlusIcon height={12} width={12} color="#ffffff" /> Add
                   </button>
                 </div>
@@ -96,7 +96,7 @@ function SitesLink() {
             </div>
             <div className="modal__actions">
               <button
-                className="modal__cancelButton"
+                className="modal-button bg-gray-dark"
                 onClick={() => setShowAddSiteModal(false)}
               >
                 Cancel

@@ -8,7 +8,7 @@ function Overview(props) {
 
   return (
     <div className="overview">
-      <h2 style={{ textAlign: "center", marginBottom: 20 }}>{title}</h2>
+      <h2 className="font-medium text-center text-2xl mb-2">{title}</h2>
 
       <Stats />
       <Schedule />

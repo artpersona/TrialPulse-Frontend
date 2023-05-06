@@ -1,0 +1,35 @@
+.sectionNavbar {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sectionNavbar ul {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 100%;
+}
+
+.sectionNavbar li {
+  list-style-type: none;
+  color: #ffffff;
+  font-weight: 200;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  font-size: 14px;
+}
+
+.sectionNavbar li:hover {
+  background-color: #909090;
+}
+
+.sectionNavbar li.active {
+  background-color: #909090;
+}

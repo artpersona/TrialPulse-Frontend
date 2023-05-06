@@ -6,7 +6,7 @@ function ActivitySchedule(props) {
 
   return (
     <>
-      <table className="activitySchedule" border>
+      <table className="w-full max-w-[800px] mx-auto rounded-full">
         <tbody>
           <tr>
             <th></th>

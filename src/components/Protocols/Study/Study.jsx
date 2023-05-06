@@ -19,7 +19,10 @@ function Study(props) {
   }
 
   return (
-    <div className="study" onClick={handleClick}>
+    <div
+      className="card has-transition p-4 relative mb-4 w-[350px] cursor-pointer hover:border-primary"
+      onClick={handleClick}
+    >
       <div className="study__top">
         <div
           className="study__topIcon"
@@ -27,9 +30,9 @@ function Study(props) {
         >
           <ClipboardDocumentIcon width={16} height={16} color="white" />
         </div>
-        <div className="study__topRight">
-          <h4 style={{ color: colorPalette.PRIMARY_COLOR }}>{data.title}</h4>
-          <p>Last viewed August 24</p>
+        <div className="">
+          <h4 className="text-primary font-medium leading-4">{data.title}</h4>
+          <p className="text-xs italic text-gray ">Last viewed August 24</p>
         </div>
       </div>
 

@@ -18,16 +18,13 @@ function DetailsCard(props) {
 
   return (
     <div
-      className="detailsCard"
+      className={`card has-transition p-4 overflow-hidden w-[350px] relative bg-white my-4 cursor-pointer hover:border-primary ${
+        isActive() && "border-primary border-2"
+      }`}
       onClick={onClick}
-      style={{
-        border: isActive()
-          ? `3px solid ${colorPalette.PRIMARY_COLOR}`
-          : "1px solid #000",
-      }}
     >
       <div className="detailsCard__content">
-        <h3>{title}</h3>
+        <h3 className="text-xl font-medium">{title}</h3>
         <p>
           {description ||
             "Brief Overview of lorem ipsum hsahsax lassdjkt dfkdsfkdsk lsl Overview of lorem ipsum Overview of lorem ipsum"}
@@ -41,3 +38,13 @@ function DetailsCard(props) {
 }
 
 export default DetailsCard;
+
+import PropTypes from "prop-types";
+
+DetailsCard.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  image: PropTypes.string,
+  onClick: PropTypes.func,
+  path: PropTypes.string,
+};

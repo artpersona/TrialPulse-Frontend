@@ -17,25 +17,29 @@ const drugRoutes = [
   {
     id: "iv",
     icon: Iv,
+    label: "Iv",
   },
   {
     id: "Bandage",
     icon: Bandage,
+    label: "Bandage",
   },
   {
     id: "Needle",
     icon: Needle,
+    label: "Needle",
   },
   {
     id: "Surgery",
     icon: Surgery,
+    label: "Surgery",
   },
   {
     id: "Respirator",
     icon: Respirator,
+    label: "Respirator",
   },
 ];
-
 function StudyDetails(props) {
   const { data } = props;
 

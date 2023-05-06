@@ -10,7 +10,6 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const currentUser = localStorage.getItem("user");
-    console.log(currentUser);
     if (currentUser) {
       setUser(JSON.parse(currentUser));
     } else {

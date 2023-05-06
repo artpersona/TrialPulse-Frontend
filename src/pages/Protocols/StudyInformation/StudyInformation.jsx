@@ -43,7 +43,7 @@ function StudyInformation() {
   };
 
   return (
-    <div className="studyInformation">
+    <div className="w-full relative pr-8 pl-2">
       {pathname.split("/").slice(-1)[0] === "edit-treatments" ? (
         <BlackNavbar>
           <div style={{ width: "100%", paddingLeft: 10 }}>
@@ -74,7 +74,7 @@ function StudyInformation() {
         </BlackNavbar>
       )}
 
-      <div style={{ width: "100%" }}>
+      <div className="w-full mx-auto flex items-center justify-center">
         <Outlet />
       </div>
     </div>

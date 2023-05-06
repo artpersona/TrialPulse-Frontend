@@ -1,0 +1,8 @@
+.avatarContainer {
+  background-color: #93a1af;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}

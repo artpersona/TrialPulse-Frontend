@@ -54,8 +54,8 @@ function ScheduleItem(props) {
         </td>
         <td>
           <div
+            className="flex items-center justify-center cursor-pointer"
             onClick={() => handleViewNote(data)}
-            style={{ cursor: "pointer" }}
           >
             {data.note.length > 0 ? (
               <ClipboardDocumentIcon
@@ -106,11 +106,14 @@ function ScheduleItem(props) {
               onChange={(e) => setNote(e.target.value)}
             />
             <div className="modal__actions">
-              <button className="modal__okButton" onClick={handleSaveNote}>
+              <button
+                className="modal_button bg-primary"
+                onClick={handleSaveNote}
+              >
                 Save
               </button>
               <button
-                className="modal__cancelButton"
+                className="modal-button bg-gray-dark"
                 onClick={() => setShowViewNoteModal(false)}
               >
                 Cancel
@@ -128,9 +131,9 @@ function ScheduleItem(props) {
             </div>
 
             <div className="modal__actions">
-              <button className="modal__okButton">Save</button>
+              <button className="modal-button bg-primary">Save</button>
               <button
-                className="modal__cancelButton"
+                className="modal-button bg-gray-dark"
                 onClick={() => setShowViewNoteModal(false)}
               >
                 Cancel

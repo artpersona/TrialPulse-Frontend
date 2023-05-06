@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 function ScheduleMain() {
   return (
-    <div>
+    <div className="w-full">
       <Outlet />
     </div>
   );

@@ -7,6 +7,7 @@ import { PlusIcon } from "@heroicons/react/24/solid";
 import colorPalette from "src/utils/styles/colorPalette";
 import Modal from "../../../../components/Modal/Modal";
 import { useNavigate } from "react-router-dom";
+import FloatingPlusButton from "../../../../components/FloatingPlusButton/FloatingPlusButton";
 
 function Schedule() {
   const navigate = useNavigate();
@@ -72,13 +73,8 @@ function Schedule() {
         </button>
       </div>
       <ActivitySchedule data={schedule} />
-      <div
-        className="schedule__addButton"
-        style={{ backgroundColor: colorPalette.SECONDARY_COLOR }}
-        onClick={() => setAddScheduleModalOpen((prevValue) => !prevValue)}
-      >
-        <PlusIcon width={25} height={25} color="#FFFFFF" />
-      </div>
+
+      <FloatingPlusButton handleClick={() => setAddScheduleModalOpen(true)} />
 
       {addScheduleModalOpen ? (
         <Modal>
@@ -115,11 +111,14 @@ function Schedule() {
             />
 
             <div className="modal__actions">
-              <button className="modal__okButton" onClick={handleAddSchedule}>
+              <button
+                className="modal-button bg-primary"
+                onClick={handleAddSchedule}
+              >
                 Save
               </button>
               <button
-                className="modal__cancelButton"
+                className="modal-button bg-gray-dark"
                 onClick={() => setAddScheduleModalOpen(false)}
               >
                 Cancel

@@ -5,6 +5,7 @@ import { useProtocolContext } from "../../../../contexts/ProtocolContext";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import colorPalette from "src/utils/styles/colorPalette";
 import AddCriteria from "../components/modal/AddCriteria/AddCriteria";
+import FloatingPlusButton from "../../../../components/FloatingPlusButton/FloatingPlusButton";
 
 function Exclusion() {
   const { getSelectedProtocol, addCriteria } = useProtocolContext();
@@ -50,14 +51,7 @@ function Exclusion() {
         <Criteria key={item.id} data={item} />
       ))}
 
-      <div
-        className="eligibilityCriteria__addButton"
-        style={{ backgroundColor: colorPalette.SECONDARY_COLOR }}
-        onClick={() => setShowAddCriteriaModal(true)}
-      >
-        <PlusIcon width={25} height={25} color="#FFFFFF" />
-      </div>
-
+      <FloatingPlusButton handleClick={() => setShowAddCriteriaModal(true)} />
       {showAddCriteriaModal ? (
         <AddCriteria
           onOk={handleAddCriteria}
