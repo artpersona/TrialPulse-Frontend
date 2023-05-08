@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 import "./AddProtocol.styles.css";
 import Drug from "src/assets/images/svgs/Drug.svg";
 import Iv from "src/assets/images/svgs/Iv.svg";
@@ -179,7 +177,7 @@ function AddProtocol() {
             value={sponsorId}
             onChange={(e) => setSponsorId(e.target.value)}
           >
-            <option value="">Select Protocol</option>
+            <option value="">Select Sponsor</option>
             {sponsors?.map((item) => (
               <option key={item.id} value={item.id}>
                 {item.name}

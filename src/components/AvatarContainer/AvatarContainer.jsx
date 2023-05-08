@@ -15,5 +15,5 @@ export default AvatarContainer;
 import PropTypes from "prop-types";
 
 AvatarContainer.propTypes = {
-  Icon: PropTypes.element,
+  Icon: PropTypes.object,
 };

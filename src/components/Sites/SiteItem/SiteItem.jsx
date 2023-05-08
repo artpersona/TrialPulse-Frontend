@@ -11,8 +11,11 @@ function SiteItem(props) {
   const { data } = props;
 
   const { siteId } = useParams();
+  const navigate = useNavigate();
 
-  function handleClick() {}
+  function handleClick() {
+    navigate(`${data.id}`);
+  }
 
   return (
     <div
@@ -46,7 +49,7 @@ function SiteItem(props) {
 export default SiteItem;
 
 import PropTypes from "prop-types";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 SiteItem.propTypes = {
   data: PropTypes.object,

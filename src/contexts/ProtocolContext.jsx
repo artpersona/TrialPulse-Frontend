@@ -68,3 +68,9 @@ export const ProtocolContextProvider = ({ children }) => {
 };
 
 export const useProtocolContext = () => useContext(ProtocolContext);
+
+import PropTypes from "prop-types";
+
+ProtocolContextProvider.propTypes = {
+  children: PropTypes.element,
+};

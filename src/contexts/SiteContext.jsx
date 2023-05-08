@@ -24,7 +24,9 @@ export const SiteContextProvider = ({ children }) => {
   }
 
   return (
-    <SiteContext.Provider value={{ sites }}>{children}</SiteContext.Provider>
+    <SiteContext.Provider value={{ sites, fetchSites }}>
+      {children}
+    </SiteContext.Provider>
   );
 };
 

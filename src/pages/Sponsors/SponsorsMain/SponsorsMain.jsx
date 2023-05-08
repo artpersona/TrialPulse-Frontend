@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 
 function SponsorsMain() {
   const { sponsors } = useSponsorContext();
-  console.log(sponsors);
+
   return (
     <div className="sponsorsMain">
       <Sidebar>

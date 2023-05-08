@@ -38,7 +38,15 @@ import SponsorsMain from "./pages/Sponsors/SponsorsMain";
 import SponsorDetails from "./pages/Sponsors/SponsorDetails";
 import SponsorInfo from "./pages/Sponsors/SponsorInfo";
 import SponsorProtocols from "./pages/Sponsors/SponsorProtocols";
+import SponsorStaff from "./pages/Sponsors/SponsorStaff/SponsorStaff";
+
 import Home from "./pages/Home/Home";
+
+// SITES
+import SiteDetails from "./pages/Sites/SiteDetails";
+import SiteInformation from "./pages/Sites/SiteInfo";
+import AddSponsor from "./pages/Sponsors/AddSponsor";
+import AddSite from "./pages/Sites/AddSite";
 
 function App() {
   const { user } = useAuthContext();
@@ -76,6 +84,10 @@ function App() {
               element: <SponsorsMain />,
               children: [
                 {
+                  path: "",
+                  element: <AddSponsor />,
+                },
+                {
                   path: ":sponsorId",
                   element: <SponsorDetails />,
                   children: [
@@ -89,7 +101,7 @@ function App() {
                     },
                     {
                       path: "staff",
-                      element: <SponsorDetails />,
+                      element: <SponsorStaff />,
                     },
                   ],
                 },
@@ -192,6 +204,30 @@ function App() {
             {
               path: "",
               element: <SitesMain />,
+              children: [
+                {
+                  path: "",
+                  element: <AddSite />,
+                },
+                {
+                  path: ":siteId",
+                  element: <SiteDetails />,
+                  children: [
+                    {
+                      path: "",
+                      element: <SiteInformation />,
+                    },
+                    {
+                      path: "protocols",
+                      element: <SponsorProtocols />,
+                    },
+                    {
+                      path: "staff",
+                      element: <SponsorStaff />,
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },

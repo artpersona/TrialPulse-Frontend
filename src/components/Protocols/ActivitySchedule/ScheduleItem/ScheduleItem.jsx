@@ -27,7 +27,7 @@ function ScheduleItem(props) {
 
   async function handleSaveNote() {
     try {
-      const res = await privateClient({
+      await privateClient({
         url: `protocols/${protocolId}/schedules/${data.id}`,
         method: "put",
         data: {
@@ -35,7 +35,6 @@ function ScheduleItem(props) {
           note,
         },
       });
-      console.log(res);
       setShowViewNoteModal(false);
     } catch (error) {
       console.log(error);

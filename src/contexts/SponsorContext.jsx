@@ -24,7 +24,7 @@ export const SponsorContextProvider = ({ children }) => {
   }
 
   return (
-    <SponsorContext.Provider value={{ sponsors }}>
+    <SponsorContext.Provider value={{ sponsors, fetchSponsors }}>
       {children}
     </SponsorContext.Provider>
   );

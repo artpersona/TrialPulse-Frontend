@@ -3,6 +3,21 @@
 @tailwind utilities;
 
 @layer components {
+  .form-row {
+    @apply my-2;
+  }
+  .form-label {
+    @apply text-sm ml-2 mb-1;
+  }
+  .form-input {
+    @apply w-full rounded-3xl py-3 px-4;
+  }
+  .form-actions {
+    @apply w-full flex items-center justify-center;
+  }
+  .form-proceed-button {
+    @apply has-transition mx-auto bg-primary text-white rounded-full py-2 px-8 cursor-pointer hover:bg-primary-dark disabled:bg-gray;
+  }
   .card {
     @apply border border-gray rounded-3xl shadow-md;
   }
