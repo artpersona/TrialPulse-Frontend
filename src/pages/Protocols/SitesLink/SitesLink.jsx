@@ -88,7 +88,10 @@ function SitesLink() {
                   className="card py-2 px-4 flex items-center justify-between my-2"
                 >
                   <p>{item.name}</p>
-                  <button className="bg-secondary flex gap-2 text-md items-center justify-center px-3 py-1 cursor-pointer rounded-2xl text-white">
+                  <button
+                    className="bg-secondary flex gap-2 text-md items-center justify-center px-3 py-1 cursor-pointer rounded-2xl text-white"
+                    onClick={() => handleAddProtocolSite(item.id)}
+                  >
                     <PlusIcon height={12} width={12} color="#ffffff" /> Add
                   </button>
                 </div>
