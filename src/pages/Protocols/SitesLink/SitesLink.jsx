@@ -7,7 +7,6 @@ import { privateClient } from "src/api";
 import FloatingPlusButton from "src/components/FloatingPlusButton/FloatingPlusButton";
 import Modal from "../../../components/Modal/Modal";
 import { PlusIcon } from "@heroicons/react/24/solid";
-import colorPalette from "src/utils/styles/colorPalette";
 
 function SitesLink() {
   const { getSelectedProtocol } = useProtocolContext();

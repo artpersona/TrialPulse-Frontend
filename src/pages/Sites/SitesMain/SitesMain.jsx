@@ -1,11 +1,14 @@
-import "./SitesMain.styles.css";
-import Sidebar from "src/components/Sidebar/Sidebar";
-import { useSiteContext } from "src/contexts/SiteContext";
-import SiteItem from "../../../components/Sites/SiteItem/SiteItem";
 import { Outlet } from "react-router-dom";
+
+import { useSiteContext } from "src/contexts/SiteContext";
+
+import Sidebar from "src/components/Sidebar/Sidebar";
+import SiteItem from "src/components/Sites/SiteItem/SiteItem";
+import ContentSidebar from "src/components/ContentSidebar/ContentSidebar";
 
 function SitesMain() {
   const { sites } = useSiteContext();
+
   return (
     <div className="relative">
       <Sidebar>
@@ -16,9 +19,9 @@ function SitesMain() {
         </div>
       </Sidebar>
 
-      <div className="flex flex-col items-center justify-center pt-[100px] pl-[470px]">
+      <ContentSidebar>
         <Outlet />
-      </div>
+      </ContentSidebar>
     </div>
   );
 }

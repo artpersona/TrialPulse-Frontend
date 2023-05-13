@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { ProtocolContextProvider } from "../../contexts/ProtocolContext";
+
+import { ProtocolContextProvider } from "src/contexts/ProtocolContext";
 
 function Protocols() {
   return (

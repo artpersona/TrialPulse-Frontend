@@ -1,14 +1,16 @@
-import "./SponsorsMain.styles.css";
-import Sidebar from "src/components/Sidebar/Sidebar";
-import { useSponsorContext } from "../../../contexts/SponsorContext";
-import SponsorItem from "../../../components/Sponsors/SponsorItem/SponsorItem";
 import { Outlet } from "react-router-dom";
+
+import { useSponsorContext } from "src/contexts/SponsorContext";
+
+import Sidebar from "src/components/Sidebar/Sidebar";
+import SponsorItem from "src/components/Sponsors/SponsorItem/SponsorItem";
+import ContentSidebar from "src/components/ContentSidebar/ContentSidebar";
 
 function SponsorsMain() {
   const { sponsors } = useSponsorContext();
 
   return (
-    <div className="sponsorsMain">
+    <div className="relative">
       <Sidebar>
         <div>
           {sponsors?.map((item) => (
@@ -17,9 +19,9 @@ function SponsorsMain() {
         </div>
       </Sidebar>
 
-      <div className="sponsorsMain__content">
+      <ContentSidebar>
         <Outlet />
-      </div>
+      </ContentSidebar>
     </div>
   );
 }
