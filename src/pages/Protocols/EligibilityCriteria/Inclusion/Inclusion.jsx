@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+
+import { privateClient } from "src/api";
+
+import { useProtocolContext } from "src/contexts/ProtocolContext";
+
+import AddButton from "src/components/AddButton/AddButton";
 import Criteria from "src/components/Protocols/Criteria";
-import { privateClient } from "../../../../api";
-import { useProtocolContext } from "../../../../contexts/ProtocolContext";
-import { PlusIcon } from "@heroicons/react/24/solid";
-import colorPalette from "src/utils/styles/colorPalette";
 import AddCriteria from "../components/modal/AddCriteria/AddCriteria";
-import FloatingPlusButton from "../../../../components/FloatingPlusButton/FloatingPlusButton";
 
 function Inclusion() {
   const { getSelectedProtocol, addCriteria } = useProtocolContext();
@@ -59,11 +60,14 @@ function Inclusion() {
 
   return (
     <div>
+      <AddButton
+        title="Add Criteria"
+        onClick={() => setShowAddCriteriaModal(true)}
+      />
+
       {criterias.map((item) => (
         <Criteria key={item.id} data={item} onDelete={handleDeleteCriteria} />
       ))}
-
-      <FloatingPlusButton handleClick={() => setShowAddCriteriaModal(true)} />
 
       {showAddCriteriaModal ? (
         <AddCriteria

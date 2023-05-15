@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import "./SitesLink.styles.css";
+import { PlusIcon } from "@heroicons/react/24/solid";
+
+import { privateClient } from "src/api";
+
+import { useProtocolContext } from "src/contexts/ProtocolContext";
+
+import Modal from "src/components/Modal/Modal";
+import AddButton from "src/components/AddButton/AddButton";
 import SitesLinkComponent from "src/components/Protocols/SitesLink";
 import BlackNavbar from "src/components/Protocols/BlackNavbar/BlackNavbar";
-import { useProtocolContext } from "src/contexts/ProtocolContext";
-import { privateClient } from "src/api";
-import FloatingPlusButton from "src/components/FloatingPlusButton/FloatingPlusButton";
-import Modal from "../../../components/Modal/Modal";
-import { PlusIcon } from "@heroicons/react/24/solid";
 
 function SitesLink() {
   const { getSelectedProtocol } = useProtocolContext();
@@ -70,15 +72,16 @@ function SitesLink() {
   return (
     <div>
       <BlackNavbar />
+
+      <AddButton title="Add Sites" onClick={() => setShowAddSiteModal(true)} />
+
       {protocolSites.map((item) => (
         <SitesLinkComponent key={item.id} data={item} />
       ))}
 
-      <FloatingPlusButton handleClick={() => setShowAddSiteModal(true)} />
-
       {showAddSiteModal ? (
         <Modal>
-          <div className="sitesLink__modal">
+          <div className="bg-white border-gray rounded-2xl w-[450px] p-4">
             <h4 className="modal__title">Add Site</h4>
             <div>
               {getAvailableSites().map((item) => (

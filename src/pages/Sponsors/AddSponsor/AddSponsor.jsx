@@ -60,7 +60,7 @@ function AddSponsor() {
           />
         </div>
         <div className="form-row">
-          <p className="form-label">CMO</p>
+          <p className="form-label">CRO</p>
           <input
             className="form-input"
             type="text"

@@ -44,3 +44,9 @@ export const AuthContextProvider = ({ children }) => {
 };
 
 export const useAuthContext = () => useContext(AuthContext);
+
+import PropTypes from "prop-types";
+
+AuthContextProvider.propTypes = {
+  children: PropTypes.element,
+};

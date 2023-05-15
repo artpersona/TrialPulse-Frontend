@@ -47,6 +47,8 @@ import SiteDetails from "./pages/Sites/SiteDetails";
 import SiteInformation from "./pages/Sites/SiteInfo";
 import AddSponsor from "./pages/Sponsors/AddSponsor";
 import AddSite from "./pages/Sites/AddSite";
+import SiteProtocols from "./pages/Sites/SiteProtocols";
+import { ProtocolContextProvider } from "./contexts/ProtocolContext";
 
 function App() {
   const { user } = useAuthContext();
@@ -67,7 +69,11 @@ function App() {
     {
       path: "/",
       errorElement: <NotFound />,
-      element: <Layout />,
+      element: (
+        <ProtocolContextProvider>
+          <Layout />
+        </ProtocolContextProvider>
+      ),
       children: [
         {
           path: "",
@@ -219,7 +225,7 @@ function App() {
                     },
                     {
                       path: "protocols",
-                      element: <SponsorProtocols />,
+                      element: <SiteProtocols />,
                     },
                     {
                       path: "staff",

@@ -14,7 +14,7 @@ export const ProtocolContextProvider = ({ children }) => {
   async function fetchProtocols() {
     try {
       const res = await privateClient({
-        url: "/sponsors/7/protocols?page=1",
+        url: "/protocols?page=1",
         method: "get",
       });
       setProtocols(res.data.data);
@@ -52,6 +52,20 @@ export const ProtocolContextProvider = ({ children }) => {
     });
   }
 
+  async function addSite(protocolId, siteId) {
+    return new Promise((resolve, reject) => {
+      privateClient({
+        url: `protocols/${protocolId}/sites`,
+        method: "post",
+        data: {
+          siteId,
+        },
+      })
+        .then((res) => resolve(res))
+        .catch((err) => reject(err));
+    });
+  }
+
   return (
     <ProtocolContext.Provider
       value={{
@@ -59,6 +73,7 @@ export const ProtocolContextProvider = ({ children }) => {
         setProtocol,
         getSelectedProtocol,
         addCriteria,
+        addSite,
         fetchProtocols,
       }}
     >

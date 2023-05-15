@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import Criteria from "src/components/Protocols/Criteria";
-import { privateClient } from "../../../../api";
-import { useProtocolContext } from "../../../../contexts/ProtocolContext";
-import { PlusIcon } from "@heroicons/react/24/solid";
-import colorPalette from "src/utils/styles/colorPalette";
+import { privateClient } from "src/api";
+import { useProtocolContext } from "src/contexts/ProtocolContext";
 import AddCriteria from "../components/modal/AddCriteria/AddCriteria";
-import FloatingPlusButton from "../../../../components/FloatingPlusButton/FloatingPlusButton";
+import AddButton from "src/components/AddButton/AddButton";
 
 function Exclusion() {
   const { getSelectedProtocol, addCriteria } = useProtocolContext();
@@ -47,11 +45,15 @@ function Exclusion() {
 
   return (
     <div>
+      <AddButton
+        title="Add Criteria"
+        onClick={() => setShowAddCriteriaModal(true)}
+      />
+
       {criterias.map((item) => (
         <Criteria key={item.id} data={item} />
       ))}
 
-      <FloatingPlusButton handleClick={() => setShowAddCriteriaModal(true)} />
       {showAddCriteriaModal ? (
         <AddCriteria
           onOk={handleAddCriteria}

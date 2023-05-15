@@ -6,8 +6,8 @@ function Criteria(props) {
   const { data, onDelete } = props;
 
   return (
-    <div className="criteria">
-      <div className="criteria__header">
+    <div className="card w-[400px] p-4">
+      <div className="flex items-center justify-end">
         <XCircleIcon
           height={25}
           width={25}
@@ -16,34 +16,39 @@ function Criteria(props) {
           onClick={() => onDelete(data.id)}
         />
       </div>
-      <p>Criteria Name</p>
-      <input value={data.name} />
 
-      <p>Description</p>
-      <textarea value={data.description} />
+      <div className="form-row">
+        <p className="form-label">Criteria Name</p>
+        <input className="form-input" value={data.name} />
+      </div>
 
-      <div className="eligibility__row">
+      <div className="form-row">
+        <p className="form-label">Description</p>
+        <textarea value={data.description} className="form-input" rows={3} />
+      </div>
+
+      <div className="flex items-center justify-between text-sm">
         <p>Required for Eligibility?</p>
-        <div className="row">
-          <div className="radio__button">
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             <input type="radio" checked={data.isRequired} />
             <span>Yes</span>
           </div>
-          <div className="radio__button">
+          <div className="flex items-center gap-1">
             <input type="radio" checked={!data.isRequired} />
             <span>No</span>
           </div>
         </div>
       </div>
 
-      <div className="eligibility__row">
+      <div className="flex items-center justify-between text-sm">
         <p>Required other criteria for Eligibility?</p>
-        <div className="row">
-          <div className="radio__button">
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             <input type="radio" checked={data.isDependent} />
             <span>Yes</span>
           </div>
-          <div className="radio__button">
+          <div className="flex items-center gap-1">
             <input type="radio" checked={!data.isDependent} />
             <span>No</span>
           </div>
