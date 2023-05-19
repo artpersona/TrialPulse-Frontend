@@ -4,12 +4,17 @@ import App from "./App.jsx";
 import "./index.css";
 import { AuthContextProvider } from "./contexts/AuthContext.jsx";
 import { Toaster } from "react-hot-toast";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthContextProvider>
-      <Toaster />
-      <App />
-    </AuthContextProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthContextProvider>
+        <Toaster />
+        <App />
+      </AuthContextProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );

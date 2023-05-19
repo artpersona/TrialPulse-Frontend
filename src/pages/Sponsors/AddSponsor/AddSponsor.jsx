@@ -1,42 +1,28 @@
 import { useState } from "react";
-import { toast } from "react-hot-toast";
-import { privateClient } from "../../../api";
-import BlackNavbar from "../../../components/Protocols/BlackNavbar/BlackNavbar";
-import { useSponsorContext } from "../../../contexts/SponsorContext";
-import { hasBlank } from "../../../utils";
 
-let notification = "";
+import useCreateSponsor from "src/api/sponsors/useCreateSponsor";
+
+import BlackNavbar from "src/components/Protocols/BlackNavbar/BlackNavbar";
+
+import { hasBlank } from "src/utils";
+
 function AddSponsor() {
-  const { fetchSponsors } = useSponsorContext();
-
   const [name, setName] = useState("");
   const [cmo, setCmo] = useState("");
   const [notes, setNotes] = useState("");
 
   const isDisabled = () => hasBlank([name, cmo, notes]);
 
+  const { mutate } = useCreateSponsor({
+    resetForm,
+  });
+
   async function handleAddSponsor() {
-    notification = toast.loading("Adding Sponsor...");
-    try {
-      await privateClient({
-        url: "sponsors",
-        method: "post",
-        data: {
-          name,
-          cmo,
-          notes,
-        },
-      });
-      toast.success("Sponsor has been added successfully.", {
-        id: notification,
-      });
-      fetchSponsors();
-      resetForm();
-    } catch (error) {
-      toast.error(error, {
-        id: notification,
-      });
-    }
+    mutate({
+      name,
+      cmo,
+      notes,
+    });
   }
 
   function resetForm() {
