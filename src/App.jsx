@@ -257,7 +257,7 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={user ? router : loginRouter} />
+      <RouterProvider router={!user ? router : loginRouter} />
     </>
   );
 }
