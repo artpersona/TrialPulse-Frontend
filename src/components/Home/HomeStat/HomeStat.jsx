@@ -1,26 +1,32 @@
-function HomeStat(props) {
-  const { title, stat, additional } = props;
+import { Chart as ChartJS, registerables } from "chart.js";
+import { Bar } from "react-chartjs-2";
+import { ChartBarSquareIcon } from "@heroicons/react/24/solid";
+import PropTypes from "prop-types";
 
-  return (
-    <div className="flex flex-col items-center justify-center w-[220px] h-[200px] border rounded-3xl shadow-lg">
-      <h1 className="text-6xl font-bold text-green">{stat}</h1>
-      <h4 className="font-medium text-xl">{title}</h4>
-      <div className="flex gap-2 items-center mt-6">
-        <ChartBarSquareIcon className="h-8 w-8 text-secondary" />
-        <div className="w-[2px] h-full rounded-lg bg-gray" />
-        <p className="text-gray-dark text-sm">+{additional} in 7 days </p>
-      </div>
-    </div>
-  );
+ChartJS.register(...registerables);
+function HomeStat(props) {
+	const { title, stat, additional, options, data, days } = props;
+
+	return (
+		<article key={title} className="flex flex-col space-y-2 items-center">
+			<h3 className="text-[20px]">{title}</h3>
+			<h1 className="text-[#00bd4f] font-bold text-[36px]">{stat}</h1>
+			<Bar className="w-[100px]" options={options} data={data} />
+			<figure className="border-[5px] rounded-full border-[#6b6b6b] bg-gray-primary w-full" />
+			<p>
+				{additional} in {days} days
+			</p>
+		</article>
+	);
 }
 
 export default HomeStat;
 
-import { ChartBarSquareIcon } from "@heroicons/react/24/solid";
-import PropTypes from "prop-types";
-
 HomeStat.propTypes = {
-  title: PropTypes.string,
-  stat: PropTypes.string,
-  additional: PropTypes.string,
+	title: PropTypes.string,
+	stat: PropTypes.string,
+	additional: PropTypes.string,
+	options: PropTypes.object,
+	data: PropTypes.object,
+	days: PropTypes.number,
 };
