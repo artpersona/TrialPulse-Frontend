@@ -1,11 +1,10 @@
-import { useProtocolContext } from "src/contexts/ProtocolContext";
-
 import Study from "src/components/Protocols/Study";
 import Sidebar from "src/components/Sidebar/Sidebar";
 import BlackNavbar from "src/components/Protocols/BlackNavbar/BlackNavbar";
 import ContentSidebar from "src/components/ContentSidebar/ContentSidebar";
 
 import AddProtocol from "./AddProtocol";
+import useProtocols from "../../../api/protocols/useGetProtocols";
 
 const tabs = [
   {
@@ -23,7 +22,11 @@ const tabs = [
 ];
 
 function ProtocolsMain() {
-  const { protocols } = useProtocolContext();
+  const { api, protocols, pagination } = useProtocols();
+
+  if (api.isLoading) {
+    return <div>Loading</div>;
+  }
 
   return (
     <div className="relative">

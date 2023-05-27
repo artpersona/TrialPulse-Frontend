@@ -7,9 +7,9 @@ import SponsorItem from "src/components/Sponsors/SponsorItem/SponsorItem";
 import ContentSidebar from "src/components/ContentSidebar/ContentSidebar";
 
 function SponsorsMain() {
-  const { isLoading, data } = useGetSponsors();
+  const { sponsors, api, pagination } = useGetSponsors();
 
-  if (isLoading) {
+  if (api.isLoading) {
     return <div>Loading</div>;
   }
 
@@ -17,7 +17,7 @@ function SponsorsMain() {
     <div className="relative">
       <Sidebar>
         <div>
-          {data.data.data.map((item) => (
+          {sponsors.map((item) => (
             <SponsorItem key={item.id} data={item} />
           ))}
         </div>

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { privateClient } from "..";
 
-function useGetSites() {
+function useGetSitesQuery() {
   return useQuery({
     queryKey: ["sites"],
     queryFn: () =>
@@ -11,4 +11,13 @@ function useGetSites() {
   });
 }
 
-export default useGetSites;
+export default function useGetSites() {
+  const { data, ...others } = useGetSitesQuery();
+  return {
+    sites: data?.data?.data,
+    pagination: data?.data?.pagination,
+    api: {
+      ...others,
+    },
+  };
+}

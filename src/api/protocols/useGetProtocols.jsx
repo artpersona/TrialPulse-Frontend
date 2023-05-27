@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { privateClient } from "..";
 
-function useGetProtocols() {
+function useGetProtocolsQuery() {
   return useQuery({
     queryKey: ["protocols"],
     queryFn: () =>
@@ -11,4 +11,13 @@ function useGetProtocols() {
   });
 }
 
-export default useGetProtocols;
+export default function useGetProtocols() {
+  const { data, ...others } = useGetProtocolsQuery();
+  return {
+    protocols: data?.data?.data,
+    pagination: data?.data?.pagination,
+    api: {
+      ...others,
+    },
+  };
+}

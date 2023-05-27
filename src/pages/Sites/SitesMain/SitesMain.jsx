@@ -7,16 +7,17 @@ import SiteItem from "src/components/Sites/SiteItem/SiteItem";
 import ContentSidebar from "src/components/ContentSidebar/ContentSidebar";
 
 function SitesMain() {
-  const { isLoading, isFetching, data } = useGetSites();
+  const { sites, api, pagination } = useGetSites();
 
-  if (isLoading) {
+  if (api.isLoading) {
     return <div>Loading</div>;
   }
+
   return (
     <div className="relative">
       <Sidebar>
         <div>
-          {data.data?.data?.map((item) => (
+          {sites.map((item) => (
             <SiteItem key={item.id} data={item} />
           ))}
         </div>

@@ -18,18 +18,18 @@ privateClient.interceptors.request.use(async (config) => {
   return config;
 });
 
-privateClient.interceptors.response.use(
-  async (response) => {
-    return response;
-  },
-  (error) => {
-    const _error = error.response;
-    if (_error && _error.status === 401) {
-      clearToken();
-      clearUser();
-      window.location.reload();
-      throw error;
-    }
-    return error;
-  }
-);
+// privateClient.interceptors.response.use(
+//   async (response) => {
+//     return response;
+//   },
+//   (error) => {
+//     const _error = error.response;
+//     if (_error && _error.status === 401) {
+//       clearToken();
+//       clearUser();
+//       window.location.reload();
+//       throw error;
+//     }
+//     return error;
+//   }
+// );
