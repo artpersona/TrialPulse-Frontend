@@ -4,6 +4,12 @@ export const getToken = () => {
   return null;
 };
 
+export const getRefreshToken = () => {
+  const token = localStorage.getItem("user");
+  if (token) return JSON.parse(token).refreshToken;
+  return null;
+};
+
 export const setToken = (token) => {
   localStorage.setItem("token", token);
 };

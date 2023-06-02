@@ -66,7 +66,15 @@ function Schedule() {
     <div className="schedule">
       <div className="schedule__header">
         <button
+          className="mr-5"
           style={{ backgroundColor: colorPalette.SECONDARY_COLOR }}
+          onClick={() => setAddScheduleModalOpen(true)}
+        >
+          Add Schedule
+        </button>
+
+        <button
+          style={{ backgroundColor: colorPalette.PRIMARY_COLOR }}
           onClick={handleEditTreatments}
         >
           Edit Treatments
@@ -74,7 +82,7 @@ function Schedule() {
       </div>
       <ActivitySchedule data={schedule} />
 
-      <FloatingPlusButton handleClick={() => setAddScheduleModalOpen(true)} />
+      {/* <FloatingPlusButton handleClick={() => setAddScheduleModalOpen(true)} /> */}
 
       {addScheduleModalOpen ? (
         <Modal>

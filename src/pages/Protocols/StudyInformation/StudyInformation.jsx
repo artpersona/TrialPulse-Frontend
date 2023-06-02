@@ -15,11 +15,11 @@ const tabs = [
     label: "Schedule of Activity",
     path: "schedule",
   },
-  {
-    id: "table-of-contents",
-    label: "Table of Contents",
-    path: "table-of-contents",
-  },
+  // {
+  //   id: "table-of-contents",
+  //   label: "Table of Contents",
+  //   path: "table-of-contents",
+  // },
 ];
 
 function StudyInformation() {

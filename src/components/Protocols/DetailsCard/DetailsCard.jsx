@@ -18,7 +18,7 @@ function DetailsCard(props) {
 
   return (
     <div
-      className={`card has-transition p-4 overflow-hidden w-[350px] relative bg-white my-4 cursor-pointer hover:border-primary ${
+      className={`card box-border border-2 h-[150px] has-transition p-4 overflow-hidden w-[350px] relative bg-white my-4 cursor-pointer hover:border-primary ${
         isActive() && "border-primary border-2"
       }`}
       onClick={onClick}

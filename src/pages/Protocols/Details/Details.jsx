@@ -10,6 +10,7 @@ import DetailsCard from "../../../components/Protocols/DetailsCard/DetailsCard";
 import colorPalette from "src/utils/styles/colorPalette";
 import { useProtocolContext } from "../../../contexts/ProtocolContext";
 import { useEffect } from "react";
+import useGetProtocol from "../../../api/protocols/useGetProtocol";
 
 const detailsList = [
   {
@@ -50,6 +51,8 @@ function Details() {
 
   const { setProtocol } = useProtocolContext();
 
+  const { protocol } = useGetProtocol(protocolId);
+
   useEffect(() => {
     if (protocolId) setProtocol(protocolId);
   }, [protocolId]);
@@ -71,7 +74,7 @@ function Details() {
           className="details__topBar"
           style={{ backgroundColor: colorPalette.GRAY_DARK }}
         >
-          <div className="details__topBarLeft">
+          <div className="flex items-center gap-2">
             <ChevronLeftIcon
               width={25}
               height={25}
@@ -79,6 +82,9 @@ function Details() {
               style={{ cursor: "pointer" }}
               onClick={handleGoback}
             />
+            <p className="text-secondary text-sm">
+              Protocols / {protocol?.title}
+            </p>
           </div>
           <div className="details__topBarRight"></div>
         </div>

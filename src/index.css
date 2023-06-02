@@ -47,3 +47,19 @@ select {
   min-height: 100vh;
   min-width: 100vw;
 }
+
+body {
+  overflow-y: scroll; /* Always show the vertical scrollbar */
+}
+
+/* Hide the horizontal scrollbar */
+body::-webkit-scrollbar {
+  /* height: 0; */
+  /* background: transparent; */
+}
+
+/* Prevent horizontal scrolling */
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}

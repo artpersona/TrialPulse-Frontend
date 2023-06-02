@@ -26,9 +26,11 @@ function SponsorItem(props) {
     >
       <AvatarContainer Icon={BuildingOfficeIcon} />
 
-      <h4 className="text-primary text-sm font-medium flex-1">{data.name}</h4>
+      <h4 className="text-primary text-sm font-medium flex-1 ml-2">
+        {data.name}
+      </h4>
 
-      <div className="w-8 h-8 bg-gray-200 grid place-items-center rounded-full cursor-pointer">
+      {/* <div className="w-8 h-8 bg-gray-200 grid place-items-center rounded-full cursor-pointer">
         <PhoneIcon
           width={16}
           height={16}
@@ -41,7 +43,7 @@ function SponsorItem(props) {
           height={16}
           color={colorPalette.SECONDARY_COLOR}
         />
-      </div>
+      </div> */}
     </div>
   );
 }

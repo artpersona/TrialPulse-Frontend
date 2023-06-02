@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import colorPalette from "src/utils/styles/colorPalette";
 import "./Sidebar.styles.css";
+import { SIDEBAR_WIDTH } from "../../shared/constants";
 
 const getLetters = () => {
   let letters = [];
@@ -38,7 +39,9 @@ function Sidebar(props) {
   }
 
   return (
-    <div className="sidebar">
+    <div
+      className={`fixed left-0 top-0 p-5 pt-[150px] w-[${SIDEBAR_WIDTH}px] border-1 border-black h-screen overflow-scroll`}
+    >
       {/* TOP BAR */}
       <div
         className="sidebar__topBar"

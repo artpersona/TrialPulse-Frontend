@@ -7,16 +7,16 @@ export const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const currentUser = localStorage.getItem("user");
 
   useEffect(() => {
-    const currentUser = localStorage.getItem("user");
     if (currentUser) {
       setUser(JSON.parse(currentUser));
     } else {
       setUser(null);
     }
     setLoading(false);
-  }, []);
+  }, [currentUser]);
 
   const login = async (data) => {
     try {

@@ -31,13 +31,13 @@ function StaffItem(props) {
         <p className="text-xs text-gray">Medical Monitor</p>
       </div>
 
-      <div className="w-8 h-8 bg-gray-200 grid place-items-center rounded-full cursor-pointer">
+      {/* <div className="w-8 h-8 bg-gray-200 grid place-items-center rounded-full cursor-pointer">
         <PhoneIcon
           width={16}
           height={16}
           color={colorPalette.SECONDARY_COLOR}
         />
-      </div>
+      </div> */}
       <div className="w-8 h-8 bg-gray-200 grid place-items-center rounded-full cursor-pointer">
         <ChatBubbleOvalLeftIcon
           width={16}
