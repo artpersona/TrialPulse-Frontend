@@ -1,0 +1,37 @@
+.user {
+  border: 1px solid #333;
+  border-radius: 35px;
+  padding: 20px 0;
+  width: 400px;
+}
+
+.user__topIcon {
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  margin: auto;
+}
+
+.user__section {
+  display: flex;
+  padding: 0 20px;
+  align-items: center;
+  /* border-top: 1px solid gray; */
+}
+
+.user__sectionLeft {
+  /* flex: 0.3; */
+  width: 50px;
+}
+
+.user__bottomUsers {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 15px;
+  padding: 5px 8px;
+  width: fit-content;
+}

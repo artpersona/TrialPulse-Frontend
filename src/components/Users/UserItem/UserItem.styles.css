@@ -1,0 +1,25 @@
+.siteItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid lightgray;
+  padding: 8px 12px;
+  border-radius: 25px;
+  margin-bottom: 10px;
+  width: 350px;
+}
+
+.siteItem h4 {
+  flex: 1;
+  font-size: 14px;
+}
+
+.siteItem__actionButton {
+  width: 25px;
+  height: 25px;
+  background-color: lightgray;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
