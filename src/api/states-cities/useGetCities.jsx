@@ -1,20 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import { privateClient } from "..";
 
-function useGetUsersQuery() {
+function useGetCitiesQuery(stateId) {
   return useQuery({
-    queryKey: ["users"],
+    queryKey: ["cities", stateId],
     queryFn: () =>
       privateClient({
-        url: "/users?page=1",
+        url: `/states/${stateId}/cities?page=1`,
       }),
   });
 }
 
-export default function useGetUsers() {
-  const { data, ...others } = useGetUsersQuery();
+export default function useGetCities(stateId) {
+  const { data, ...others } = useGetCitiesQuery(stateId);
   return {
-    users: data?.data?.data,
+    cities: data?.data?.data,
     pagination: data?.data?.pagination,
     api: {
       ...others,

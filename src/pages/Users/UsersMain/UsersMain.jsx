@@ -1,25 +1,23 @@
 import { Outlet } from "react-router-dom";
 
-import useGetUsers from "src/api/users/useGetUser";
-import useGetSites from "src/api/sites/useGetSites";
+import useGetUsers from "src/api/users/useGetUsers";
 
 import Sidebar from "src/components/Sidebar/Sidebar";
 import UserItem from "src/components/Users/UserItem/UserItem";
 import ContentSidebar from "src/components/ContentSidebar/ContentSidebar";
 
 function UsersMain() {
-  // const { users, api, pagination } = useGetUsers();
-  const { sites: users, api, pagination } = useGetSites();
+  const { users, api, pagination } = useGetUsers();
 
   if (api.isLoading) {
     return <div>Loading</div>;
   }
-  
+
   return (
     <div className="relative">
       <Sidebar>
         <div>
-          {users.map((item) => (
+          {users?.map((item) => (
             <UserItem key={item.id} data={item} />
           ))}
         </div>
