@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { privateClient } from "..";
 
-function useGetUser(id) {
+function useGetUserQuery(id) {
   return useQuery({
     queryKey: ["users", id],
     queryFn: () =>
@@ -11,4 +11,13 @@ function useGetUser(id) {
   });
 }
 
-export default useGetUser;
+export default function useGetUser(id) {
+  const { data, ...others } = useGetUserQuery(id);
+
+  return {
+    user: data?.data,
+    api: {
+      ...others,
+    },
+  };
+}

@@ -28,7 +28,7 @@ const tabs = [
 ];
 
 function Sidebar(props) {
-  const { children } = props;
+  const { children, hideNavbar } = props;
 
   const [currentTab, setCurrentTab] = useState(0);
 
@@ -40,26 +40,28 @@ function Sidebar(props) {
 
   return (
     <div
-      className={`fixed left-0 top-0 p-5 pt-[150px] w-[${SIDEBAR_WIDTH}px] border-1 border-black h-screen overflow-scroll`}
+      className={`fixed left-0 top-0 p-5 pt-[150px] w-[${SIDEBAR_WIDTH}px] border-1 border-black h-screen overflow-scroll `}
     >
       {/* TOP BAR */}
       <div
         className="sidebar__topBar"
         style={{ backgroundColor: colorPalette.GRAY_DARK }}
       >
-        <nav className="sidebar__navbar">
-          <ul>
-            {tabs.map((item) => (
-              <li
-                className={isActive(item.id) ? "active" : "inactive"}
-                key={item.id}
-                onClick={() => handleClick(item.id)}
-              >
-                {item.label}
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {hideNavbar ? null : (
+          <nav className="sidebar__navbar">
+            <ul>
+              {tabs.map((item) => (
+                <li
+                  className={isActive(item.id) ? "active" : "inactive"}
+                  key={item.id}
+                  onClick={() => handleClick(item.id)}
+                >
+                  {item.label}
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
       </div>
 
       {children}
@@ -84,4 +86,5 @@ export default Sidebar;
 
 Sidebar.propTypes = {
   children: PropTypes.element,
+  hideNavbar: PropTypes.bool,
 };

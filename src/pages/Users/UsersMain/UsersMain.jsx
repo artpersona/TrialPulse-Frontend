@@ -15,7 +15,7 @@ function UsersMain() {
 
   return (
     <div className="relative">
-      <Sidebar>
+      <Sidebar hideNavbar>
         <div>
           {users?.map((item) => (
             <UserItem key={item.id} data={item} />
