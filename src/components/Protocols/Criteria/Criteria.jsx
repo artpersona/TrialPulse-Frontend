@@ -6,7 +6,7 @@ function Criteria(props) {
   const { data, onDelete } = props;
 
   return (
-    <div className="card w-[400px] p-4">
+    <div className="card w-[400px] p-4 my-4">
       <div className="flex items-center justify-end">
         <XCircleIcon
           height={25}

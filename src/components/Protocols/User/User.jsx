@@ -52,10 +52,10 @@ function User(props) {
 
         {/* action buttons */}
         <div className="flex gap-4 justify-center items-center mt-6 mb-6">
-          <AvatarContainer
+          {/* <AvatarContainer
             Icon={PhoneIcon}
             color={colorPalette.SECONDARY_COLOR}
-          />
+          /> */}
           <AvatarContainer
             Icon={ChatBubbleOvalLeftIcon}
             color={colorPalette.SECONDARY_COLOR}

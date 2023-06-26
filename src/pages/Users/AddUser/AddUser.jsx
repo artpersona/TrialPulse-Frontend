@@ -17,6 +17,7 @@ const positions = [
   { id: 1, name: "Admin", label: "Admin" },
   { id: 2, name: "Site Staff", label: "Site Staff" },
   { id: 3, name: "Sponsor Staff", label: "Sponsor Staff" },
+  { id: 4, name: "Sponsor Admin", label: "Sponsor Admin" },
 ];
 
 function AddUser() {

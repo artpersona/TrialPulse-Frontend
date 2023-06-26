@@ -106,7 +106,7 @@ function ScheduleItem(props) {
             />
             <div className="modal__actions">
               <button
-                className="modal_button bg-primary"
+                className="modal-button bg-primary"
                 onClick={handleSaveNote}
               >
                 Save

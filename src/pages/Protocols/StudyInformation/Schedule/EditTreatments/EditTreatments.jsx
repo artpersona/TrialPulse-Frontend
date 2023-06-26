@@ -95,7 +95,7 @@ function EditTreatments() {
 
             <div className="modal__actions">
               <button
-                className="modal-button bg-primary"
+                className="modal-button bg-gray-dark"
                 onClick={handleAddTreatment}
               >
                 Save
