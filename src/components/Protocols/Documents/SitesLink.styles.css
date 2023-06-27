@@ -1,0 +1,50 @@
+.sitesLink {
+  border: 1px solid #333;
+  border-radius: 35px;
+  padding: 20px;
+  width: 350px;
+  position: relative;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.sitesLink__arrowRight {
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.sitesLink__top {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sitesLink__topIcon {
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.sitesLink__bottom {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.sitesLink__bottomUsers {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 15px;
+  padding: 5px 8px;
+}
+
+.sitesLink__bottomUsers p {
+  font-size: 12px;
+}

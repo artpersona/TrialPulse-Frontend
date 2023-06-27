@@ -52,6 +52,7 @@ import SiteProtocols from "./pages/Sites/SiteProtocols";
 import AddUser from "./pages/Users/AddUser/AddUser";
 import UserDetails from "./pages/Users/UserDetails/UserDetails";
 import UserInformation from "./pages/Users/UserInfo/UserInfo";
+import PDFPage from "./pages/Protocols/Documents/components/PDFPage/PDFPage";
 
 function App() {
   const { user } = useAuthContext();
@@ -197,6 +198,20 @@ function App() {
                 {
                   path: "documents",
                   element: <Documents />,
+                  children: [
+                    {
+                      path: "",
+                      element: <PDFPage />,
+                    },
+                    {
+                      path: "images",
+                      element: <PDFPage />,
+                    },
+                    {
+                      path: "other",
+                      element: <PDFPage />,
+                    },
+                  ],
                 },
               ],
             },
