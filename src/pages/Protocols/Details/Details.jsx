@@ -1,16 +1,19 @@
-import "./Details.styles.css";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
+
 import details1 from "src/assets/images/details/details1.jpg";
 import details2 from "src/assets/images/details/details2.jpg";
 import details3 from "src/assets/images/details/details3.jpg";
 import details4 from "src/assets/images/details/details4.jpg";
 import details5 from "src/assets/images/details/details5.jpg";
-import DetailsCard from "../../../components/Protocols/DetailsCard/DetailsCard";
+
+import useGetProtocol from "src/api/protocols/useGetProtocol";
+
+import DetailsCard from "src/components/Protocols/DetailsCard/DetailsCard";
+
 import colorPalette from "src/utils/styles/colorPalette";
-import { useProtocolContext } from "../../../contexts/ProtocolContext";
-import { useEffect } from "react";
-import useGetProtocol from "../../../api/protocols/useGetProtocol";
+
+import "./Details.styles.css";
 
 const detailsList = [
   {
@@ -47,15 +50,10 @@ const detailsList = [
 
 function Details() {
   const { protocolId } = useParams();
+
   const navigate = useNavigate();
 
-  const { setProtocol } = useProtocolContext();
-
   const { protocol } = useGetProtocol(protocolId);
-
-  useEffect(() => {
-    if (protocolId) setProtocol(protocolId);
-  }, [protocolId]);
 
   function handleGoback() {
     navigate("/protocols");

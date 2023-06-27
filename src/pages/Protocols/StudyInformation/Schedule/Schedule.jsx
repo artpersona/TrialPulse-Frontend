@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
-import "./Schedule.styles.css";
-import ActivitySchedule from "src/components/Protocols/ActivitySchedule";
-import { useProtocolContext } from "src/contexts/ProtocolContext";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { privateClient } from "src/api";
-import { PlusIcon } from "@heroicons/react/24/solid";
+
 import colorPalette from "src/utils/styles/colorPalette";
-import Modal from "../../../../components/Modal/Modal";
-import { useNavigate } from "react-router-dom";
-import FloatingPlusButton from "../../../../components/FloatingPlusButton/FloatingPlusButton";
+
+import Modal from "src/components/Modal/Modal";
+import ActivitySchedule from "src/components/Protocols/ActivitySchedule";
+
+import "./Schedule.styles.css";
 
 function Schedule() {
+  const { protocolId } = useParams();
+
   const navigate = useNavigate();
 
-  const { getSelectedProtocol } = useProtocolContext();
-
-  const protocolId = getSelectedProtocol().id;
   const [schedule, setSchedule] = useState([]);
   const [addScheduleModalOpen, setAddScheduleModalOpen] = useState(false);
   const [isVisit, setIsVisit] = useState(false);

@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
-import "./EditTreatments.styles.css";
-import { privateClient } from "../../../../../api";
-import { useProtocolContext } from "../../../../../contexts/ProtocolContext";
-import { PlusIcon } from "@heroicons/react/24/solid";
+import { useParams } from "react-router-dom";
+
+import { privateClient } from "src/api";
+
 import colorPalette from "src/utils/styles/colorPalette";
-import Modal from "../../../../../components/Modal/Modal";
-import Treatment from "../../../../../components/Protocols/Treatment/Treatment";
+
+import Modal from "src/components/Modal/Modal";
+import Treatment from "src/components/Protocols/Treatment/Treatment";
+
+import "./EditTreatments.styles.css";
 
 function EditTreatments() {
-  const { getSelectedProtocol } = useProtocolContext();
-
-  const protocolId = getSelectedProtocol().id;
+  const { protocolId } = useParams();
 
   const [treatments, setTreatments] = useState([]);
   const [title, setTitle] = useState("");
@@ -64,7 +65,16 @@ function EditTreatments() {
 
   return (
     <div className="editTreatments">
-      <div>
+      <div className="schedule__header">
+        <button
+          className="mr-5"
+          style={{ backgroundColor: colorPalette.SECONDARY_COLOR }}
+          onClick={() => setShowAddTreatmentModal(true)}
+        >
+          Add Treatment
+        </button>
+      </div>
+      <div className="flex flex-col items-center justify-center">
         {treatments.map((item) => (
           <Treatment
             key={item.id}
@@ -73,13 +83,13 @@ function EditTreatments() {
           />
         ))}
       </div>
-      <div
+      {/* <div
         className="editTreatments__addButton"
         style={{ backgroundColor: colorPalette.SECONDARY_COLOR }}
         onClick={() => setShowAddTreatmentModal((prevValue) => !prevValue)}
       >
         <PlusIcon width={25} height={25} color="#FFFFFF" />
-      </div>
+      </div> */}
 
       {showAddTreatmentModal ? (
         <Modal>
@@ -95,7 +105,7 @@ function EditTreatments() {
 
             <div className="modal__actions">
               <button
-                className="modal-button bg-gray-dark"
+                className="modal-button bg-primary"
                 onClick={handleAddTreatment}
               >
                 Save

@@ -4,6 +4,7 @@ import { privateClient } from "../api";
 export const ProtocolContext = createContext();
 
 export const ProtocolContextProvider = ({ children }) => {
+  const { userDetails } = useAuthContext();
   const [protocols, setProtocols] = useState([]);
   const [selectedProtocol, setSelectedProtocol] = useState(null);
 
@@ -14,7 +15,10 @@ export const ProtocolContextProvider = ({ children }) => {
   async function fetchProtocols() {
     try {
       const res = await privateClient({
-        url: "/protocols?page=1",
+        url:
+          userDetails?.roleId === 4
+            ? `/sponsors/${userDetails.id}/protocols?page=1`
+            : "/protocols?page=1",
         method: "get",
       });
       setProtocols(res.data.data);
@@ -85,6 +89,7 @@ export const ProtocolContextProvider = ({ children }) => {
 export const useProtocolContext = () => useContext(ProtocolContext);
 
 import PropTypes from "prop-types";
+import { useAuthContext } from "./AuthContext";
 
 ProtocolContextProvider.propTypes = {
   children: PropTypes.element,

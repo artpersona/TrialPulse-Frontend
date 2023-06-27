@@ -1,10 +1,11 @@
+import useProtocols from "src/api/protocols/useGetProtocols";
+
 import Study from "src/components/Protocols/Study";
 import Sidebar from "src/components/Sidebar/Sidebar";
 import BlackNavbar from "src/components/Protocols/BlackNavbar/BlackNavbar";
 import ContentSidebar from "src/components/ContentSidebar/ContentSidebar";
 
 import AddProtocol from "./AddProtocol";
-import useProtocols from "../../../api/protocols/useGetProtocols";
 
 const tabs = [
   {
@@ -22,7 +23,7 @@ const tabs = [
 ];
 
 function ProtocolsMain() {
-  const { api, protocols, pagination } = useProtocols();
+  const { api, protocols } = useProtocols();
 
   if (api.isLoading) {
     return <div>Loading</div>;
@@ -32,13 +33,15 @@ function ProtocolsMain() {
     <div className="relative">
       {/* CONTENT */}
       <Sidebar>
-        <BlackNavbar tabs={tabs} />
-        {/* STUDIES LIST */}
-        <div className="protocols__sidebarLists">
-          {protocols.map((protocol) => (
-            <Study data={protocol} key={protocol.id} />
-          ))}
-        </div>
+        <>
+          <BlackNavbar tabs={tabs} />
+          {/* STUDIES LIST */}
+          <div className="protocols__sidebarLists">
+            {protocols?.map((protocol) => (
+              <Study data={protocol} key={protocol.id} />
+            ))}
+          </div>
+        </>
       </Sidebar>
       <ContentSidebar>
         <AddProtocol />

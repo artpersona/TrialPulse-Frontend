@@ -180,7 +180,6 @@ function AddUser() {
     //     zipcode: zip,
     //   },
     // });
-    console.log("city: ", city.id);
   }
 
   function resetState() {

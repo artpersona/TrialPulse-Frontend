@@ -3,17 +3,14 @@ import { PlusIcon } from "@heroicons/react/24/solid";
 
 import { privateClient } from "src/api";
 
-import { useProtocolContext } from "src/contexts/ProtocolContext";
-
 import Modal from "src/components/Modal/Modal";
 import AddButton from "src/components/AddButton/AddButton";
 import SitesLinkComponent from "src/components/Protocols/SitesLink";
 import BlackNavbar from "src/components/Protocols/BlackNavbar/BlackNavbar";
+import { useParams } from "react-router-dom";
 
 function SitesLink() {
-  const { getSelectedProtocol } = useProtocolContext();
-
-  const protocolId = getSelectedProtocol().id;
+  const { protocolId } = useParams();
 
   const [sites, setSites] = useState([]);
   const [protocolSites, setProtocolSites] = useState([]);

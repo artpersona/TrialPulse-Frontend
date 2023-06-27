@@ -27,7 +27,6 @@ function AddProtocol(props) {
     );
 
     const currentProtocolsIds = getCurrentProtocolsIds();
-    console.log(currentProtocolsIds);
 
     return result.filter((item) => !currentProtocolsIds.includes(item.id));
   };
@@ -87,4 +86,5 @@ import PropTypes from "prop-types";
 AddProtocol.propTypes = {
   currentProtocols: PropTypes.array,
   handleAdd: PropTypes.func,
+  onProceed: PropTypes.func,
 };

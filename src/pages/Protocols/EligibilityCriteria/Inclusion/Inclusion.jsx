@@ -1,61 +1,50 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 
-import { privateClient } from "src/api";
-
-import { useProtocolContext } from "src/contexts/ProtocolContext";
+import useGetCriterias from "src/api/protocols/eligibility-criteria/useGetCriterias";
+import useCreateCriteria from "src/api/protocols/eligibility-criteria/useCreateCriteria";
+import useDeleteCriteria from "src/api/protocols/eligibility-criteria/useDeleteCriteria";
 
 import AddButton from "src/components/AddButton/AddButton";
 import Criteria from "src/components/Protocols/Criteria";
 import AddCriteria from "../components/modal/AddCriteria/AddCriteria";
 
 function Inclusion() {
-  const { getSelectedProtocol, addCriteria } = useProtocolContext();
+  const { protocolId } = useParams();
 
-  const protocolId = getSelectedProtocol().id;
+  const { mutate } = useCreateCriteria({
+    resetForm: () => setShowAddCriteriaModal(false),
+    id: protocolId,
+  });
 
-  const [criterias, setCriterias] = useState([]);
+  const { mutate: deleteCriteria } = useDeleteCriteria({
+    resetForm: () => setShowAddCriteriaModal(false),
+    id: protocolId,
+  });
+
+  const { api, criterias } = useGetCriterias({
+    protocolId,
+    isInclusion: true,
+  });
 
   const [showAddCriteriaModal, setShowAddCriteriaModal] = useState(false);
 
-  useEffect(() => {
-    fetchCriterias();
-  }, []);
-
-  async function fetchCriterias() {
-    try {
-      const res = await privateClient({
-        url: `protocols/${protocolId}/eligibility-criterias?page=1&isInclusion=true`,
-        method: "get",
-      });
-      setCriterias(res.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   async function handleAddCriteria(data) {
-    try {
-      await addCriteria({
-        ...data,
-        isInclusion: true,
-      });
-      setShowAddCriteriaModal(false);
-      fetchCriterias();
-    } catch (error) {
-      console.log(error);
-    }
+    mutate({
+      ...data,
+      isInclusion: true,
+    });
   }
 
   async function handleDeleteCriteria(id) {
-    try {
-      await privateClient({
-        url: `protocols/${protocolId}/eligibility-criterias/${id}`,
-        method: "delete",
-      });
-      fetchCriterias();
-    } catch (error) {
-      console.log(error);
-    }
+    deleteCriteria({
+      protocolId,
+      criteriaId: id,
+    });
+  }
+
+  if (api.isLoading) {
+    return <div>Loading..</div>;
   }
 
   return (

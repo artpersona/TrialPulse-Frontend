@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import "./GeneralInfo.styles.css";
 import { privateClient } from "../../../api";
+import { useParams } from "react-router-dom";
+import useGetProtocol from "../../../api/protocols/useGetProtocol";
 
-function GeneralInfo(props) {
-  const { data } = props;
+function GeneralInfo() {
+  const { protocolId } = useParams();
+
+  const { api, protocol } = useGetProtocol(protocolId);
 
   const [sponsors, setSponsors] = useState([]);
 
@@ -22,15 +26,19 @@ function GeneralInfo(props) {
     }
   }
 
+  if (api.isLoading) {
+    return <div>Loading..</div>;
+  }
+
   return (
     <div className="generalInfo">
       <h2 style={{ textAlign: "center", marginBottom: 20 }}>General Info</h2>
 
       <div className="generalInfo__section">
         <p>Study Name</p>
-        <input value={data.title} readOnly />
+        <input value={protocol.title} readOnly />
         <p>Sponsor</p>
-        <select value={data.sponsorId}>
+        <select value={protocol.sponsorId}>
           {sponsors?.map((item) => (
             <option key={item.id} value={item.id}>
               {item.name}
@@ -50,7 +58,7 @@ function GeneralInfo(props) {
 
       <div className="generalInfo__section">
         <p>Eligibility Overview</p>
-        <textarea value={data.eligibilityOverview} />
+        <textarea value={protocol.eligibilityOverview} />
       </div>
 
       <div

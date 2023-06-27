@@ -1,56 +1,57 @@
-import "./AddProtocol.styles.css";
-import Drug from "src/assets/images/svgs/Drug.svg";
-import Iv from "src/assets/images/svgs/Iv.svg";
-import Bandage from "src/assets/images/svgs/Bandage.svg";
-import Needle from "src/assets/images/svgs/Needle.svg";
-import Surgery from "src/assets/images/svgs/Surgery.svg";
-import Respirator from "src/assets/images/svgs/Respirator.svg";
+import { useState } from "react";
+// import Drug from "src/assets/images/svgs/Drug.svg";
+// import Iv from "src/assets/images/svgs/Iv.svg";
+// import Bandage from "src/assets/images/svgs/Bandage.svg";
+// import Needle from "src/assets/images/svgs/Needle.svg";
+// import Surgery from "src/assets/images/svgs/Surgery.svg";
+// import Respirator from "src/assets/images/svgs/Respirator.svg";
+
+import { hasBlank } from "src/utils";
 import colorPalette from "src/utils/styles/colorPalette";
-import { useEffect, useState } from "react";
-import BlackNavbar from "../../../components/Protocols/BlackNavbar/BlackNavbar";
-import { privateClient } from "../../../api";
-import { hasBlank } from "../../../utils";
-import { useProtocolContext } from "../../../contexts/ProtocolContext";
-import { toast } from "react-hot-toast";
 
-const drugRoutes = [
-  {
-    id: "drug",
-    icon: Drug,
-    label: "Oral",
-  },
-  {
-    id: "iv",
-    icon: Iv,
-    label: "Iv",
-  },
-  {
-    id: "Bandage",
-    icon: Bandage,
-    label: "Bandage",
-  },
-  {
-    id: "Needle",
-    icon: Needle,
-    label: "Needle",
-  },
-  {
-    id: "Surgery",
-    icon: Surgery,
-    label: "Surgery",
-  },
-  {
-    id: "Respirator",
-    icon: Respirator,
-    label: "Respirator",
-  },
-];
+import useGetSponsors from "src/api/sponsors/useGetSponsors";
+import useCreateProtocol from "src/api/protocols/useCreateProtocol";
 
-let notification = "";
+import BlackNavbar from "src/components/Protocols/BlackNavbar/BlackNavbar";
+
+import { drugRoutes } from "src/shared/constants";
+
+import "./AddProtocol.styles.css";
+
+// const drugRoutes = [
+//   {
+//     id: "drug",
+//     icon: Drug,
+//     label: "Oral",
+//   },
+//   {
+//     id: "iv",
+//     icon: Iv,
+//     label: "Iv",
+//   },
+//   {
+//     id: "Bandage",
+//     icon: Bandage,
+//     label: "Bandage",
+//   },
+//   {
+//     id: "Needle",
+//     icon: Needle,
+//     label: "Needle",
+//   },
+//   {
+//     id: "Surgery",
+//     icon: Surgery,
+//     label: "Surgery",
+//   },
+//   {
+//     id: "Respirator",
+//     icon: Respirator,
+//     label: "Respirator",
+//   },
+// ];
 
 function AddProtocol() {
-  const { fetchProtocols } = useProtocolContext();
-
   const [title, setTitle] = useState("");
   const [eligibilityOverview, setEligibilityOverview] = useState("");
   const [sponsorId, setSponsorId] = useState("");
@@ -70,11 +71,9 @@ function AddProtocol() {
   const [bioNaive, setBioNaive] = useState("Yes");
   const [bioIr, setBioIr] = useState("50");
 
-  const [sponsors, setSponsors] = useState(null);
-
-  useEffect(() => {
-    fetchSponsors();
-  }, []);
+  const { mutate } = useCreateProtocol({
+    resetForm: () => resetState(),
+  });
 
   const isDisabled = () =>
     hasBlank([
@@ -95,52 +94,26 @@ function AddProtocol() {
       bioNaive,
       bioIr,
     ]);
-
-  async function fetchSponsors() {
-    try {
-      const res = await privateClient({
-        url: `/sponsors?page=1`,
-      });
-      setSponsors(res.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  const { sponsors, api } = useGetSponsors();
 
   async function addProtocol() {
-    try {
-      notification = toast.loading("Adding Protocol...");
-      await privateClient({
-        url: "/protocols",
-        method: "post",
-        data: {
-          sponsorId,
-          title,
-          eligibilityOverview,
-          studyNumber,
-          studyInfo,
-          phase,
-          drugRoute,
-          drugTarget,
-          drugTreatmentPeriod: `${drugTreatmentPeriodNumber} ${drugTreatmentPeriodDays}`,
-          placebo,
-          lte,
-          lteDurationType,
-          population,
-          bioNaive,
-          bioIr,
-        },
-      });
-      resetState();
-      fetchProtocols();
-      toast.success("Protocol has been added successfully.", {
-        id: notification,
-      });
-    } catch (error) {
-      toast.error(error, {
-        id: notification,
-      });
-    }
+    mutate({
+      sponsorId,
+      title,
+      eligibilityOverview,
+      studyNumber,
+      studyInfo,
+      phase,
+      drugRoute,
+      drugTarget,
+      drugTreatmentPeriod: `${drugTreatmentPeriodNumber} ${drugTreatmentPeriodDays}`,
+      placebo,
+      lte,
+      lteDurationType,
+      population,
+      bioNaive,
+      bioIr,
+    });
   }
 
   function resetState() {
@@ -161,6 +134,11 @@ function AddProtocol() {
     setBioNaive("Yes");
     setBioIr("50");
   }
+
+  if (api.isLoading) {
+    return <div>Loading</div>;
+  }
+
   return (
     <div>
       <BlackNavbar></BlackNavbar>
@@ -254,9 +232,21 @@ function AddProtocol() {
             marginBottom: 10,
           }}
         >
-          {drugRoutes.map(({ id, icon, label }) => (
+          <select
+            value={drugRoute}
+            onChange={(e) => setDrugRoute(e.target.value)}
+          >
+            <option value="">Select Drug Route </option>
+
+            {drugRoutes.map((drug) => (
+              <option key={drug} value={drug}>
+                {drug}
+              </option>
+            ))}
+          </select>
+          {/* {drugRoutes.map((drug) => (
             <div
-              key={id}
+              key={drug}
               style={{
                 width: 60,
                 height: 35,
@@ -265,15 +255,15 @@ function AddProtocol() {
                 placeItems: "center",
                 borderRadius: 5,
                 backgroundColor:
-                  label === drugRoute
+                drug === drugRoute
                     ? colorPalette.SECONDARY_COLOR
                     : "#FFFFFF",
               }}
-              onClick={() => setDrugRoute(label)}
+              onClick={() => setDrugRoute(drug)}
             >
               <img src={icon} />
             </div>
-          ))}
+          ))} */}
         </div>
 
         <p>Drug Target</p>

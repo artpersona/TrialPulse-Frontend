@@ -48,7 +48,7 @@ import SiteInformation from "./pages/Sites/SiteInfo";
 import AddSponsor from "./pages/Sponsors/AddSponsor";
 import AddSite from "./pages/Sites/AddSite";
 import SiteProtocols from "./pages/Sites/SiteProtocols";
-import { ProtocolContextProvider } from "./contexts/ProtocolContext";
+// import { ProtocolContextProvider } from "./contexts/ProtocolContext";
 import AddUser from "./pages/Users/AddUser/AddUser";
 import UserDetails from "./pages/Users/UserDetails/UserDetails";
 import UserInformation from "./pages/Users/UserInfo/UserInfo";
@@ -73,9 +73,9 @@ function App() {
       path: "/",
       errorElement: <NotFound />,
       element: (
-        <ProtocolContextProvider>
-          <Layout />
-        </ProtocolContextProvider>
+        // <ProtocolContextProvider>
+        <Layout />
+        // </ProtocolContextProvider>
       ),
       children: [
         {

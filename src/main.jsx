@@ -12,8 +12,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthContextProvider>
-        <Toaster />
-        <App />
+        <>
+          <Toaster />
+          <App />
+        </>
       </AuthContextProvider>
     </QueryClientProvider>
   </React.StrictMode>

@@ -1,46 +1,50 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+
+import useCreateCriteria from "src/api/protocols/eligibility-criteria/useCreateCriteria";
+import useDeleteCriteria from "src/api/protocols/eligibility-criteria/useDeleteCriteria";
+import useGetCriterias from "src/api/protocols/eligibility-criteria/useGetCriterias";
+
 import Criteria from "src/components/Protocols/Criteria";
-import { privateClient } from "src/api";
-import { useProtocolContext } from "src/contexts/ProtocolContext";
-import AddCriteria from "../components/modal/AddCriteria/AddCriteria";
 import AddButton from "src/components/AddButton/AddButton";
+import AddCriteria from "../components/modal/AddCriteria/AddCriteria";
 
 function Exclusion() {
-  const { getSelectedProtocol, addCriteria } = useProtocolContext();
+  const { protocolId } = useParams();
 
-  const protocolId = getSelectedProtocol().id;
+  const { mutate } = useCreateCriteria({
+    resetForm: () => setShowAddCriteriaModal(false),
+    id: protocolId,
+  });
 
-  const [criterias, setCriterias] = useState([]);
+  const { mutate: deleteCriteria } = useDeleteCriteria({
+    resetForm: () => setShowAddCriteriaModal(false),
+    id: protocolId,
+  });
+
+  const { api, criterias } = useGetCriterias({
+    protocolId,
+    isInclusion: false,
+  });
 
   const [showAddCriteriaModal, setShowAddCriteriaModal] = useState(false);
 
-  useEffect(() => {
-    fetchCriterias();
-  }, []);
-
-  async function fetchCriterias() {
-    try {
-      const res = await privateClient({
-        url: `protocols/${protocolId}/eligibility-criterias?page=1&isInclusion=false`,
-        method: "get",
-      });
-      setCriterias(res.data.data);
-    } catch (error) {
-      console.log(error);
-    }
+  async function handleAddCriteria(data) {
+    mutate({
+      ...data,
+      isInclusion: false,
+    });
   }
 
-  async function handleAddCriteria(data) {
-    try {
-      await addCriteria({
-        ...data,
-        isInclusion: false,
-      });
-      setShowAddCriteriaModal(false);
-      fetchCriterias();
-    } catch (error) {
-      console.log(error);
-    }
+  async function handleDeleteCriteria(id) {
+    deleteCriteria({
+      protocolId,
+      criteriaId: id,
+    });
+  }
+
+  if (api.isLoading) {
+    return <div>Loading..</div>;
   }
 
   return (
@@ -51,7 +55,7 @@ function Exclusion() {
       />
 
       {criterias.map((item) => (
-        <Criteria key={item.id} data={item} />
+        <Criteria key={item.id} data={item} onDelete={handleDeleteCriteria} />
       ))}
 
       {showAddCriteriaModal ? (

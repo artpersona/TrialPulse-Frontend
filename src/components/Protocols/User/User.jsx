@@ -1,25 +1,24 @@
-import "./User.styles.css";
+import { BsFillCircleFill } from "react-icons/bs";
+import { LuEdit } from "react-icons/lu";
 import {
-  UserGroupIcon,
   BuildingOfficeIcon,
   PhoneIcon,
   EnvelopeIcon,
   MapPinIcon,
   ChatBubbleOvalLeftIcon,
   StarIcon,
-  ClipboardDocumentIcon,
 } from "@heroicons/react/24/solid";
+
 import colorPalette from "src/utils/styles/colorPalette";
+
+import "./User.styles.css";
 import AvatarContainer from "../../AvatarContainer/AvatarContainer";
-import { BsFillCircleFill } from "react-icons/bs";
-import { LuEdit } from "react-icons/lu";
 
 function User(props) {
   const {
     user: { profile },
   } = props;
 
-  console.log("info: ", profile);
   return (
     <>
       {/* user avatar */}
