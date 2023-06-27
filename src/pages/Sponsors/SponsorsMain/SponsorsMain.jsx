@@ -28,7 +28,7 @@ function SponsorsMain() {
     <div className="relative">
       <Sidebar>
         <div>
-          {sponsors.map((item) => (
+          {sponsors?.map((item) => (
             <SponsorItem key={item.id} data={item} />
           ))}
         </div>

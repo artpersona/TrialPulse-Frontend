@@ -15,13 +15,9 @@ function SponsorStaff() {
   const { api, users } = useGetUsers();
   const { api: staffApi, users: staffs } = useGetUsersBySponsor(sponsorId);
 
-  console.log("staffs: ", staffs);
-
   const { mutate } = useCreateStaff({
     resetForm: () => null,
   });
-
-  console.log(users);
 
   function handleAddStaff(id) {
     mutate({
@@ -30,21 +26,28 @@ function SponsorStaff() {
     });
   }
 
-  const getStaffsId = () => staffs.map((item) => item.userId);
+  const getStaffsId = () => {
+    if (!staffs) return [];
+    return staffs?.map((item) => item.userId);
+  };
 
   const getAvailableUsers = () =>
-    users.filter((item) => !getStaffsId().includes(item.userId));
+    users.filter(
+      (item) =>
+        !getStaffsId().includes(item.userId) &&
+        (item.position === "Sponsor Staff" || item.position === "Sponsor Admin")
+    );
 
-  if (api.isLoading) {
+  if (api.isLoading || staffApi.isLoading) {
     return <div>Loading</div>;
   }
 
   return (
     <div>
       <AddButton title="Add Staff" onClick={() => setShowStaffModal(true)} />
-      <StaffItem data={{ id: 1, name: "Dr. Kevin Luis" }} />
-      <StaffItem data={{ id: 1, name: "Dr. Samantha Cruz" }} />
-      <StaffItem data={{ id: 1, name: "Dr. Daniel Anthony Davis" }} />
+      {staffs?.map((item) => (
+        <StaffItem key={item.userId} data={item} />
+      ))}
 
       {showStaffModal ? (
         <Modal>

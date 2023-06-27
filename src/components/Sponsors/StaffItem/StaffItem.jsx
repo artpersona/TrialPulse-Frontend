@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function StaffItem(props) {
   const { data } = props;
-  console.log(data);
 
   const { sponsorId } = useParams();
 
@@ -16,9 +15,7 @@ function StaffItem(props) {
 
   return (
     <div
-      className={`has-transition flex items-center border py-2 px-4 rounded-full gap-2 w-[350px] mb-2 shadow-md cursor-pointer hover:border-primary ${
-        sponsorId == data.userId ? "border-primary" : "border-gray-200"
-      }`}
+      className={`has-transition flex items-center border py-2 px-4 rounded-full gap-2 w-[350px] mb-2 shadow-md cursor-pointer hover:border-primary`}
       onClick={handleClick}
     >
       <img

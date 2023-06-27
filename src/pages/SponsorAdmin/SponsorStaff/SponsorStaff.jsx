@@ -1,43 +1,15 @@
+import useGetUsersBySponsor from "src/api/sponsors/useGetUsersBySponsor";
+
+import { useAuthContext } from "src/contexts/AuthContext";
+
 import StaffItem from "src/components/Sponsors/StaffItem";
-// import AddButton from "../../../components/AddButton/AddButton";
-// import { useState } from "react";
-// import Modal from "../../../components/Modal/Modal";
-// import { PlusIcon } from "@heroicons/react/24/solid";
-// import useCreateStaff from "../../../api/sponsors/useCreateStaff";
-// import { useParams } from "react-router-dom";
-import useGetUsersBySponsor from "../../../api/sponsors/useGetUsersBySponsor";
-import { useAuthContext } from "../../../contexts/AuthContext";
 
 function SponsorStaff() {
   const { userDetails } = useAuthContext();
 
   const { sponsorId } = userDetails;
 
-  console.log(sponsorId);
-
-  //   const [showStaffModal, setShowStaffModal] = useState(false);
-
   const { api, users: staffs } = useGetUsersBySponsor(sponsorId);
-  console.log(staffs);
-  //   console.log("staffs: ", staffs);
-
-  //   const { mutate } = useCreateStaff({
-  //     resetForm: () => null,
-  //   });
-
-  //   console.log(users);
-
-  //   function handleAddStaff(id) {
-  //     mutate({
-  //       sponsorId,
-  //       userId: id,
-  //     });
-  //   }
-
-  //   const getStaffsId = () => staffs.map((item) => item.userId);
-
-  //   const getAvailableUsers = () =>
-  //     users.filter((item) => !getStaffsId().includes(item.userId));
 
   if (api.isLoading) {
     return <div>Loading</div>;
