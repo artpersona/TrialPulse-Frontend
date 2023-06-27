@@ -1,13 +1,24 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useSearchParams } from "react-router-dom";
 
 import useGetSites from "src/api/sites/useGetSites";
 
 import Sidebar from "src/components/Sidebar/Sidebar";
 import SiteItem from "src/components/Sites/SiteItem/SiteItem";
 import ContentSidebar from "src/components/ContentSidebar/ContentSidebar";
+import { useEffect } from "react";
 
 function SitesMain() {
-  const { sites, api, pagination } = useGetSites();
+  const [searchParams] = useSearchParams();
+
+  const { sites, api } = useGetSites({
+    sort: searchParams.get("sort") || "",
+  });
+
+  useEffect(() => {
+    api.refetch({
+      sort: searchParams.get("sort") || "",
+    });
+  }, [searchParams]);
 
   if (api.isLoading) {
     return <div>Loading</div>;

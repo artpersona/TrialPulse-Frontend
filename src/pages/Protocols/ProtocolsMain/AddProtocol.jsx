@@ -94,7 +94,7 @@ function AddProtocol() {
       bioNaive,
       bioIr,
     ]);
-  const { sponsors, api } = useGetSponsors();
+  const { sponsors, api } = useGetSponsors({ sort: "" });
 
   async function addProtocol() {
     mutate({

@@ -1,4 +1,5 @@
-import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, useSearchParams } from "react-router-dom";
 
 import useGetSponsors from "src/api/sponsors/useGetSponsors";
 
@@ -7,7 +8,17 @@ import SponsorItem from "src/components/Sponsors/SponsorItem/SponsorItem";
 import ContentSidebar from "src/components/ContentSidebar/ContentSidebar";
 
 function SponsorsMain() {
-  const { sponsors, api, pagination } = useGetSponsors();
+  const [searchParams] = useSearchParams();
+
+  const { sponsors, api } = useGetSponsors({
+    sort: searchParams.get("sort") || "",
+  });
+
+  useEffect(() => {
+    api.refetch({
+      sort: searchParams.get("sort") || "",
+    });
+  }, [searchParams]);
 
   if (api.isLoading) {
     return <div>Loading</div>;
