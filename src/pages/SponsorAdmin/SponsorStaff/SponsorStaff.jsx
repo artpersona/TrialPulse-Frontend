@@ -1,39 +1,43 @@
 import StaffItem from "src/components/Sponsors/StaffItem";
-import AddButton from "../../../components/AddButton/AddButton";
-import { useState } from "react";
-import Modal from "../../../components/Modal/Modal";
-import useGetUsers from "../../../api/users/useGetUsers";
-import { PlusIcon } from "@heroicons/react/24/solid";
-import useCreateStaff from "../../../api/sponsors/useCreateStaff";
-import { useParams } from "react-router-dom";
+// import AddButton from "../../../components/AddButton/AddButton";
+// import { useState } from "react";
+// import Modal from "../../../components/Modal/Modal";
+// import { PlusIcon } from "@heroicons/react/24/solid";
+// import useCreateStaff from "../../../api/sponsors/useCreateStaff";
+// import { useParams } from "react-router-dom";
 import useGetUsersBySponsor from "../../../api/sponsors/useGetUsersBySponsor";
+import { useAuthContext } from "../../../contexts/AuthContext";
 
 function SponsorStaff() {
-  const { sponsorId } = useParams();
-  const [showStaffModal, setShowStaffModal] = useState(false);
+  const { userDetails } = useAuthContext();
 
-  const { api, users } = useGetUsers();
-  const { api: staffApi, users: staffs } = useGetUsersBySponsor(sponsorId);
+  const { sponsorId } = userDetails;
 
-  console.log("staffs: ", staffs);
+  console.log(sponsorId);
 
-  const { mutate } = useCreateStaff({
-    resetForm: () => null,
-  });
+  //   const [showStaffModal, setShowStaffModal] = useState(false);
 
-  console.log(users);
+  const { api, users: staffs } = useGetUsersBySponsor(sponsorId);
+  console.log(staffs);
+  //   console.log("staffs: ", staffs);
 
-  function handleAddStaff(id) {
-    mutate({
-      sponsorId,
-      userId: id,
-    });
-  }
+  //   const { mutate } = useCreateStaff({
+  //     resetForm: () => null,
+  //   });
 
-  const getStaffsId = () => staffs.map((item) => item.userId);
+  //   console.log(users);
 
-  const getAvailableUsers = () =>
-    users.filter((item) => !getStaffsId().includes(item.userId));
+  //   function handleAddStaff(id) {
+  //     mutate({
+  //       sponsorId,
+  //       userId: id,
+  //     });
+  //   }
+
+  //   const getStaffsId = () => staffs.map((item) => item.userId);
+
+  //   const getAvailableUsers = () =>
+  //     users.filter((item) => !getStaffsId().includes(item.userId));
 
   if (api.isLoading) {
     return <div>Loading</div>;
@@ -41,12 +45,11 @@ function SponsorStaff() {
 
   return (
     <div>
-      <AddButton title="Add Staff" onClick={() => setShowStaffModal(true)} />
-      <StaffItem data={{ id: 1, name: "Dr. Kevin Luis" }} />
-      <StaffItem data={{ id: 1, name: "Dr. Samantha Cruz" }} />
-      <StaffItem data={{ id: 1, name: "Dr. Daniel Anthony Davis" }} />
+      {staffs.map((item) => (
+        <StaffItem key={item.userId} data={item} />
+      ))}
 
-      {showStaffModal ? (
+      {/* {showStaffModal ? (
         <Modal>
           <div className="bg-white border-gray rounded-2xl w-[450px] p-4">
             <h4 className="modal__title">Add Site</h4>
@@ -78,7 +81,7 @@ function SponsorStaff() {
             </div>
           </div>
         </Modal>
-      ) : null}
+      ) : null} */}
     </div>
   );
 }

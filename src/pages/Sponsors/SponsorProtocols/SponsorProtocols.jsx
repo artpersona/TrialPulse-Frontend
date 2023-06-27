@@ -1,34 +1,30 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { privateClient } from "../../../api";
-import ProtocolItem from "../../../components/Sponsors/ProtocolItem";
+// import { useParams } from "react-router-dom";
+
+// import useGetProtocolsBySponsor from "src/api/sponsors/useGetProtocolsBySponsor";
+
+// import ProtocolItem from "src/components/Sponsors/ProtocolItem";
+// import { useAuthContext } from "../../../contexts/AuthContext";
 
 function SponsorProtocols() {
-  const { sponsorId } = useParams();
+  // const { userDetails } = useAuthContext();
+  // console.log(userDetails);
 
-  const [protocols, setProtocols] = useState([]);
+  // const { sponsorId } = useParams();
 
-  useEffect(() => {
-    fetchProtocols();
-  }, []);
+  // const { api, protocols } = useGetProtocolsBySponsor(
+  //   sponsorId || userDetails.sponsorId
+  // );
 
-  async function fetchProtocols() {
-    try {
-      const res = await privateClient({
-        url: `/sponsors/${sponsorId}/protocols?page=1`,
-        method: "get",
-      });
-      setProtocols(res.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // if (api.isLoading) {
+  //   return <div>Loading..</div>;
+  // }
 
   return (
     <div>
-      {protocols.map((item) => (
+      <h1>hello world</h1>
+      {/* {protocols?.map((item) => (
         <ProtocolItem key={item.id} data={item} />
-      ))}
+      ))} */}
     </div>
   );
 }

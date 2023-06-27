@@ -54,14 +54,14 @@ privateClient.interceptors.response.use(
     // } else {
     //   return error;
     // }
-    const _error = error.response;
-    if (_error && _error.status === 401) {
-      clearToken();
-      clearUser();
-      window.location.reload();
-      throw error;
-    }
-    return error;
+    // const _error = error.response;
+    // if (_error && _error.status === 401) {
+    //   clearToken();
+    //   clearUser();
+    //   window.location.reload();
+    //   throw error;
+    // }
+    // return error;
   }
 );
 

@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { toast } from "react-hot-toast";
-import { privateClient } from "../../../api";
 import BlackNavbar from "../../../components/Protocols/BlackNavbar/BlackNavbar";
-import { useSiteContext } from "../../../contexts/SiteContext";
 import { hasBlank } from "../../../utils";
+import useCreateSite from "../../../api/sites/useCreateSite";
 
-let notification = "";
 function AddSite() {
-  const { fetchSites } = useSiteContext();
+  const { mutate } = useCreateSite({
+    resetForm: () => resetForm(),
+  });
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -15,26 +14,10 @@ function AddSite() {
   const isDisabled = () => hasBlank([name, email]);
 
   async function handleAddSponsor() {
-    notification = toast.loading("Adding Site...");
-    try {
-      await privateClient({
-        url: "sites",
-        method: "post",
-        data: {
-          name,
-          contactEmail: email,
-        },
-      });
-      toast.success("Sponsor has been added successfully.", {
-        id: notification,
-      });
-      fetchSites();
-      resetForm();
-    } catch (error) {
-      toast.error(error, {
-        id: notification,
-      });
-    }
+    mutate({
+      name,
+      contactEmail: email,
+    });
   }
 
   function resetForm() {

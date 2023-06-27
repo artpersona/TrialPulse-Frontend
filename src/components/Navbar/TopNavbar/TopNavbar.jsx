@@ -13,51 +13,56 @@ import {
   EllipsisHorizontalIcon,
 } from "@heroicons/react/24/solid";
 import colorPalette from "src/utils/styles/colorPalette.js";
+import adminNav from "../../../shared/navbar/adminNav";
+import sponsorAdminNav from "../../../shared/navbar/sponsorAdminNav";
+import { useAuthContext } from "../../../contexts/AuthContext";
 
-const routes = [
-  {
-    id: "Home",
-    icon: Squares2X2Icon,
-    path: "",
-  },
-  {
-    id: "Sponsors",
-    icon: TagIcon,
-    path: "sponsors",
-  },
-  {
-    id: "Protocols",
-    icon: DocumentIcon,
-    path: "protocols",
-  },
-  {
-    id: "Sites",
-    icon: BuildingOfficeIcon,
-    path: "sites",
-  },
-  {
-    id: "Users",
-    icon: UserGroupIcon,
-    path: "users",
-  },
-  {
-    id: "Alerts",
-    icon: ShieldExclamationIcon,
-    path: "alerts",
-  },
-  {
-    id: "Chat",
-    icon: ChatBubbleOvalLeftEllipsisIcon,
-    path: "chat",
-  },
-  {
-    id: "Ads",
-    icon: InboxStackIcon,
-    path: "ads",
-  },
-];
+// const routes = [
+//   {
+//     id: "Home",
+//     icon: Squares2X2Icon,
+//     path: "",
+//   },
+//   {
+//     id: "Sponsors",
+//     icon: TagIcon,
+//     path: "sponsors",
+//   },
+//   {
+//     id: "Protocols",
+//     icon: DocumentIcon,
+//     path: "protocols",
+//   },
+//   {
+//     id: "Sites",
+//     icon: BuildingOfficeIcon,
+//     path: "sites",
+//   },
+//   {
+//     id: "Users",
+//     icon: UserGroupIcon,
+//     path: "users",
+//   },
+//   {
+//     id: "Alerts",
+//     icon: ShieldExclamationIcon,
+//     path: "alerts",
+//   },
+//   {
+//     id: "Chat",
+//     icon: ChatBubbleOvalLeftEllipsisIcon,
+//     path: "chat",
+//   },
+//   {
+//     id: "Ads",
+//     icon: InboxStackIcon,
+//     path: "ads",
+//   },
+// ];
 
 function TopNavbar() {
+  const { userDetails } = useAuthContext();
+
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -69,6 +74,8 @@ function TopNavbar() {
     navigate(`/${path}`);
   }
 
+  const getNav = () => (userDetails.roleId === 4 ? sponsorAdminNav : adminNav);
+
   return (
     <div
       className="topNavbar"
@@ -78,7 +85,7 @@ function TopNavbar() {
         {/* LEFT */}
         <div>
           <ul>
-            {routes.map((item) => (
+            {getNav().map((item) => (
               <li
                 key={"topNavbar" + item.id}
                 className={

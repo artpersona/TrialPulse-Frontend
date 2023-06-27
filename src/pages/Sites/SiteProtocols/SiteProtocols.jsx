@@ -1,45 +1,35 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { privateClient } from "src/api";
-
-import { useProtocolContext } from "src/contexts/ProtocolContext";
+import useGetProtocolsBySite from "src/api/sites/useGetProtocolsBySite";
+import useCreateSiteByProtocol from "src/api/protocols/sites/useCreateSiteByProtocol";
 
 import AddButton from "src/components/AddButton/AddButton";
 import ProtocolItem from "src/components/Sites/ProtocolItem/ProtocolItem";
 import AddProtocol from "src/components/Protocols/Modals/AddProtocol";
 
 function SiteProtocols() {
-  const { addSite } = useProtocolContext();
-
   const { siteId } = useParams();
 
-  const [protocols, setProtocols] = useState([]);
+  const { api, protocols } = useGetProtocolsBySite(siteId);
+
+  const { mutate } = useCreateSiteByProtocol({
+    resetForm: () => null,
+  });
+
   const [showAddProtocolsModal, setShowAddProtocolsModal] = useState(false);
 
-  useEffect(() => {
-    fetchProtocols();
-  }, []);
-
-  async function fetchProtocols() {
-    try {
-      const res = await privateClient({
-        url: `/sites/${siteId}/protocols?page=1`,
-        method: "get",
-      });
-      setProtocols(res.data.data);
-    } catch (error) {
-      console.log(error);
-    }
+  async function addSiteProtocol(protocolId) {
+    mutate({
+      data: {
+        siteId,
+      },
+      protocolId,
+    });
   }
 
-  async function addSiteProtocol(protocolId) {
-    try {
-      await addSite(protocolId, siteId);
-      fetchProtocols();
-    } catch (error) {
-      console.log(error);
-    }
+  if (api.isLoading) {
+    return <div>Loading..</div>;
   }
 
   return (

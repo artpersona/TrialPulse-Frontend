@@ -4,19 +4,20 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function StaffItem(props) {
   const { data } = props;
+  console.log(data);
 
   const { sponsorId } = useParams();
 
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate(`${data.id}`);
+    navigate(`${data.userId}`);
   }
 
   return (
     <div
       className={`has-transition flex items-center border py-2 px-4 rounded-full gap-2 w-[350px] mb-2 shadow-md cursor-pointer hover:border-primary ${
-        sponsorId == data.id ? "border-primary" : "border-gray-200"
+        sponsorId == data.userId ? "border-primary" : "border-gray-200"
       }`}
       onClick={handleClick}
     >
@@ -27,8 +28,10 @@ function StaffItem(props) {
       />
 
       <div className="flex-1">
-        <h4 className="text-primary text-sm font-medium flex-1">{data.name}</h4>
-        <p className="text-xs text-gray">Medical Monitor</p>
+        <h4 className="text-primary text-sm font-medium flex-1 capitalize">
+          {data.firstName} {data.lastName}
+        </h4>
+        <p className="text-xs text-gray">{data.position}</p>
       </div>
 
       {/* <div className="w-8 h-8 bg-gray-200 grid place-items-center rounded-full cursor-pointer">

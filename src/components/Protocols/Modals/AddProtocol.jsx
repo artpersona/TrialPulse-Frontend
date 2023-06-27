@@ -6,13 +6,12 @@ import {
   MagnifyingGlassIcon,
   PlusIcon,
 } from "@heroicons/react/24/solid";
-import { useProtocolContext } from "../../../contexts/ProtocolContext";
 import AvatarContainer from "../../AvatarContainer/AvatarContainer";
 
 function AddProtocol(props) {
   const { currentProtocols, handleAdd, onProceed } = props;
 
-  const { protocols } = useProtocolContext();
+  const { api, protocols } = useGetProtocols();
 
   const [search, setSearch] = useState("");
 
@@ -33,6 +32,10 @@ function AddProtocol(props) {
 
   function handleClick(protocolId) {
     handleAdd(protocolId);
+  }
+
+  if (api.isLoading) {
+    return <div>Loading..</div>;
   }
 
   return (
@@ -82,6 +85,7 @@ function AddProtocol(props) {
 export default AddProtocol;
 
 import PropTypes from "prop-types";
+import useGetProtocols from "../../../api/protocols/useGetProtocols";
 
 AddProtocol.propTypes = {
   currentProtocols: PropTypes.array,

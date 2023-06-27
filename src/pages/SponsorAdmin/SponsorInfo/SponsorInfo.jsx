@@ -1,9 +1,11 @@
-import { useParams } from "react-router-dom";
 import SponsorInfoComponent from "src/components/Sponsors/SponsorInfo";
 import useGetSponsor from "../../../api/sponsors/useGetSponsor";
+import { useAuthContext } from "../../../contexts/AuthContext";
 
 function SponsorInfo() {
-  const { sponsorId } = useParams();
+  const { userDetails } = useAuthContext();
+
+  const { sponsorId } = userDetails;
 
   const { api, sponsor } = useGetSponsor(sponsorId);
 

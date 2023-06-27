@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import colorPalette from "src/utils/styles/colorPalette";
 import "./Sidebar.styles.css";
 import { SIDEBAR_WIDTH } from "../../shared/constants";
+import { useSearchParams } from "react-router-dom";
 
 const getLetters = () => {
   let letters = [];
@@ -37,6 +38,24 @@ function Sidebar(props) {
   function handleClick(tab) {
     setCurrentTab(tab);
   }
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    switch (currentTab) {
+      case 0:
+        searchParams.delete("sort");
+        break;
+      case 1:
+        searchParams.set("sort", "last_viewed");
+        break;
+      case 2:
+        searchParams.set("sort", "last_updated");
+        break;
+    }
+
+    setSearchParams(searchParams);
+  }, [currentTab, searchParams, setSearchParams]);
 
   return (
     <div
