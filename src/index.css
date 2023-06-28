@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+  transition: all 0.2s ease-out;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
 @layer components {
   .form-row {
     @apply my-2;
@@ -26,6 +48,9 @@
   }
   .modal-button {
     @apply has-transition w-[100px] cursor-pointer text-white rounded-full py-2 text-sm;
+  }
+  .button {
+    @apply has-transition cursor-pointer shadow-md font-normal disabled:bg-gray-disabled disabled:text-gray disabled:cursor-default disabled:hover:bg-gray-disabled text-base;
   }
 }
 

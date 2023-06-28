@@ -17,18 +17,34 @@ function SiteItem(props) {
     navigate(`${data.id}`);
   }
 
+  const isActive = () => siteId == data.id;
+
   return (
     <div
       className={`flex items-center border py-2 px-4 rounded-full gap-2 w-[350px] mb-2 shadow-md cursor-pointer hover:border-primary ${
         siteId == data.id ? "border-primary" : "border-gray-200"
-      }`}
+      } ${isActive() ? "bg-primary" : "bg-white"}`}
       onClick={handleClick}
     >
       <AvatarContainer Icon={BuildingOfficeIcon} />
 
-      <h4 className="text-primary text-sm font-medium flex-1 ml-2">
-        {data.name}
-      </h4>
+      <section className="ml-2">
+        <h4
+          className={`${
+            isActive() ? "text-white" : "text-primary"
+          } text-sm font-medium flex-1 capitalize`}
+        >
+          {data.name}
+        </h4>
+
+        <p
+          className={`${
+            isActive() ? "text-gray-300" : "text-gray-dark"
+          } text-xs flex-1`}
+        >
+          {data.contactEmail}
+        </p>
+      </section>
 
       {/* <div className="w-8 h-8 bg-gray-200 grid place-items-center rounded-full cursor-pointer">
         <PhoneIcon

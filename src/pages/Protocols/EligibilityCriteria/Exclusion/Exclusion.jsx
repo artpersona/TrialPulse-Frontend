@@ -8,6 +8,7 @@ import useGetCriterias from "src/api/protocols/eligibility-criteria/useGetCriter
 import Criteria from "src/components/Protocols/Criteria";
 import AddButton from "src/components/AddButton/AddButton";
 import AddCriteria from "../components/modal/AddCriteria/AddCriteria";
+import DeleteConfirmation from "../../../../components/Modal/DeleteConfirmation/DeleteConfirmation";
 
 function Exclusion() {
   const { protocolId } = useParams();
@@ -28,6 +29,8 @@ function Exclusion() {
   });
 
   const [showAddCriteriaModal, setShowAddCriteriaModal] = useState(false);
+  const [showDeleteCriteriaModal, setShowDeleteCriteriaModal] = useState(false);
+  const [selectedCriteria, setSelectedCriteria] = useState(null);
 
   async function handleAddCriteria(data) {
     mutate({
@@ -37,10 +40,16 @@ function Exclusion() {
   }
 
   async function handleDeleteCriteria(id) {
+    setShowDeleteCriteriaModal(true);
+    setSelectedCriteria(id);
+  }
+
+  async function handleDelete() {
     deleteCriteria({
       protocolId,
-      criteriaId: id,
+      criteriaId: selectedCriteria,
     });
+    setShowDeleteCriteriaModal(false);
   }
 
   if (api.isLoading) {
@@ -62,6 +71,14 @@ function Exclusion() {
         <AddCriteria
           onOk={handleAddCriteria}
           onCancel={() => setShowAddCriteriaModal(false)}
+        />
+      ) : null}
+
+      {showDeleteCriteriaModal ? (
+        <DeleteConfirmation
+          title="Remove Criteria?"
+          onProceed={handleDelete}
+          onCancel={() => setShowDeleteCriteriaModal(false)}
         />
       ) : null}
     </div>

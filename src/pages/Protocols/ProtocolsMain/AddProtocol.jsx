@@ -140,7 +140,7 @@ function AddProtocol() {
   }
 
   return (
-    <div>
+    <div className="pb-10">
       <BlackNavbar></BlackNavbar>
       {/* GENERAL INFO */}
 
@@ -330,10 +330,10 @@ function AddProtocol() {
         </select>
       </div>
 
-      <div className="addProtocol__buttonContainer">
+      <div className="sticky bottom-4 left-0 w-full flex items-center justify-center mt-4">
         <button
-          className="addProtocol__button"
-          style={{ backgroundColor: colorPalette.SECONDARY_COLOR }}
+          className="button w-[300px] bg-secondary text-white font-sm py-3 rounded-full hover:bg-secondary-dark"
+          // style={{ backgroundColor: colorPalette.SECONDARY_COLOR }}
           disabled={isDisabled()}
           onClick={addProtocol}
         >

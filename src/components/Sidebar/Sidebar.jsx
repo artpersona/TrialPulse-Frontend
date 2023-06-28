@@ -57,13 +57,23 @@ function Sidebar(props) {
     setSearchParams(searchParams);
   }, [currentTab, searchParams, setSearchParams]);
 
+  // position: fixed;
+  // height: 60px;
+  // top: 80px;
+  // left: 0;
+  // width: 450px;
+  // z-index: 999;
+  // border-right: 1px solid white;
+  // display: flex;
+  // align-items: center;
+  // padding-left: 20px;
   return (
     <div
-      className={`fixed left-0 top-0 p-5 pt-[150px] w-[${SIDEBAR_WIDTH}px] border-1 border-black h-screen overflow-scroll `}
+      className={`fixed left-0 top-0 p-5 pt-[150px] w-[400px] shadow-md shadow-gray h-screen overflow-y-scroll bg-gray-background `}
     >
       {/* TOP BAR */}
       <div
-        className="sidebar__topBar"
+        className={`fixed h-[60px] top-[80px] left-0 w-[400px] z-50 flex items-center border-r-2 border-white`}
         style={{ backgroundColor: colorPalette.GRAY_DARK }}
       >
         {hideNavbar ? null : (
@@ -86,7 +96,7 @@ function Sidebar(props) {
       {children}
 
       {/* LETTERS FILTER */}
-      <div className="sidebar__filter">
+      {/* <div className="sidebar__filter">
         {getLetters().map((letter) => (
           <div
             key={letter}
@@ -96,7 +106,7 @@ function Sidebar(props) {
             <p>{letter}</p>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }

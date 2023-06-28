@@ -17,16 +17,22 @@ function SponsorItem(props) {
   function handleClick() {
     navigate(`${data.id}`);
   }
+
+  const isActive = () => sponsorId == data.id;
   return (
     <div
       className={`has-transition flex items-center border py-2 px-4 rounded-full gap-2 w-[350px] mb-2 shadow-md cursor-pointer hover:border-primary ${
         sponsorId == data.id ? "border-primary" : "border-gray-200"
-      }`}
+      } ${isActive() ? "bg-primary" : "bg-white"}`}
       onClick={handleClick}
     >
       <AvatarContainer Icon={BuildingOfficeIcon} />
 
-      <h4 className="text-primary text-sm font-medium flex-1 ml-2">
+      <h4
+        className={`${
+          isActive() ? "text-white" : "text-primary"
+        } text-sm font-medium flex-1 ml-2 capitalize`}
+      >
         {data.name}
       </h4>
 

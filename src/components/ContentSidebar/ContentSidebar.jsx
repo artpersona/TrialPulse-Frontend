@@ -2,7 +2,7 @@ function ContentSidebar(props) {
   const { children } = props;
 
   return (
-    <div className="flex flex-col items-center justify-center pt-[100px] pl-[470px]">
+    <div className="flex flex-col items-center justify-center pt-[100px] pl-[400px]">
       {children}
     </div>
   );

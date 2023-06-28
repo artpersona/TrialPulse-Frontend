@@ -1,4 +1,4 @@
-export const SIDEBAR_WIDTH = 450;
+export const SIDEBAR_WIDTH = 400;
 
 export const drugRoutes = [
   "Oral",

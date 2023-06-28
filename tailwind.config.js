@@ -16,8 +16,11 @@ export default {
         green: "#00BD4F",
         gray: {
           DEFAULT: "#93A0AF",
+          cancel: "#EEEEEE",
           light: "#EDEDED",
           dark: "#6B6B6B",
+          background: "#F3F3F3",
+          disabled: "#E5E5E5",
         },
       },
     },

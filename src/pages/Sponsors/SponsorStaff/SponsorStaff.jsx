@@ -35,6 +35,7 @@ function SponsorStaff() {
     users.filter(
       (item) =>
         !getStaffsId().includes(item.userId) &&
+        !item.sponsorId &&
         (item.position === "Sponsor Staff" || item.position === "Sponsor Admin")
     );
 

@@ -19,11 +19,13 @@ function UserItem(props) {
     navigate(`${data.userId}`);
   }
 
+  const isActive = () => userId == data.userId;
+
   return (
     <div
-      className={`flex items-center border py-2 px-4 rounded-full gap-2 w-[350px] mb-2 shadow-md cursor-pointer hover:border-primary ${
+      className={`has-transition flex items-center border py-2 px-4 rounded-full gap-2 w-[350px] mb-2 shadow-md cursor-pointer hover:border-primary ${
         userId == data.userId ? "border-primary" : "border-gray-200"
-      }`}
+      } ${isActive() ? "bg-primary" : "bg-white"} `}
       onClick={handleClick}
     >
       <figure className="text-green relative">
@@ -36,17 +38,22 @@ function UserItem(props) {
         <img
           src="https://t4.ftcdn.net/jpg/02/99/97/35/360_F_299973520_rgAKO2BdhNhDArSSm7ikCT03qBCYcumJ.jpg"
           alt=""
-          className="w-10 h-10 rounded-full object-cover"
+          className="w-11 h-11 rounded-full object-cover"
         />
       </figure>
 
       <section className="flex-1 ml-2">
-        <h4 className="text-primary font-medium capitalize">
+        <h4
+          className={`${
+            isActive() ? "text-white" : "text-primary"
+          } text-sm font-medium flex-1 capitalize`}
+        >
           {data.firstName} {data.lastName}
         </h4>
         <p
-          className={`text-xs capitalize`}
-          style={{ color: colorPalette.GRAY }}
+          className={`${
+            isActive() ? "text-gray-300" : "text-gray-dark"
+          } text-xs flex-1 capitalize`}
         >
           {data.position}
         </p>

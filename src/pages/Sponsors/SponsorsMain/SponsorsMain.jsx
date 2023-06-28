@@ -20,6 +20,8 @@ function SponsorsMain() {
     });
   }, [searchParams]);
 
+  console.log(sponsors);
+
   if (api.isLoading) {
     return <div>Loading</div>;
   }
