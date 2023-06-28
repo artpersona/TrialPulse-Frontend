@@ -195,14 +195,14 @@ const router = createBrowserRouter([
                     path: "",
                     element: <SiteInformation />,
                   },
-                  {
-                    path: "protocols",
-                    element: <SiteProtocols />,
-                  },
-                  {
-                    path: "staff",
-                    element: <SponsorStaff />,
-                  },
+                  // {
+                  //   path: "protocols",
+                  //   element: <SiteProtocols />,
+                  // },
+                  // {
+                  //   path: "staff",
+                  //   element: <SponsorStaff />,
+                  // },
                 ],
               },
             ],
