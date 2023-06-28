@@ -2,14 +2,14 @@ import axios from "axios";
 import { clearToken, clearUser, getToken } from "../utils/styles/token";
 
 export const publicClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
+	baseURL: import.meta.env.VITE_API_URL,
+	headers: {
+		"Content-Type": "application/json",
+	},
 });
 
 export const privateClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+	baseURL: import.meta.env.VITE_API_URL,
 });
 
 // const setAuthorizationHeader = () => {
@@ -20,49 +20,51 @@ export const privateClient = axios.create({
 // };
 
 privateClient.interceptors.request.use(async (config) => {
-  const token = getToken();
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
+	const token = getToken();
+	if (token) {
+		config.headers.Authorization = `Bearer ${token}`;
+	}
+	return config;
 });
 
 privateClient.interceptors.response.use(
-  async (response) => {
-    return response;
-  },
-  (error) => {
-    // if (error.response?.data?.isTokenExpired) {
-    //   publicClient({
-    //     url: "/auth/refresh",
-    //     method: "post",
-    //     data: {
-    //       refreshToken: getRefreshToken(),
-    //     },
-    //   }).then((response) => {
-    //     if (response.status === 200) {
-    //       localStorage.setItem("user", JSON.stringify(response.data));
-    //       const { accessToken } = response.data;
-    //       setToken(accessToken);
-    //     } else {
-    //       clearToken();
-    //       clearUser();
-    //       window.location.reload();
-    //     }
-    //   });
-    //   // console.log("token expired");
-    // } else {
-    //   return error;
-    // }
-    // const _error = error.response;
-    // if (_error && _error.status === 401) {
-    //   clearToken();
-    //   clearUser();
-    //   window.location.reload();
-    //   throw error;
-    // }
-    // return error;
-  }
+	async (response) => {
+		return response;
+	},
+	(error) => {
+		// if (error.response?.data?.isTokenExpired) {
+		//   publicClient({
+		//     url: "/auth/refresh",
+		//     method: "post",
+		//     data: {
+		//       refreshToken: getRefreshToken(),
+		//     },
+		//   }).then((response) => {
+		//     if (response.status === 200) {
+		//       localStorage.setItem("user", JSON.stringify(response.data));
+		//       const { accessToken } = response.data;
+		//       setToken(accessToken);
+		//     } else {
+		//       clearToken();
+		//       clearUser();
+		//       window.location.reload();
+		//     }
+		//   });
+		//   // console.log("token expired");
+		// } else {
+		//   return error;
+		// }
+		const _error = error.response;
+		if (error && error.status === 401) {
+			if (_error.response?.data?.isTokenExpired) {
+				clearToken();
+				clearUser();
+				window.location.reload();
+				throw error;
+			}
+		}
+		return error;
+	}
 );
 
 // let isRefreshing = false;
