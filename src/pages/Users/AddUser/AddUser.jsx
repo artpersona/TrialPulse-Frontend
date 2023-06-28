@@ -12,15 +12,10 @@ import FormInput from "src/components/Form/FormInput";
 import FormSelect from "src/components/Form/FormSelect";
 import FormComboBox from "src/components/Form/FormComboBox";
 import BlackNavbar from "src/components/Protocols/BlackNavbar/BlackNavbar";
-
-const positions = [
-  { id: 1, name: "Admin", label: "Admin" },
-  { id: 2, name: "Site Staff", label: "Site Staff" },
-  { id: 3, name: "Sponsor Staff", label: "Sponsor Staff" },
-  { id: 4, name: "Sponsor Admin", label: "Sponsor Admin" },
-];
+import { useAuthContext } from "../../../contexts/AuthContext";
 
 function AddUser() {
+  const { userDetails } = useAuthContext();
   const formRef = useRef(null);
 
   const { states } = useGetStates();
@@ -38,6 +33,20 @@ function AddUser() {
 
   const { searchedCities } = useSearchCities(state, debouncedValue);
 
+  let positions = [
+    { id: 1, name: "Admin", label: "Admin" },
+    { id: 2, name: "Site Staff", label: "Site Staff" },
+    { id: 3, name: "Sponsor Staff", label: "Sponsor Staff" },
+    { id: 4, name: "Sponsor Admin", label: "Sponsor Admin" },
+  ];
+
+  const sponsorAdminAllowedPositions = positions.filter(
+    (item) => item.id !== 1 && item.id !== 2
+  );
+
+  positions =
+		userDetails.roleId === 4 ? sponsorAdminAllowedPositions : positions;
+  
   function openCityBox() {
     setShowCityBox(true);
   }
