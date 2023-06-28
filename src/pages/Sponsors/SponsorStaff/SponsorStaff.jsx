@@ -7,6 +7,7 @@ import { PlusIcon } from "@heroicons/react/24/solid";
 import useCreateStaff from "../../../api/sponsors/useCreateStaff";
 import { useParams } from "react-router-dom";
 import useGetUsersBySponsor from "../../../api/sponsors/useGetUsersBySponsor";
+import AddStaffModal from "../../../components/Modal/AddStaffModal/AddStaffModal";
 
 function SponsorStaff() {
   const { sponsorId } = useParams();
@@ -15,11 +16,13 @@ function SponsorStaff() {
   const { api, users } = useGetUsers();
   const { api: staffApi, users: staffs } = useGetUsersBySponsor(sponsorId);
 
+  console.log("staffs: ", staffs);
   const { mutate } = useCreateStaff({
     resetForm: () => null,
   });
 
   function handleAddStaff(id) {
+    console.log(id);
     mutate({
       sponsorId,
       userId: id,
@@ -35,13 +38,16 @@ function SponsorStaff() {
     users.filter(
       (item) =>
         !getStaffsId().includes(item.userId) &&
-        !item.sponsorId &&
+        !item.sponsorUserId &&
         (item.position === "Sponsor Staff" || item.position === "Sponsor Admin")
     );
 
   if (api.isLoading || staffApi.isLoading) {
     return <div>Loading</div>;
   }
+
+  console.log("users:", users);
+  console.log("available: ", getAvailableUsers());
 
   return (
     <div>
@@ -51,37 +57,11 @@ function SponsorStaff() {
       ))}
 
       {showStaffModal ? (
-        <Modal>
-          <div className="bg-white border-gray rounded-2xl w-[450px] p-4">
-            <h4 className="modal__title">Add Site</h4>
-            <div>
-              {getAvailableUsers().map((item) => (
-                <div
-                  key={item.id}
-                  className="card py-2 px-4 flex items-center justify-between my-2"
-                >
-                  <p className="text-sm capitalize">
-                    {item.firstName} {item.lastName}
-                  </p>
-                  <button
-                    className="bg-secondary flex gap-2 text-md items-center justify-center px-3 py-1 cursor-pointer rounded-2xl text-white"
-                    onClick={() => handleAddStaff(item.userId)}
-                  >
-                    <PlusIcon height={12} width={12} color="#ffffff" /> Add
-                  </button>
-                </div>
-              ))}
-            </div>
-            <div className="modal__actions">
-              <button
-                className="modal-button bg-gray-dark"
-                onClick={() => setShowStaffModal(false)}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </Modal>
+        <AddStaffModal
+          data={getAvailableUsers()}
+          onProceed={handleAddStaff}
+          onCancel={() => setShowStaffModal(false)}
+        />
       ) : null}
     </div>
   );

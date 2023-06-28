@@ -44,7 +44,7 @@
     @apply border border-gray rounded-3xl shadow-md;
   }
   .has-transition {
-    @apply transition-all duration-150 ease-out;
+    @apply transition-all transform duration-200 ease-in-out;
   }
   .modal-button {
     @apply has-transition w-[100px] cursor-pointer text-white rounded-full py-2 text-sm;
