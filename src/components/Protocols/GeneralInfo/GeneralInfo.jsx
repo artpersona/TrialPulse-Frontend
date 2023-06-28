@@ -3,12 +3,17 @@ import "./GeneralInfo.styles.css";
 import { privateClient } from "../../../api";
 import { useParams } from "react-router-dom";
 import useGetProtocol from "../../../api/protocols/useGetProtocol";
+import { useAuthContext } from "../../../contexts/AuthContext";
+import useGetSponsor from "../../../api/sponsors/useGetSponsor";
 
 function GeneralInfo() {
   const { protocolId } = useParams();
 
   const { api, protocol } = useGetProtocol(protocolId);
+  const { userDetails } = useAuthContext();
+	const { sponsorId } = userDetails;
 
+  const { api: apiSponsorAdmin, sponsor: sponsorAdmin } = useGetSponsor(sponsorId);
   const [sponsors, setSponsors] = useState([]);
 
   useEffect(() => {
@@ -26,59 +31,68 @@ function GeneralInfo() {
     }
   }
 
-  if (api.isLoading) {
+  if (api.isLoading || apiSponsorAdmin.isLoading) {
     return <div>Loading..</div>;
   }
 
   return (
-    <div className="generalInfo">
-      <h2 style={{ textAlign: "center", marginBottom: 20 }}>General Info</h2>
+		<div className="generalInfo">
+			<h2 style={{ textAlign: "center", marginBottom: 20 }}>General Info</h2>
 
-      <div className="generalInfo__section">
-        <p>Study Name</p>
-        <input value={protocol.title} readOnly />
-        <p>Sponsor</p>
-        <select value={protocol.sponsorId}>
-          {sponsors?.map((item) => (
-            <option key={item.id} value={item.id}>
-              {item.name}
-            </option>
-          ))}
-        </select>
-      </div>
+			<div className="generalInfo__section">
+				<p>Study Name</p>
+				<input value={protocol.title} readOnly />
+				<p>Sponsor</p>
 
-      <div
-        style={{
-          width: "100%",
-          height: 1,
-          background: "gray",
-          margin: "20px 0",
-        }}
-      />
+				{userDetails.roleId === 3 || userDetails.roleId === 4 ? (
+          <select
+          value={sponsorAdmin.id}
+        >
+					<option value="">{sponsorAdmin.name}</option>
+          </select>
+				) : (
+					<select value={protocol.sponsorId}>
+						{sponsors?.map((item) => (
+							<option key={item.id} value={item.id}>
+								{item.name}
+							</option>
+						))}
+					</select>
+				)}
+			</div>
 
-      <div className="generalInfo__section">
-        <p>Eligibility Overview</p>
-        <textarea value={protocol.eligibilityOverview} />
-      </div>
+			<div
+				style={{
+					width: "100%",
+					height: 1,
+					background: "gray",
+					margin: "20px 0",
+				}}
+			/>
 
-      <div
-        style={{
-          width: "100%",
-          height: 1,
-          background: "gray",
-          margin: "20px 0",
-        }}
-      />
+			<div className="generalInfo__section">
+				<p>Eligibility Overview</p>
+				<textarea value={protocol.eligibilityOverview} />
+			</div>
 
-      <div className="generalInfo__section">
-        <p>Active on App</p>
-        <select>
-          <option value="Active">Active</option>
-          <option value="Inactive">Inactive</option>
-        </select>
-      </div>
-    </div>
-  );
+			<div
+				style={{
+					width: "100%",
+					height: 1,
+					background: "gray",
+					margin: "20px 0",
+				}}
+			/>
+
+			<div className="generalInfo__section">
+				<p>Active on App</p>
+				<select>
+					<option value="Active">Active</option>
+					<option value="Inactive">Inactive</option>
+				</select>
+			</div>
+		</div>
+	);
 }
 
 export default GeneralInfo;

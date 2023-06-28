@@ -36,14 +36,14 @@ export default [
     path: "users",
   },
   {
-    id: "Alerts",
-    icon: ShieldExclamationIcon,
-    path: "alerts",
-  },
-  {
     id: "Chat",
     icon: ChatBubbleOvalLeftEllipsisIcon,
     path: "chat",
+  },
+  {
+    id: "Alerts",
+    icon: ShieldExclamationIcon,
+    path: "alerts",
   },
   {
     id: "Ads",
