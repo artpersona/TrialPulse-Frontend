@@ -1,16 +1,9 @@
 import "./UserItem.styles.css";
-import {
-  BuildingOfficeIcon,
-  ChatBubbleOvalLeftIcon,
-  PhoneIcon,
-} from "@heroicons/react/24/solid";
+
 import { BsFillCircleFill } from "react-icons/bs";
 
-import AvatarContainer from "../../AvatarContainer/AvatarContainer";
-import colorPalette from "src/utils/styles/colorPalette";
-
 function UserItem(props) {
-  const { data } = props;
+  const { data, noClick } = props;
 
   const { userId } = useParams();
   const navigate = useNavigate();
@@ -26,7 +19,7 @@ function UserItem(props) {
       className={`has-transition flex items-center border py-2 px-4 rounded-full gap-2 w-[350px] mb-2 shadow-md cursor-pointer hover:border-primary ${
         userId == data.userId ? "border-primary" : "border-gray-200"
       } ${isActive() ? "bg-primary" : "bg-white"} `}
-      onClick={handleClick}
+      onClick={noClick ? () => null : handleClick}
     >
       <figure className="text-green relative">
         {/* {data.onlineStatus && ( */}
@@ -84,4 +77,5 @@ import { useNavigate, useParams } from "react-router-dom";
 
 UserItem.propTypes = {
   data: PropTypes.object,
+  noClick: PropTypes.bool,
 };
