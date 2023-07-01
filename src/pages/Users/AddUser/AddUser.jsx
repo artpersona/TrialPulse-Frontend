@@ -34,7 +34,7 @@ function AddUser() {
   const { searchedCities } = useSearchCities(state, debouncedValue);
 
   let positions = [
-    { id: 1, name: "Admin", label: "Admin" },
+    { id: 5, name: "Admin", label: "Admin" },
     { id: 2, name: "Site Staff", label: "Site Staff" },
     { id: 3, name: "Sponsor Staff", label: "Sponsor Staff" },
     { id: 4, name: "Sponsor Admin", label: "Sponsor Admin" },
@@ -44,8 +44,17 @@ function AddUser() {
     (item) => item.id !== 1 && item.id !== 2
   );
 
+  const adminAllowedPositions = positions.filter(
+    (item) => item.id !== 5
+  );
+
   positions =
-		userDetails.roleId === 4 ? sponsorAdminAllowedPositions : positions;
+		userDetails.roleId === 4
+			? sponsorAdminAllowedPositions
+			: userDetails.roleId === 5
+			? adminAllowedPositions
+			: positions;
+    
   
   function openCityBox() {
     setShowCityBox(true);
