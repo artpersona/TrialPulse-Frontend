@@ -1,7 +1,5 @@
 import { Outlet } from "react-router-dom";
 
-import useGetSites from "src/api/sites/useGetSites";
-
 import Sidebar from "src/components/Sidebar/Sidebar";
 import SiteItem from "src/components/Sites/SiteItem/SiteItem";
 import ContentSidebar from "src/components/ContentSidebar/ContentSidebar";
@@ -15,6 +13,20 @@ function SitesMain() {
 
   const { sites, api, pagination } = useGetSitesBySponsor(sponsorId);
 
+  const getAvailableSites = () => {
+    const uniqueRecords = [];
+    const ids = new Set();
+
+    for (const record of sites) {
+      if (!ids.has(record.id)) {
+        ids.add(record.id);
+        uniqueRecords.push(record);
+      }
+    }
+
+    return uniqueRecords;
+  };
+
   if (api.isLoading) {
     return <div>Loading</div>;
   }
@@ -23,7 +35,7 @@ function SitesMain() {
     <div className="relative">
       <Sidebar>
         <div>
-          {sites.map((item) => (
+          {getAvailableSites().map((item) => (
             <SiteItem key={item.id} data={item} />
           ))}
         </div>
