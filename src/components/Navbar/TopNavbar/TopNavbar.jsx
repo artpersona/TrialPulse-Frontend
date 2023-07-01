@@ -75,6 +75,8 @@ function TopNavbar() {
       ? sponsorAdminNav
       : adminNav;
 
+    console.log(userDetails)
+
   return (
     <div
       className="topNavbar"
