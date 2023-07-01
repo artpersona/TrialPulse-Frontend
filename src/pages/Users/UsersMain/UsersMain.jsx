@@ -7,7 +7,7 @@ import UserItem from "src/components/Users/UserItem/UserItem";
 import ContentSidebar from "src/components/ContentSidebar/ContentSidebar";
 
 function UsersMain() {
-  const { users, api } = useGetUsers();
+  const { users, api } = useGetUsers({ isAvailable: false });
 
   if (api.isLoading) {
     return <div>Loading</div>;

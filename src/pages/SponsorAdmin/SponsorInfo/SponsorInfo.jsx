@@ -12,6 +12,8 @@ function SponsorInfo() {
   if (api.isLoading) {
     return <div></div>;
   }
+
+  if (!sponsor) return <div></div>;
   return (
     <div>
       <SponsorInfoComponent data={sponsor} />

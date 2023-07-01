@@ -332,7 +332,7 @@ function AddProtocol() {
 
       <div className="sticky bottom-4 left-0 w-full flex items-center justify-center mt-4">
         <button
-          className="button w-[300px] bg-secondary text-white font-sm py-3 rounded-full hover:bg-secondary-dark"
+          className="button w-64 bg-secondary text-white font-sm py-3 rounded-full hover:bg-secondary-dark"
           // style={{ backgroundColor: colorPalette.SECONDARY_COLOR }}
           disabled={isDisabled()}
           onClick={addProtocol}

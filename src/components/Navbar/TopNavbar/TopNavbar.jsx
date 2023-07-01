@@ -66,9 +66,7 @@ function TopNavbar() {
     navigate(`/${path}`);
   }
 
-  const sponsorStaffNav = sponsorAdminNav.filter(
-    (item) => item.id !== "Users"
-  );
+  const sponsorStaffNav = sponsorAdminNav.filter((item) => item.id !== "Users");
 
   const getNav = () =>
     userDetails.roleId === 3

@@ -1,16 +1,26 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import "./Login.styles.css";
 import Logo from "src/assets/images/logo-white.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 
 function Login() {
   const navigate = useNavigate();
+  const query = useSearchParams();
 
   const { login } = useAuthContext();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if (query) {
+      if (query[0].get("sessionExpired")) {
+        toast.error("Session has expired. Please Signin again.");
+      }
+    }
+  }, []);
 
   function handleLogin(e) {
     e.preventDefault();

@@ -55,15 +55,16 @@ privateClient.interceptors.response.use(
     //   return error;
     // }
     const _error = error.response;
-    if (error && error.status === 401) {
-      if (_error.response?.data?.isTokenExpired) {
+    if (_error && _error.status === 401) {
+      if (_error.data?.isTokenExpired) {
         clearToken();
         clearUser();
-        window.location.reload();
-        throw error;
+        // window.location.reload();
+        window.location.href = "/?sessionExpired=true";
+        throw _error;
       }
     }
-    return error;
+    return _error;
   }
 );
 

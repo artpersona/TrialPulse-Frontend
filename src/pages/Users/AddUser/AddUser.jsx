@@ -45,8 +45,8 @@ function AddUser() {
   );
 
   positions =
-		userDetails.roleId === 4 ? sponsorAdminAllowedPositions : positions;
-  
+    userDetails.roleId === 4 ? sponsorAdminAllowedPositions : positions;
+
   function openCityBox() {
     setShowCityBox(true);
   }
@@ -113,99 +113,107 @@ function AddUser() {
     <>
       <BlackNavbar />
       <div className="pb-10">
-        <div className="w-[400px] border border-gray-400 rounded-2xl pt-4">
+        <div className="">
           <img
             src="https://t4.ftcdn.net/jpg/02/99/97/35/360_F_299973520_rgAKO2BdhNhDArSSm7ikCT03qBCYcumJ.jpg"
             alt=""
             className="w-16 h-16 rounded-full object-cover mx-auto mb-4"
           />
           <form ref={formRef} className="" onSubmit={handleAddUser}>
-            <div className="p-6 border-b">
-              <FormRow>
-                <FormCol label="Firstname">
-                  <FormInput name="firstName" type="text" required />
-                </FormCol>
-              </FormRow>
-              <FormRow>
-                <FormCol label="Lastname">
-                  <FormInput name="lastName" type="text" required />
-                </FormCol>
-              </FormRow>
-              <FormRow>
-                <FormCol label="Position">
-                  <FormSelect name="position" options={positions} required />
-                </FormCol>
-              </FormRow>
+            <div className="w-[400px] border border-gray-400 rounded-2xl pt-4">
+              <div className="p-6 border-b">
+                <FormRow>
+                  <FormCol label="Firstname">
+                    <FormInput name="firstName" type="text" required />
+                  </FormCol>
+                </FormRow>
+                <FormRow>
+                  <FormCol label="Lastname">
+                    <FormInput name="lastName" type="text" required />
+                  </FormCol>
+                </FormRow>
+                <FormRow>
+                  <FormCol label="Position">
+                    <FormSelect name="position" options={positions} required />
+                  </FormCol>
+                </FormRow>
+              </div>
+
+              <div className="p-6 border-b">
+                <FormRow>
+                  <FormCol label="Username">
+                    <FormInput name="username" type="text" required />
+                  </FormCol>
+                </FormRow>
+                <FormRow>
+                  <FormCol label="Password">
+                    <FormInput name="password" type="password" required />
+                  </FormCol>
+                </FormRow>
+                <FormRow>
+                  <FormCol label="Email">
+                    <FormInput name="email" type="email" required />
+                  </FormCol>
+                </FormRow>
+                <FormRow>
+                  <FormCol label="Contact No.">
+                    <FormInput name="contactNumber" type="text" required />
+                  </FormCol>
+                </FormRow>
+              </div>
+
+              <div className="p-6">
+                <FormRow>
+                  <FormCol label="Address">
+                    <FormInput name="address1" type="text" required />
+                  </FormCol>
+                </FormRow>
+                <FormRow>
+                  <FormCol label="Address 2">
+                    <FormInput name="address2" type="text" required />
+                  </FormCol>
+                </FormRow>
+                <FormRow>
+                  <FormCol label="State">
+                    <FormSelect
+                      name="stateId"
+                      options={states || []}
+                      value={state}
+                      onChange={(e) => setState(e.target.value)}
+                      required
+                    />
+                  </FormCol>
+                </FormRow>
+
+                <FormRow>
+                  <FormCol label="City">
+                    <FormComboBox
+                      name="cityId"
+                      options={searchedCities || []}
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                      showBox={showCityBox}
+                      handleOpenBox={openCityBox}
+                      handleCloseBox={closeCityBox}
+                      handleSelect={selectCity}
+                      required
+                    />
+                  </FormCol>
+                  <FormCol label="Zip code">
+                    <FormInput name="zipcode" type="text" />
+                  </FormCol>
+                </FormRow>
+              </div>
             </div>
 
-            <div className="p-6 border-b">
-              <FormRow>
-                <FormCol label="Username">
-                  <FormInput name="username" type="text" required />
-                </FormCol>
-              </FormRow>
-              <FormRow>
-                <FormCol label="Password">
-                  <FormInput name="password" type="password" required />
-                </FormCol>
-              </FormRow>
-              <FormRow>
-                <FormCol label="Email">
-                  <FormInput name="email" type="email" required />
-                </FormCol>
-              </FormRow>
-              <FormRow>
-                <FormCol label="Contact No.">
-                  <FormInput name="contactNumber" type="text" required />
-                </FormCol>
-              </FormRow>
-            </div>
-
-            <div className="p-6 border-b">
-              <FormRow>
-                <FormCol label="Address">
-                  <FormInput name="address1" type="text" required />
-                </FormCol>
-              </FormRow>
-              <FormRow>
-                <FormCol label="Address 2">
-                  <FormInput name="address2" type="text" required />
-                </FormCol>
-              </FormRow>
-              <FormRow>
-                <FormCol label="State">
-                  <FormSelect
-                    name="stateId"
-                    options={states || []}
-                    value={state}
-                    onChange={(e) => setState(e.target.value)}
-                    required
-                  />
-                </FormCol>
-              </FormRow>
-
-              <FormRow>
-                <FormCol label="City">
-                  <FormComboBox
-                    name="cityId"
-                    options={searchedCities || []}
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    showBox={showCityBox}
-                    handleOpenBox={openCityBox}
-                    handleCloseBox={closeCityBox}
-                    handleSelect={selectCity}
-                    required
-                  />
-                </FormCol>
-                <FormCol label="Zip code">
-                  <FormInput name="zipcode" type="text" />
-                </FormCol>
-              </FormRow>
-            </div>
-
-            <div className="form-actions py-4">
-              <button className="form-proceed-button" type="submit">
+            <div className="sticky bottom-4 left-0 w-full flex items-center justify-center mt-4">
+              <button
+                type="submit"
+                className="button w-64 bg-secondary text-white font-sm py-3 rounded-full hover:bg-secondary-dark"
+                // style={{ backgroundColor: colorPalette.SECONDARY_COLOR }}
+                // disabled={isDisabled()}
+                // onClick={addProtocol}
+              >
                 Add User
               </button>
             </div>
