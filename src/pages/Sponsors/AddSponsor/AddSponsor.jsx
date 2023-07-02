@@ -1,5 +1,5 @@
+import { zfd } from "zod-form-data";
 import { useState } from "react";
-
 import useCreateSponsor from "src/api/sponsors/useCreateSponsor";
 
 import BlackNavbar from "src/components/Protocols/BlackNavbar/BlackNavbar";
@@ -8,6 +8,26 @@ import { hasBlank } from "src/utils";
 import FormRow from "../../../components/Form/FormRow";
 import FormCol from "../../../components/Form/FormCol";
 import FormInput from "../../../components/Form/FormInput";
+
+const schema = zfd.formData({
+  name: zfd.text(),
+  cmo: zfd.text(),
+  notes: zfd.text(),
+  contactPersonName: zfd.text(),
+  contactPersonEmail: zfd.text().refine((value) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value);
+  }, "Invalid email address"),
+  contactPersonNumber1: zfd.text().refine((value) => {
+    const phoneNumberRegex = /^\d{5,}$/;
+    return phoneNumberRegex.test(value);
+  }, "Invalid phone number"),
+  contactPersonNumber2: zfd.text().refine((value) => {
+    const phoneNumberRegex = /^\d{5,}$/;
+    return phoneNumberRegex.test(value);
+  }, "Invalid phone number"),
+  address: zfd.text(),
+});
 
 function AddSponsor() {
   const [name, setName] = useState("");
@@ -18,6 +38,7 @@ function AddSponsor() {
   const [contactPersonNumber1, setContactPersonNumber1] = useState("");
   const [contactPersonNumber2, setContactPersonNumber2] = useState("");
   const [address, setAddress] = useState("");
+  const [errors, setErrors] = useState({});
 
   const isDisabled = () =>
     hasBlank([
@@ -35,19 +56,31 @@ function AddSponsor() {
     resetForm,
   });
 
-  async function handleAddSponsor() {
-    mutate({
-      name,
-      cmo,
-      notes,
-      contactPersonName,
-      contactPersonEmail,
-      contactPersonNumber1,
-      contactPersonNumber2,
-      address,
-    });
-  }
-
+  const handleAddSponsor = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("cmo", cmo);
+      formData.append("notes", notes);
+      formData.append("contactPersonName", contactPersonName);
+      formData.append("contactPersonEmail", contactPersonEmail);
+      formData.append("contactPersonNumber1", contactPersonNumber1);
+      formData.append("contactPersonNumber2", contactPersonNumber2);
+      formData.append("address", address);
+  
+      const parsedData = schema.parse(Object.fromEntries(formData.entries()));
+      // Handle the parsed data
+      console.log(parsedData);
+      mutate(parsedData);
+  
+      setErrors({});
+    } catch (error) {
+      if (error.formErrors) {
+        setErrors(error.formErrors.fieldErrors);
+      }
+    }
+  };  
+  
   function resetForm() {
     setName("");
     setCmo("");
@@ -65,37 +98,34 @@ function AddSponsor() {
 
       <div className="card w-[400px] p-4">
         <h2 className="font-medium mt-2">Sponsor Details</h2>
-        <div className="form-row">
-          <p className="form-label">Sponsor Name</p>
-          <input
-            className="form-input"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div className="form-row">
-          <p className="form-label">CRO</p>
-          <input
-            className="form-input"
-            type="text"
-            value={cmo}
-            onChange={(e) => setCmo(e.target.value)}
-          />
-        </div>
-        <div className="form-row">
-          <p className="form-label">Notes</p>
-          <textarea
-            className="form-input"
-            rows="10"
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-          />
-        </div>
+        <FormRow>
+          <FormCol label="Sponsor Name" error={errors.name}>
+            <FormInput
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </FormCol>
+        </FormRow>
+        <FormRow>
+          <FormCol label="CRO" error={errors.cmo}>
+            <FormInput
+              value={cmo}
+              onChange={(e) => setCmo(e.target.value)}
+            />
+          </FormCol>
+        </FormRow>
+        <FormRow>
+          <FormCol label="Notes" error={errors.notes}>
+            <FormInput
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+            />
+          </FormCol>
+        </FormRow>
 
         <h2 className="font-medium mt-4">Contact Person Details</h2>
         <FormRow>
-          <FormCol label="Name">
+          <FormCol label="Name" error={errors.contactPersonName}>
             <FormInput
               value={contactPersonName}
               onChange={(e) => setContactPersonName(e.target.value)}
@@ -103,7 +133,7 @@ function AddSponsor() {
           </FormCol>
         </FormRow>
         <FormRow>
-          <FormCol label="Email">
+          <FormCol label="Email" error={errors.contactPersonEmail}>
             <FormInput
               type="email"
               value={contactPersonEmail}
@@ -112,7 +142,7 @@ function AddSponsor() {
           </FormCol>
         </FormRow>
         <FormRow>
-          <FormCol label="Contact Number">
+          <FormCol label="Contact Number" error={errors.contactPersonNumber1}>
             <FormInput
               value={contactPersonNumber1}
               onChange={(e) => setContactPersonNumber1(e.target.value)}
@@ -120,7 +150,7 @@ function AddSponsor() {
           </FormCol>
         </FormRow>
         <FormRow>
-          <FormCol label="Secondary Contact Number">
+          <FormCol label="Secondary Contact Number" error={errors.contactPersonNumber2}>
             <FormInput
               value={contactPersonNumber2}
               onChange={(e) => setContactPersonNumber2(e.target.value)}
@@ -128,7 +158,7 @@ function AddSponsor() {
           </FormCol>
         </FormRow>
         <FormRow>
-          <FormCol label="Address">
+          <FormCol label="Address" error={errors.address}>
             <FormInput
               value={address}
               onChange={(e) => setAddress(e.target.value)}
