@@ -9,6 +9,7 @@ import {
 
 function SponsorInfo(props) {
   const { data } = props;
+  if (!data) return <div></div>;
 
   return (
     <div className="flex items-center justify-center">
@@ -25,10 +26,10 @@ function SponsorInfo(props) {
 
           <div>
             <SectionTitle title="Contact Person" />
-            <p>Firstname Lastname</p>
-            <p>anna@gmail.com</p>
-            <p>999-555-00</p>
-            <p>999-555-00</p>
+            <p>{data?.contactPersonName}</p>
+            <p>{data?.contactPersonEmail}</p>
+            <p>{data?.contactPersonNumber1}</p>
+            <p>{data?.contactPersonNumber2}</p>
           </div>
 
           {/* <div>
@@ -38,9 +39,9 @@ function SponsorInfo(props) {
 
           <div>
             <SectionTitle title="Address" />
-            <p>SiteName</p>
-            <p>123 N Circle CT</p>
-            <p>Las Vegas NV, 899</p>
+            <p>{data?.address}</p>
+            {/* <p>123 N Circle CT</p> */}
+            {/* <p>Las Vegas NV, 899</p> */}
           </div>
 
           {/* <div className="flex gap-4 justify-center items-center mt-6">

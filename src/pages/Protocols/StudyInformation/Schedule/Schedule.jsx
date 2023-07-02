@@ -118,18 +118,15 @@ function Schedule() {
               onChange={(e) => setNote(e.target.value)}
             />
 
-            <div className="modal__actions">
+            <div className="flex flex-col gap-3 justify-center items-center pt-4">
               <button
-                className="modal-button bg-primary"
-                onClick={handleAddSchedule}
-              >
-                Save
-              </button>
-              <button
-                className="modal-button bg-gray-dark"
+                className="modal-cancel"
                 onClick={() => setAddScheduleModalOpen(false)}
               >
                 Cancel
+              </button>
+              <button className="modal-proceed" onClick={handleAddSchedule}>
+                Save
               </button>
             </div>
           </div>

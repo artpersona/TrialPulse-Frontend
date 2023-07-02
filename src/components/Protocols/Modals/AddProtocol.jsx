@@ -2,16 +2,18 @@ import { useState } from "react";
 import Modal from "../../Modal/Modal";
 import useDebounce from "../../../hooks/useDebounce";
 import {
+  CheckCircleIcon,
   ClipboardDocumentIcon,
   MagnifyingGlassIcon,
-  PlusIcon,
 } from "@heroicons/react/24/solid";
 import AvatarContainer from "../../AvatarContainer/AvatarContainer";
 
 function AddProtocol(props) {
   const { currentProtocols, handleAdd, onProceed } = props;
 
-  const { api, protocols } = useGetProtocols();
+  const { api, protocols } = useGetProtocols({
+    sort: "",
+  });
 
   const [search, setSearch] = useState("");
 
@@ -53,28 +55,49 @@ function AddProtocol(props) {
           <MagnifyingGlassIcon className="h-4 w-4" />
         </div>
 
-        <div className="py-2 flex flex-col space-y-2">
-          {getProtocols().map((item) => (
+        <div className="py-2 flex flex-col">
+          {getProtocols().map((data) => (
             <div
-              key={item.id}
-              className="card p-2 flex items-center justify-between"
+              key={data.id}
+              className={`has-transition flex items-center border py-2 px-4 rounded-full gap-2 w-full mb-2 shadow-md `}
             >
-              <div className="flex items-center gap-2">
-                <AvatarContainer Icon={ClipboardDocumentIcon} />
-                <h4 className="text-sm">{item.title}</h4>
+              <AvatarContainer Icon={ClipboardDocumentIcon} />
+
+              <div className="flex-1">
+                <h4 className="text-primary text-sm font-medium flex-1 capitalize">
+                  {data.title}
+                </h4>
+                <p className="text-xs text-gray">{data.position}</p>
               </div>
-              <button
-                className="flex items-center gap-1 bg-secondary text-white rounded-full py-1 px-3"
-                onClick={() => handleClick(item.id)}
+
+              <div
+                className="has-transition group p-1 bg-gray-200 flex items-center justify-center rounded-full cursor-pointer hover:bg-secondary hover:scale-110"
+                onClick={() => handleClick(data.id)}
               >
-                <PlusIcon className="w-4 h-4" /> Add
-              </button>
+                <CheckCircleIcon className="has-transition w-6 h-6 text-secondary group-hover:text-white" />
+              </div>
             </div>
+
+            // <div
+            //   key={item.id}
+            //   className="card p-2 flex items-center justify-between"
+            // >
+            //   <div className="flex items-center gap-2">
+            //     <AvatarContainer Icon={ClipboardDocumentIcon} />
+            //     <h4 className="text-sm">{item.title}</h4>
+            //   </div>
+            //   <button
+            //     className="flex items-center gap-1 bg-secondary text-white rounded-full py-1 px-3"
+            //     onClick={() => handleClick(item.id)}
+            //   >
+            //     <PlusIcon className="w-4 h-4" /> Add
+            //   </button>
+            // </div>
           ))}
         </div>
         <div className="modal__actions">
-          <button className="modal-button bg-primary" onClick={onProceed}>
-            Done
+          <button className="modal-cancel" onClick={onProceed}>
+            Cancel
           </button>
         </div>
       </div>

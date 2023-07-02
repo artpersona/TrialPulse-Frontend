@@ -22,7 +22,7 @@ function useCreateSiteByProtocol(props) {
         notification = toast.loading("Adding Site to Protocol...");
       },
       onSuccess: () => {
-        toast.success(")Site has been added successfully.", {
+        toast.success("Site has been added successfully.", {
           id: notification,
         });
         resetForm();

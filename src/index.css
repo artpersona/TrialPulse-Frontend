@@ -52,6 +52,12 @@
   .button {
     @apply has-transition cursor-pointer shadow-md font-normal disabled:bg-gray-disabled disabled:text-gray disabled:cursor-default disabled:hover:bg-gray-disabled text-base;
   }
+  .modal-cancel {
+    @apply has-transition cursor-pointer text-sm bg-gray-cancel rounded-full py-3 shadow-md w-[300px] text-gray-700 hover:bg-gray-300;
+  }
+  .modal-proceed {
+    @apply has-transition cursor-pointer text-sm bg-primary text-white rounded-full py-3 shadow-md w-[300px] font-medium hover:bg-primary-dark;
+  }
 }
 
 * {

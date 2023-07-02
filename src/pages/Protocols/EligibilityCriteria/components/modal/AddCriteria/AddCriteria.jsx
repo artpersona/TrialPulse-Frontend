@@ -77,12 +77,12 @@ function AddCriteria(props) {
             </div>
           </div>
         </div>
-        <div className="modal__actions">
-          <button className="modal-button bg-primary" onClick={handleSave}>
-            Save
-          </button>
-          <button className="modal-button bg-gray-dark" onClick={onCancel}>
+        <div className="flex flex-col gap-3 justify-center items-center pt-4">
+          <button className="modal-cancel" onClick={onCancel}>
             Cancel
+          </button>
+          <button className="modal-proceed" onClick={handleSave}>
+            Save
           </button>
         </div>
       </div>

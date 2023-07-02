@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { PlusIcon } from "@heroicons/react/24/solid";
+import {
+  BuildingOfficeIcon,
+  CheckCircleIcon,
+  PlusIcon,
+} from "@heroicons/react/24/solid";
 
 import { privateClient } from "src/api";
 
@@ -8,6 +12,7 @@ import AddButton from "src/components/AddButton/AddButton";
 import SitesLinkComponent from "src/components/Protocols/SitesLink";
 import BlackNavbar from "src/components/Protocols/BlackNavbar/BlackNavbar";
 import { useParams } from "react-router-dom";
+import AvatarContainer from "../../../components/AvatarContainer/AvatarContainer";
 
 function SitesLink() {
   const { protocolId } = useParams();
@@ -81,24 +86,32 @@ function SitesLink() {
           <div className="bg-white border-gray rounded-2xl w-[450px] p-4">
             <h4 className="modal__title">Add Site</h4>
             <div>
-              {getAvailableSites().map((item) => (
+              {getAvailableSites().map((data) => (
                 <div
-                  key={item.id}
-                  className="card py-2 px-4 flex items-center justify-between my-2"
+                  key={data.id}
+                  className={`has-transition flex items-center border py-2 px-4 rounded-full gap-2 w-full mb-2 shadow-md `}
                 >
-                  <p>{item.name}</p>
-                  <button
-                    className="bg-secondary flex gap-2 text-md items-center justify-center px-3 py-1 cursor-pointer rounded-2xl text-white"
-                    onClick={() => handleAddProtocolSite(item.id)}
+                  <AvatarContainer Icon={BuildingOfficeIcon} />
+
+                  <div className="flex-1">
+                    <h4 className="text-primary text-sm font-medium flex-1 capitalize">
+                      {data.name}
+                    </h4>
+                    <p className="text-xs text-gray">{data.contactEmail}</p>
+                  </div>
+
+                  <div
+                    className="has-transition group p-1 bg-gray-200 flex items-center justify-center rounded-full cursor-pointer hover:bg-secondary hover:scale-110"
+                    onClick={() => handleAddProtocolSite(data.id)}
                   >
-                    <PlusIcon height={12} width={12} color="#ffffff" /> Add
-                  </button>
+                    <CheckCircleIcon className="has-transition w-6 h-6 text-secondary group-hover:text-white" />
+                  </div>
                 </div>
               ))}
             </div>
             <div className="modal__actions">
               <button
-                className="modal-button bg-gray-dark"
+                className="modal-cancel"
                 onClick={() => setShowAddSiteModal(false)}
               >
                 Cancel

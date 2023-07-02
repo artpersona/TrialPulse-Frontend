@@ -103,18 +103,15 @@ function EditTreatments() {
               onChange={(e) => setTitle(e.target.value)}
             />
 
-            <div className="modal__actions">
+            <div className="flex flex-col gap-3 justify-center items-center pt-4 mt-4">
               <button
-                className="modal-button bg-primary"
-                onClick={handleAddTreatment}
-              >
-                Save
-              </button>
-              <button
-                className="modal-button bg-gray-dark"
+                className="modal-cancel"
                 onClick={() => setShowAddTreatmentModal(false)}
               >
                 Cancel
+              </button>
+              <button className="modal-proceed" onClick={handleAddTreatment}>
+                Save
               </button>
             </div>
           </div>
