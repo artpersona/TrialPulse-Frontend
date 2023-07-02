@@ -1,17 +1,29 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useSearchParams } from "react-router-dom";
 
 import Sidebar from "src/components/Sidebar/Sidebar";
 import SiteItem from "src/components/Sites/SiteItem/SiteItem";
 import ContentSidebar from "src/components/ContentSidebar/ContentSidebar";
 import useGetSitesBySponsor from "../../../api/sponsors/useGetSitesBySponsor";
 import { useAuthContext } from "../../../contexts/AuthContext";
+import { useEffect } from "react";
 
 function SitesMain() {
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    api.refetch({
+      sort: searchParams.get("sort") || "",
+    });
+  }, [searchParams]);
+
   const {
     userDetails: { sponsorId },
   } = useAuthContext();
 
-  const { sites, api, pagination } = useGetSitesBySponsor(sponsorId);
+  const { sites, api, pagination } = useGetSitesBySponsor({
+    sponsorId,
+    sort: searchParams.get("sort") || "",
+  });
 
   const getAvailableSites = () => {
     const uniqueRecords = [];
@@ -36,7 +48,7 @@ function SitesMain() {
       <Sidebar>
         <div>
           {getAvailableSites().map((item) => (
-            <SiteItem key={item.id} data={item} />
+            <SiteItem key={item.id} data={item} noClick />
           ))}
         </div>
       </Sidebar>

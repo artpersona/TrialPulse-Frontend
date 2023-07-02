@@ -1,18 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import { privateClient } from "..";
 
-function useGetProtocolsBySponsorQuery(id) {
+function useGetProtocolsBySponsorQuery({ sponsorId, sort }) {
   return useQuery({
-    queryKey: ["sponsors", id, "protocols"],
+    queryKey: ["sponsors", sponsorId, "protocols"],
     queryFn: () =>
       privateClient({
-        url: `/sponsors/${id}/protocols?page=1`,
+        url: `/sponsors/${sponsorId}/protocols?page=1&sort=${sort}`,
       }),
   });
 }
 
-export default function useGetProtocolsBySponsor(id) {
-  const { data, ...others } = useGetProtocolsBySponsorQuery(id);
+export default function useGetProtocolsBySponsor({ sponsorId, sort }) {
+  const { data, ...others } = useGetProtocolsBySponsorQuery({
+    sponsorId,
+    sort,
+  });
   return {
     protocols: data?.data?.data,
     pagination: data?.data?.pagination,

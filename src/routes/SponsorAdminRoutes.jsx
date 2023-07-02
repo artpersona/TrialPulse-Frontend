@@ -183,10 +183,10 @@ const router = createBrowserRouter([
             path: "",
             element: <SitesMain />,
             children: [
-              {
-                path: "",
-                element: <AddSite />,
-              },
+              // {
+              //   path: "",
+              //   element: <AddSite />,
+              // },
               {
                 path: ":siteId",
                 element: <SiteDetails />,

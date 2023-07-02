@@ -17,6 +17,9 @@ import BlackNavbar from "src/components/Protocols/BlackNavbar/BlackNavbar";
 import { drugRoutes } from "src/shared/constants";
 
 import "./AddProtocol.styles.css";
+import FormRow from "../../../components/Form/FormRow";
+import FormCol from "../../../components/Form/FormCol";
+import FormInput from "../../../components/Form/FormInput";
 
 // const drugRoutes = [
 //   {
@@ -148,8 +151,16 @@ function AddProtocol() {
         <h2 style={{ textAlign: "center", marginBottom: 20 }}>General Info</h2>
 
         <div className="generalInfo__section">
-          <p>Study Name</p>
-          <input value={title} onChange={(e) => setTitle(e.target.value)} />
+          <FormRow>
+            <FormCol label="Study Name">
+              <FormInput
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </FormCol>
+          </FormRow>
+          {/* <p>Study Name</p>
+          <input value={title} onChange={(e) => setTitle(e.target.value)} /> */}
           <p>Sponsor</p>
           <select
             value={sponsorId}

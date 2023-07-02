@@ -8,7 +8,7 @@ import AvatarContainer from "../../AvatarContainer/AvatarContainer";
 import colorPalette from "src/utils/styles/colorPalette";
 
 function SiteItem(props) {
-  const { data } = props;
+  const { data, noClick } = props;
 
   const { siteId } = useParams();
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ function SiteItem(props) {
       className={`flex items-center border py-2 px-4 rounded-full gap-2 w-[350px] mb-2 shadow-md cursor-pointer hover:border-primary ${
         siteId == data.id ? "border-primary" : "border-gray-200"
       } ${isActive() ? "bg-primary" : "bg-white"}`}
-      onClick={handleClick}
+      onClick={noClick ? () => null : handleClick}
     >
       <AvatarContainer Icon={BuildingOfficeIcon} />
 
