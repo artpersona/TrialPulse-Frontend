@@ -41,7 +41,7 @@ function AddUser() {
   ];
 
   const sponsorAdminAllowedPositions = positions.filter(
-    (item) => item.id !== 1 && item.id !== 2
+    (item) => item.id !== 1 && item.id !== 2 && item.id !== 5
   );
 
   const adminAllowedPositions = positions.filter((item) => item.id !== 5);

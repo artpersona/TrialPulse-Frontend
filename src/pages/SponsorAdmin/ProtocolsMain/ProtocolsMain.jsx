@@ -24,7 +24,7 @@ function ProtocolsMain() {
     api.refetch({
       sort: searchParams.get("sort") || "",
     });
-  }, [searchParams, api]);
+  }, [searchParams]);
 
   if (api.isLoading) {
     return <div>Loading</div>;

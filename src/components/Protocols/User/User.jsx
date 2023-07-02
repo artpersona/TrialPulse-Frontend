@@ -44,9 +44,9 @@ function User(props) {
           </p>
 
           <h4 className="text-primary font-medium capitalize">
-            {profile.firstName} {profile.lastName}
+            {profile?.firstName} {profile?.lastName}
           </h4>
-          <p className="text-sm capitalize text-gray">{profile.position}</p>
+          <p className="text-sm capitalize text-gray">{profile?.position}</p>
         </div>
 
         {/* action buttons */}
@@ -95,7 +95,7 @@ function User(props) {
             <p
               style={{ color: colorPalette.SECONDARY_COLOR, fontWeight: "500" }}
             >
-              {profile.email}
+              {profile?.email}
             </p>
           </div>
           {/* divider */}

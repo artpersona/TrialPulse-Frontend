@@ -22,7 +22,7 @@ function UsersMain() {
       <Sidebar hideNavbar>
         <div>
           {users?.map((item) => (
-            <UserItem key={item.id} data={item} noClick />
+            <UserItem key={item.id} data={item} />
           ))}
         </div>
       </Sidebar>
