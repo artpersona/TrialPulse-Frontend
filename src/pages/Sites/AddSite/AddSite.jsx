@@ -1,64 +1,58 @@
-import { useState } from "react";
-import BlackNavbar from "../../../components/Protocols/BlackNavbar/BlackNavbar";
-import { hasBlank } from "../../../utils";
-import useCreateSite from "../../../api/sites/useCreateSite";
+import { useRef } from "react";
+
+import useZodForm from "src/hooks/useZodForm";
+
+import useCreateSite from "src/api/sites/useCreateSite";
+
+import FormCol from "src/components/Form/FormCol";
+import FormInput from "src/components/Form/FormInput";
+import BlackNavbar from "src/components/Protocols/BlackNavbar/BlackNavbar";
+
+import siteSchema from "src/schema/siteSchema";
 
 function AddSite() {
+  const formRef = useRef(null);
+
   const { mutate } = useCreateSite({
-    resetForm: () => resetForm(),
+    resetForm: () => null,
   });
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-
-  const isDisabled = () => hasBlank([name, email]);
-
-  async function handleAddSponsor() {
-    mutate({
-      name,
-      contactEmail: email,
-    });
+  async function handleAddSponsor(data) {
+    mutate(data);
+    if (formRef) {
+      formRef.current.reset();
+    }
   }
 
-  function resetForm() {
-    setName("");
-    setEmail("");
-  }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useZodForm(siteSchema);
 
   return (
     <div className="pb-10">
       <BlackNavbar />
 
-      <div className="card w-[400px] p-4">
-        <div className="form-row">
-          <p className="form-label">Site Name</p>
-          <input
-            className="form-input"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+      <form ref={formRef} onSubmit={handleSubmit(handleAddSponsor)}>
+        <div className="card w-[400px] p-4">
+          <div className="form-row">
+            <FormCol label="Site Name" error={errors.name}>
+              <FormInput {...register("name")} />
+            </FormCol>
+          </div>
+          <div className="form-row">
+            <FormCol label="Email" error={errors.contactEmail}>
+              <FormInput {...register("contactEmail")} />
+            </FormCol>
+          </div>
         </div>
-        <div className="form-row">
-          <p className="form-label">Email</p>
-          <input
-            className="form-input"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-
         <div className="form-actions">
-          <button
-            className="form-proceed-button"
-            disabled={isDisabled()}
-            onClick={handleAddSponsor}
-          >
+          <button type="submit" className="modal-proceed mt-4">
             Add Site
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
