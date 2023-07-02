@@ -60,18 +60,7 @@ function SponsorInfo(props) {
 
           <div className="notes__description">
             <p>
-              Lilly was founded in 1876 by Colonel Eli Lilly, a man committed to
-              creating high-quality medicines that met real needs in an era of
-              unreliable elixirs peddled by questionable characters. His charge
-              to the generations of employees who have followed was this: "Take
-              what you find here and make it better and better."
-              <br />
-              <br />
-              More than 145 years later, we remain committed to his vision
-              through every aspect of our business and the people we serve
-              starting with those who take our medicines, and extending to
-              health care professionals, employees and the communities in which
-              we live.
+              {data?.notes}
             </p>
           </div>
         </div>
