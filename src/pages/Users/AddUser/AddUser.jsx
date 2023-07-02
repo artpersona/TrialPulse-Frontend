@@ -53,6 +53,8 @@ function AddUser() {
       ? adminAllowedPositions
       : positions;
 
+  const allowedAddUser = userDetails.roleId !== 5
+
   function openCityBox() {
     setShowCityBox(true);
   }
@@ -115,6 +117,8 @@ function AddUser() {
     }
   }
 
+  if (!allowedAddUser) return <></>
+  
   return (
     <>
       <BlackNavbar />

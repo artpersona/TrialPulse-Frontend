@@ -7,7 +7,7 @@ import ProtocolItem from "src/components/Sponsors/ProtocolItem";
 function SponsorProtocols() {
   const { sponsorId } = useParams();
 
-  const { api, protocols } = useGetProtocolsBySponsor(sponsorId);
+  const { api, protocols } = useGetProtocolsBySponsor({sponsorId, sort: ""});
 
   if (api.isLoading) {
     return <div>Loading..</div>;
