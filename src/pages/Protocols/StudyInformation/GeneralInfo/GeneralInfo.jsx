@@ -3,7 +3,7 @@ import StudyDetails from "src/components/Protocols/StudyDetails";
 
 function GeneralInfo() {
   return (
-    <div>
+    <div className="pb-10">
       <GeneralInfoComponent />
       <StudyDetails />
     </div>

@@ -1,75 +1,47 @@
-import { useEffect, useState } from "react";
-import {
-  BuildingOfficeIcon,
-  CheckCircleIcon,
-  PlusIcon,
-} from "@heroicons/react/24/solid";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { BuildingOfficeIcon, CheckCircleIcon } from "@heroicons/react/24/solid";
 
-import { privateClient } from "src/api";
+import useGetSites from "src/api/sites/useGetSites";
+import useGetSitesByProtocol from "src/api/sites/useGetSitesByProtocol";
+import useCreateSiteByProtocol from "src/api/protocols/sites/useCreateSiteByProtocol";
 
 import Modal from "src/components/Modal/Modal";
 import AddButton from "src/components/AddButton/AddButton";
 import SitesLinkComponent from "src/components/Protocols/SitesLink";
 import BlackNavbar from "src/components/Protocols/BlackNavbar/BlackNavbar";
-import { useParams } from "react-router-dom";
-import AvatarContainer from "../../../components/AvatarContainer/AvatarContainer";
+import AvatarContainer from "src/components/AvatarContainer/AvatarContainer";
 
 function SitesLink() {
   const { protocolId } = useParams();
 
-  const [sites, setSites] = useState([]);
-  const [protocolSites, setProtocolSites] = useState([]);
   const [showAddSiteModal, setShowAddSiteModal] = useState(false);
 
-  useEffect(() => {
-    fetchProtocolSites();
-    fetchSites();
-  }, []);
+  const { sites: protocolSites, api: protocolSitesApi } =
+    useGetSitesByProtocol(protocolId);
+  const { sites, api } = useGetSites({ sort: "" });
 
-  async function fetchProtocolSites() {
-    try {
-      const res = await privateClient({
-        url: `protocols/${protocolId}/sites?page=1`,
-        method: "get",
-      });
-      setProtocolSites(res.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function fetchSites() {
-    try {
-      const res = await privateClient({
-        url: "sites?page=1",
-        method: "get",
-      });
-      setSites(res.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  const { mutate } = useCreateSiteByProtocol({
+    resetForm: () => null,
+  });
 
   async function handleAddProtocolSite(id) {
-    try {
-      await privateClient({
-        url: `protocols/${protocolId}/sites`,
-        method: "post",
-        data: {
-          siteId: id,
-        },
-      });
-
-      fetchProtocolSites();
-    } catch (error) {
-      console.log(error);
-    }
+    mutate({
+      protocolId,
+      data: {
+        siteId: id,
+      },
+    });
   }
 
   const getAvailableSites = () => {
     const protocolSiteIds = protocolSites.map((item) => item.id);
     return sites.filter((item) => !protocolSiteIds.includes(item.id));
   };
+
+  if (api.isLoading || protocolSitesApi.isLoading) {
+    return <div>Loading..</div>;
+  }
 
   return (
     <div>
