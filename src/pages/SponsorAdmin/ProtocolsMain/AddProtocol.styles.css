@@ -37,19 +37,19 @@
   width: 400px;
 }
 
-.studyDetails p {
+/* .studyDetails p {
   font-size: 14px;
   color: gray;
   margin-bottom: 5px;
-}
+} */
 
-.studyDetails input,
+/* .studyDetails input,
 .studyDetails select {
   width: 100%;
   border-radius: 20px;
   padding: 8px 10px;
   margin-bottom: 10px;
-}
+} */
 
 .studyDetails textarea {
   width: 100%;

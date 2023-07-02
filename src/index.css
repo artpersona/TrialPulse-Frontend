@@ -98,3 +98,11 @@ body {
 .has-error input {
   border-color: red;
 }
+
+.has-error select {
+  border-color: red;
+}
+
+.has-error textarea {
+  border-color: red;
+}

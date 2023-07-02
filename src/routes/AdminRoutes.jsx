@@ -45,6 +45,7 @@ import PDFPage from "../pages/Protocols/Documents/components/PDFPage/PDFPage";
 import { createBrowserRouter } from "react-router-dom";
 import NotFound from "../pages/Error/NotFound";
 import Layout from "../components/Layout/Layout";
+import SiteStaff from "../pages/Sites/SiteStaff/SiteStaff";
 
 const router = createBrowserRouter([
   {
@@ -220,7 +221,7 @@ const router = createBrowserRouter([
                   },
                   {
                     path: "staff",
-                    element: <SponsorStaff />,
+                    element: <SiteStaff />,
                   },
                 ],
               },
