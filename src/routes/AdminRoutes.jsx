@@ -46,6 +46,7 @@ import { createBrowserRouter } from "react-router-dom";
 import NotFound from "../pages/Error/NotFound";
 import Layout from "../components/Layout/Layout";
 import SiteStaff from "../pages/Sites/SiteStaff/SiteStaff";
+import EditSponsor from "../pages/Sponsors/EditSponsor/EditSponsor";
 
 const router = createBrowserRouter([
   {
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
                   {
                     path: "",
                     element: <SponsorInfo />,
+                  },
+                  {
+                    path: "edit-sponsor",
+                    element: <EditSponsor />,
                   },
                   {
                     path: "protocols",
