@@ -39,6 +39,7 @@ import AddSponsor from "../pages/Sponsors/AddSponsor";
 import AddSite from "../pages/Sites/AddSite";
 import SiteProtocols from "../pages/Sites/SiteProtocols";
 import AddUser from "../pages/Users/AddUser/AddUser";
+import EditUser from "../pages/Users/EditUser/EditUser";
 import UserDetails from "../pages/Users/UserDetails/UserDetails";
 import UserInformation from "../pages/Users/UserInfo/UserInfo";
 import PDFPage from "../pages/Protocols/Documents/components/PDFPage/PDFPage";
@@ -46,6 +47,9 @@ import { createBrowserRouter } from "react-router-dom";
 import NotFound from "../pages/Error/NotFound";
 import Layout from "../components/Layout/Layout";
 import SiteStaff from "../pages/Sites/SiteStaff/SiteStaff";
+import EditSponsor from "../pages/Sponsors/EditSponsor/EditSponsor";
+import EditGeneralInfo from "../pages/Protocols/StudyInformation/EditGeneralInfo/EditGeneralInfo";
+import EditSite from "../pages/Sites/EditSite/EditSite";
 
 const router = createBrowserRouter([
   {
@@ -78,6 +82,10 @@ const router = createBrowserRouter([
                   {
                     path: "",
                     element: <SponsorInfo />,
+                  },
+                  {
+                    path: "edit-sponsor",
+                    element: <EditSponsor />,
                   },
                   {
                     path: "protocols",
@@ -120,6 +128,10 @@ const router = createBrowserRouter([
                   {
                     path: "",
                     element: <GeneralInfo />,
+                  },
+                  {
+                    path: "edit-general-info",
+                    element: <EditGeneralInfo />,
                   },
                   {
                     path: "schedule",
@@ -216,6 +228,10 @@ const router = createBrowserRouter([
                     element: <SiteInformation />,
                   },
                   {
+                    path: "edit-site",
+                    element: <EditSite />,
+                  },
+                  {
                     path: "protocols",
                     element: <SiteProtocols />,
                   },
@@ -252,6 +268,10 @@ const router = createBrowserRouter([
                   {
                     path: "",
                     element: <UserInformation />,
+                  },
+                  {
+                    path: "edit-user",
+                    element: <EditUser />,
                   },
                 ],
               },

@@ -6,10 +6,17 @@ import {
   PhoneIcon,
   StarIcon,
 } from "@heroicons/react/24/solid";
+import { useNavigate } from "react-router-dom";
 
 function SponsorInfo(props) {
   const { data } = props;
   if (!data) return <div></div>;
+
+  const navigate = useNavigate();
+
+  function handleEditClick() {
+    navigate('edit-sponsor');
+  }
 
   return (
     <div className="flex items-center justify-center">
@@ -63,6 +70,14 @@ function SponsorInfo(props) {
               {data?.notes}
             </p>
           </div>
+        </div>
+        <div className="sticky bottom-4 left-0 w-full flex items-center justify-center mt-4">
+          <button
+            onClick={handleEditClick}
+            className="button w-64 bg-secondary text-white font-sm py-3 rounded-full hover:bg-secondary-dark"
+          >
+            Edit Sponsor
+          </button>
         </div>
       </div>
     </div>
