@@ -48,6 +48,7 @@ import Layout from "../components/Layout/Layout";
 import SiteStaff from "../pages/Sites/SiteStaff/SiteStaff";
 import EditSponsor from "../pages/Sponsors/EditSponsor/EditSponsor";
 import EditGeneralInfo from "../pages/Protocols/StudyInformation/EditGeneralInfo/EditGeneralInfo";
+import EditSite from "../pages/Sites/EditSite/EditSite";
 
 const router = createBrowserRouter([
   {
@@ -224,6 +225,10 @@ const router = createBrowserRouter([
                   {
                     path: "",
                     element: <SiteInformation />,
+                  },
+                  {
+                    path: "edit-site",
+                    element: <EditSite />,
                   },
                   {
                     path: "protocols",
