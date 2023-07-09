@@ -47,6 +47,7 @@ import NotFound from "../pages/Error/NotFound";
 import Layout from "../components/Layout/Layout";
 import SiteStaff from "../pages/Sites/SiteStaff/SiteStaff";
 import EditSponsor from "../pages/Sponsors/EditSponsor/EditSponsor";
+import EditGeneralInfo from "../pages/Protocols/StudyInformation/EditGeneralInfo/EditGeneralInfo";
 
 const router = createBrowserRouter([
   {
@@ -125,6 +126,10 @@ const router = createBrowserRouter([
                   {
                     path: "",
                     element: <GeneralInfo />,
+                  },
+                  {
+                    path: "edit-general-info",
+                    element: <EditGeneralInfo />,
                   },
                   {
                     path: "schedule",

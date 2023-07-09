@@ -103,8 +103,6 @@ function AddProtocol() {
 
   const formRef = useRef(null);
   const submitData = (data) => {
-    console.log(data);
-
     mutate({
       ...data,
       sponsorId: parseInt(data.sponsorId),

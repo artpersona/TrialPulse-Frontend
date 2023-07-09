@@ -25,6 +25,10 @@ const tabs = [
 function StudyInformation() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const editPages = ["edit-treatments", "edit-general-info"];
+	const currentPage = pathname.split("/").slice(-1)[0];
+	const isEditPage = editPages.includes(currentPage);
+  
 
   function handleNavigate(path) {
     navigate(path);
@@ -44,7 +48,7 @@ function StudyInformation() {
 
   return (
     <div className="w-full relative pr-8 pl-2">
-      {pathname.split("/").slice(-1)[0] === "edit-treatments" ? (
+      {isEditPage ? (
         <BlackNavbar>
           <div style={{ width: "100%", paddingLeft: 10 }}>
             <ChevronLeftIcon
