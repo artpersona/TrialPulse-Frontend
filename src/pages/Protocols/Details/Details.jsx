@@ -64,7 +64,7 @@ function Details() {
   }
 
   return (
-    <div className="details">
+    <div className="relative">
       {/* SIDEBAR */}
       <div className="fixed left-0 top-0 p-5 pt-[150px] w-[400px] shadow-md shadow-gray h-screen overflow-y-scroll bg-gray-background">
         {/* TOP BAR */}

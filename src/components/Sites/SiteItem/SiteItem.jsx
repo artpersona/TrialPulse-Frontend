@@ -22,7 +22,7 @@ function SiteItem(props) {
   return (
     <div
       className={`flex items-center border py-2 px-4 rounded-full gap-2 w-[350px] mb-2 shadow-md cursor-pointer hover:border-primary ${
-        siteId == data.id ? "border-primary" : "border-gray-200"
+        siteId == data.id ? "border-primary" : "border-gray-300"
       } ${isActive() ? "bg-primary" : "bg-white"}`}
       onClick={noClick ? () => null : handleClick}
     >

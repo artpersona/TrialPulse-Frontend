@@ -224,11 +224,10 @@ function AddProtocol() {
             </FormCol>
           </FormRow>
 
+          <p className="text-sm ml-2 mt-2 -mb-1">Drug Treatment Period</p>
+
           <FormRow>
-            <FormCol
-              label="Drug Treatment Period"
-              error={errors.drugTreatmentPeriod}
-            >
+            <FormCol label="" error={errors.drugTreatmentPeriod}>
               <FormInput {...register("drugTreatmentPeriod")} />
             </FormCol>
 
@@ -246,8 +245,10 @@ function AddProtocol() {
             </FormCol>
           </FormRow>
 
+          <p className="text-sm ml-2 mt-2 -mb-1">LTE</p>
+
           <FormRow>
-            <FormCol label="LTE" error={errors.lte}>
+            <FormCol label="" error={errors.lte}>
               <FormInput {...register("lte")} />
             </FormCol>
 

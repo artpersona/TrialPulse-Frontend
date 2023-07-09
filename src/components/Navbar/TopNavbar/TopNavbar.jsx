@@ -8,49 +8,7 @@ import colorPalette from "src/utils/styles/colorPalette.js";
 import adminNav from "../../../shared/navbar/adminNav";
 import sponsorAdminNav from "../../../shared/navbar/sponsorAdminNav";
 import { useAuthContext } from "../../../contexts/AuthContext";
-
-// const routes = [
-//   {
-//     id: "Home",
-//     icon: Squares2X2Icon,
-//     path: "",
-//   },
-//   {
-//     id: "Sponsors",
-//     icon: TagIcon,
-//     path: "sponsors",
-//   },
-//   {
-//     id: "Protocols",
-//     icon: DocumentIcon,
-//     path: "protocols",
-//   },
-//   {
-//     id: "Sites",
-//     icon: BuildingOfficeIcon,
-//     path: "sites",
-//   },
-//   {
-//     id: "Users",
-//     icon: UserGroupIcon,
-//     path: "users",
-//   },
-//   {
-//     id: "Alerts",
-//     icon: ShieldExclamationIcon,
-//     path: "alerts",
-//   },
-//   {
-//     id: "Chat",
-//     icon: ChatBubbleOvalLeftEllipsisIcon,
-//     path: "chat",
-//   },
-//   {
-//     id: "Ads",
-//     icon: InboxStackIcon,
-//     path: "ads",
-//   },
-// ];
+import logo from "src/assets/images/logo-yellow.jpeg";
 
 function TopNavbar() {
   const { userDetails } = useAuthContext();
@@ -75,60 +33,80 @@ function TopNavbar() {
       ? sponsorAdminNav
       : adminNav;
 
+  //     width: 100vw;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // padding: 0 20px;
+  // height: 80px;
+  // display: flex;
+  // align-items: center;
+  // z-index: 999;
+
   return (
     <div
-      className="topNavbar"
-      style={{ backgroundColor: colorPalette.GRAY_LIGHT }}
+      className="fixed w-screen top-0 left-0 px-5 h-[80px] flex items-center z-40 border-b  "
+      style={{ backgroundColor: "#ffffff" }}
     >
-      <nav>
+      <nav className="mx-auto w-full flex justify-between items-center">
         {/* LEFT */}
         <div>
-          <ul>
-            {getNav().map((item) => (
-              <li
-                key={"topNavbar" + item.id}
-                className={
-                  isActive(item.path)
-                    ? "topNavbar__link__active"
-                    : "topNavbar__link"
-                }
-                onClick={() => handleNavigate(item.path)}
-              >
-                <item.icon
-                  height={28}
-                  width={28}
-                  color={
-                    isActive(item.path)
-                      ? colorPalette.PRIMARY_COLOR
-                      : colorPalette.GRAY
-                  }
-                />
-                <p
-                  style={{
-                    color: `${
-                      isActive(item.path)
-                        ? colorPalette.PRIMARY_COLOR
-                        : colorPalette.GRAY
-                    }`,
-                  }}
+          <div className="flex items-center gap-14">
+            <div className="flex flex-col items-center">
+              <img src={logo} className="w-12 h-12 object-contain" alt="" />
+              {/* <h1 className="text-xs opacity-80 text-gray-800">Trial Pulse</h1> */}
+            </div>
+            <ul className="flex space-x-6">
+              {getNav().map((item) => (
+                <li
+                  key={"topNavbar" + item.id}
+                  className="group w-12 list-none flex flex-col items-center cursor-pointer"
+                  // className={
+                  //   isActive(item.path)
+                  //     ? "topNavbar__link__active"
+                  //     : "topNavbar__link"
+                  // }
+                  onClick={() => handleNavigate(item.path)}
                 >
-                  {item.id}
-                </p>
-              </li>
-            ))}
-          </ul>
+                  <item.icon
+                    className={`has-transition h-7 w-7 ${
+                      isActive(item.path)
+                        ? "text-primary"
+                        : "text-gray opacity-80"
+                    }`}
+                  />
+                  <p
+                    className={`has-transition text-xs ${
+                      isActive(item.path)
+                        ? "text-primary font-medium"
+                        : "text-gray opacity-80 font-light"
+                    }`}
+                    // style={{
+                    //   color: `${
+                    //     isActive(item.path)
+                    //       ? colorPalette.PRIMARY_COLOR
+                    //       : colorPalette.GRAY
+                    //   }`,
+                    // }}
+                  >
+                    {item.id}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* RIGHT */}
         <div className="topNavbar__right">
           {/* SEARCH */}
-          <div className="topNavbar__search">
-            <input placeholder="Search protocols" />
-            <MagnifyingGlassIcon
-              width={25}
-              height={25}
-              color={colorPalette.GRAY}
+
+          <div className="w-80 bg-gray-100 border border-gray-300 flex rounded-full py-1.5 px-3">
+            <input
+              className="outline-none border-none bg-transparent flex-1"
+              placeholder="Search protocols"
             />
+            <MagnifyingGlassIcon className="w-6 h-6 text-gray-500" />
           </div>
 
           {/* <div className="topNavbar__more">
@@ -151,11 +129,7 @@ function TopNavbar() {
               window.location.href = "/";
             }}
           >
-            <ArrowLeftOnRectangleIcon
-              height={28}
-              width={28}
-              color={colorPalette.PRIMARY_COLOR}
-            />
+            <ArrowLeftOnRectangleIcon className="h-6 w-6 text-primary" />
             <p
               style={{
                 color: colorPalette.PRIMARY_COLOR,

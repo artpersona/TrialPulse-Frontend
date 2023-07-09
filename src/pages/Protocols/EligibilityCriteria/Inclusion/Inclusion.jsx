@@ -9,6 +9,7 @@ import AddButton from "src/components/AddButton/AddButton";
 import Criteria from "src/components/Protocols/Criteria";
 import AddCriteria from "../components/modal/AddCriteria/AddCriteria";
 import DeleteConfirmation from "../../../../components/Modal/DeleteConfirmation/DeleteConfirmation";
+import EmptyRecord from "../../../../components/EmptyRecord/EmptyRecord";
 
 function Inclusion() {
   const { protocolId } = useParams();
@@ -59,14 +60,29 @@ function Inclusion() {
 
   return (
     <div>
-      <AddButton
-        title="Add Criteria"
-        onClick={() => setShowAddCriteriaModal(true)}
-      />
+      {criterias.length > 0 ? (
+        <>
+          <AddButton
+            title="Add Criteria"
+            onClick={() => setShowAddCriteriaModal(true)}
+          />
 
-      {criterias.map((item) => (
-        <Criteria key={item.id} data={item} onDelete={handleDeleteCriteria} />
-      ))}
+          {criterias.map((item) => (
+            <Criteria
+              key={item.id}
+              data={item}
+              onDelete={handleDeleteCriteria}
+            />
+          ))}
+        </>
+      ) : (
+        <>
+          <EmptyRecord
+            buttonLabel="Add Criteria"
+            handleClick={() => setShowAddCriteriaModal(true)}
+          />
+        </>
+      )}
 
       {showAddCriteriaModal ? (
         <AddCriteria

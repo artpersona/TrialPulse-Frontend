@@ -22,7 +22,7 @@ function SponsorItem(props) {
   return (
     <div
       className={`has-transition flex items-center border py-2 px-4 rounded-full gap-2 w-[350px] mb-2 shadow-md cursor-pointer hover:border-primary ${
-        sponsorId == data.id ? "border-primary" : "border-gray-200"
+        sponsorId == data.id ? "border-primary" : "border-gray-300"
       } ${isActive() ? "bg-primary" : "bg-white"}`}
       onClick={handleClick}
     >

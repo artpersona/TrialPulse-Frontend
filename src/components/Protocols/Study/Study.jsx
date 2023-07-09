@@ -20,7 +20,7 @@ function Study(props) {
 
   return (
     <div
-      className="card has-transition bg-white p-4 relative mb-4 w-[350px] cursor-pointer hover:border-primary hover:bg-gray-50"
+      className="border border-gray-300 rounded-3xl shadow-md has-transition bg-white p-4 relative mb-4 w-[350px] cursor-pointer hover:border-primary hover:bg-gray-50"
       onClick={handleClick}
     >
       <div className="study__top">
