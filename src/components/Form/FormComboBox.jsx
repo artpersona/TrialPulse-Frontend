@@ -14,15 +14,16 @@ function FormComboBox(props) {
   return (
     <div className="relative w-full">
       <input
-        className="w-full rounded-3xl py-3 px-4"
+        className="w-full rounded-3xl py-3 px-4 z"
         type="text"
         value={value}
         onChange={onChange}
         onClick={handleOpenBox}
         required={required}
+        {...others}
       />
       {options.length && showBox > 0 ? (
-        <div className="absolute top-12 left-0 bg-white w-full border border-gray-400 rounded-md">
+        <div className="absolute top-12 left-0 bg-white w-full border border-gray-400 rounded-md z-10">
           {options.map((item) => (
             <div
               className="has-transition text-sm p-2 cursor-pointer hover:bg-gray-200"

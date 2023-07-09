@@ -39,6 +39,7 @@ import AddSponsor from "../pages/Sponsors/AddSponsor";
 import AddSite from "../pages/Sites/AddSite";
 import SiteProtocols from "../pages/Sites/SiteProtocols";
 import AddUser from "../pages/Users/AddUser/AddUser";
+import EditUser from "../pages/Users/EditUser/EditUser";
 import UserDetails from "../pages/Users/UserDetails/UserDetails";
 import UserInformation from "../pages/Users/UserInfo/UserInfo";
 import PDFPage from "../pages/Protocols/Documents/components/PDFPage/PDFPage";
@@ -267,6 +268,10 @@ const router = createBrowserRouter([
                   {
                     path: "",
                     element: <UserInformation />,
+                  },
+                  {
+                    path: "edit-user",
+                    element: <EditUser />,
                   },
                 ],
               },
