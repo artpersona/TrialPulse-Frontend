@@ -1,22 +1,44 @@
 import PropTypes from "prop-types";
 import AvatarContainer from "../../AvatarContainer/AvatarContainer";
-import {
-  ChatBubbleOvalLeftIcon,
-  ClipboardDocumentIcon,
-  PhoneIcon,
-  StarIcon,
-} from "@heroicons/react/24/solid";
+import { ClipboardDocumentIcon } from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import DeleteConfirmation from "../../Modal/DeleteConfirmation/DeleteConfirmation";
+import useDeleteSponsor from "../../../api/sponsors/useDeleteSponsor";
 
 function SponsorInfo(props) {
   const { data } = props;
-  if (!data) return <div></div>;
 
   const navigate = useNavigate();
 
-  function handleEditClick() {
-    navigate('edit-sponsor');
+  const { mutate: deleteSponsor } = useDeleteSponsor();
+
+  const [showDeleteCriteriaModal, setShowDeleteCriteriaModal] = useState(false);
+
+  async function handleDeleteSponsor() {
+    setShowDeleteCriteriaModal(true);
   }
+
+  async function handleDelete() {
+    deleteSponsor(
+      {
+        sponsorId: data.id,
+      },
+      {
+        onSuccess: () => {
+          navigate("/sponsors");
+        },
+      }
+    );
+
+    setShowDeleteCriteriaModal(false);
+  }
+
+  function handleEditClick() {
+    navigate("edit-sponsor");
+  }
+
+  if (!data) return <div></div>;
 
   return (
     <div className="flex items-center justify-center">
@@ -66,20 +88,31 @@ function SponsorInfo(props) {
           </div>
 
           <div className="notes__description">
-            <p>
-              {data?.notes}
-            </p>
+            <p>{data?.notes}</p>
           </div>
         </div>
-        <div className="sticky bottom-4 left-0 w-full flex items-center justify-center mt-4">
+        <div className="w-full flex flex-col space-y-2 items-center justify-center mt-4">
           <button
             onClick={handleEditClick}
             className="button w-64 bg-secondary text-white font-sm py-3 rounded-full hover:bg-secondary-dark"
           >
             Edit Sponsor
           </button>
+          <button
+            onClick={handleDeleteSponsor}
+            className="button w-64 bg-red-700 text-white font-sm py-3 rounded-full hover:bg-red-900"
+          >
+            Delete Sponsor
+          </button>
         </div>
       </div>
+      {showDeleteCriteriaModal ? (
+        <DeleteConfirmation
+          title="Remove Sponsor?"
+          onProceed={handleDelete}
+          onCancel={() => setShowDeleteCriteriaModal(false)}
+        />
+      ) : null}
     </div>
   );
 }

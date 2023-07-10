@@ -4,26 +4,26 @@ import { privateClient } from "../";
 
 let notification = "";
 
-function useDeleteProtocol() {
+function useDeleteSponsor() {
   const queryClient = useQueryClient();
 
   return useMutation(
-    ({ protocolId }) =>
+    ({ sponsorId }) =>
       privateClient({
-        url: `protocols/${protocolId}`,
+        url: `sponsors/${sponsorId}`,
         method: "delete",
       }),
 
     {
       onMutate: () => {
-        notification = toast.loading("Removing Protocol...");
+        notification = toast.loading("Removing Sponsor...");
       },
 
       onSuccess: () => {
-        toast.success("Protocol has been successfully removed.", {
+        toast.success("Sponsor has been successfully removed.", {
           id: notification,
         });
-        queryClient.invalidateQueries("protocols");
+        queryClient.invalidateQueries("sponsors");
       },
 
       onError: (error) => {
@@ -40,4 +40,4 @@ function useDeleteProtocol() {
   );
 }
 
-export default useDeleteProtocol;
+export default useDeleteSponsor;

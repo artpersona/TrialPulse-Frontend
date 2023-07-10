@@ -64,7 +64,7 @@ privateClient.interceptors.response.use(
         throw _error;
       }
     }
-    return _error;
+    return Promise.reject(error);
   }
 );
 
