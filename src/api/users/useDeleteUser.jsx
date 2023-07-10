@@ -1,35 +1,38 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
-
-import { privateClient } from "..";
+import { privateClient } from "../";
 
 let notification = "";
 
-function useDeleteUser(props) {
-  const { resetForm } = props;
-
+function useDeleteUser() {
   const queryClient = useQueryClient();
 
   return useMutation(
-    (id) =>
+    ({ userId }) =>
       privateClient({
-        url: "/users/" + id,
+        url: `users/${userId}`,
         method: "delete",
       }),
 
     {
       onMutate: () => {
-        notification = toast.loading("Deleting User...");
+        notification = toast.loading("Removing User...");
       },
+
       onSuccess: () => {
-        toast.success("User has been successfully deleted.", {
+        toast.success("User has been successfully removed.", {
           id: notification,
         });
-        resetForm();
         queryClient.invalidateQueries("users");
       },
+
       onError: (error) => {
-        toast.error(error, {
+        const {
+          response: {
+            data: { message },
+          },
+        } = error;
+        toast.error(message, {
           id: notification,
         });
       },

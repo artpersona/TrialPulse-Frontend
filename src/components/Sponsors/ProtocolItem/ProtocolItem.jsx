@@ -69,8 +69,18 @@ function ProtocolItem(props) {
         </div>
 
         <div className="flex items-center gap-2">
-          <PencilSquareIcon className="w-5 h-5 text-secondary cursor-pointer" />
-          <XCircleIcon className="w-5 h-5 text-red-600 cursor-pointer" />
+          <PencilSquareIcon
+            className="w-5 h-5 text-secondary cursor-pointer"
+            onClick={() =>
+              navigate(`/protocols/details/${data.id}/study-information`)
+            }
+          />
+          <XCircleIcon
+            className="w-5 h-5 text-red-600 cursor-pointer"
+            onClick={() =>
+              navigate(`/protocols/details/${data.id}/study-information`)
+            }
+          />
         </div>
       </div>
     </div>
