@@ -35,8 +35,14 @@ function GeneralInfo() {
     }
   }
 
-  if (api.isLoading || apiSponsorAdmin.isLoading) {
+  if (api.isLoading) {
     return <div>Loading..</div>;
+  }
+
+  if (sponsorId) {
+    if (apiSponsorAdmin.isLoading) {
+      return <div>Loading..</div>;
+    }
   }
 
   return (

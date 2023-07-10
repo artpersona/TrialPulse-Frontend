@@ -8,6 +8,7 @@ function useGetSponsorQuery(id) {
       privateClient({
         url: "/sponsors/" + id,
       }),
+    enabled: !!id,
   });
 }
 
