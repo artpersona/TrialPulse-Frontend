@@ -66,7 +66,7 @@ function StudyDetails() {
 
       <FormRow>
         <FormCol label="Study Number">
-          <FormInput readOnly value={protocol.studyNumber} />
+          <FormInput readOnly value={protocol.studyNumber} disabled/>
         </FormCol>
       </FormRow>
 
@@ -75,7 +75,7 @@ function StudyDetails() {
 
       <FormRow>
         <FormCol label="Study Details Info">
-          <FormTextArea value={protocol.studyInfo} />
+          <FormTextArea value={protocol.studyInfo} disabled/>
         </FormCol>
       </FormRow>
 
@@ -89,6 +89,7 @@ function StudyDetails() {
           <FormSelect
             value={protocol.phase}
             options={[{ id: protocol.phase, name: protocol.phase }]}
+            disabled
           />
         </FormCol>
       </FormRow>
@@ -113,6 +114,7 @@ function StudyDetails() {
           <FormSelect
             value={protocol.drugRoute}
             options={drugRoutes.map((item) => ({ id: item, name: item }))}
+            disabled
           />
         </FormCol>
       </FormRow>
@@ -140,10 +142,11 @@ function StudyDetails() {
           <FormInput
             readOnly
             value={protocol.drugTreatmentPeriod.split(" ")[0]}
+            disabled
           />
         </FormCol>
 
-        <FormCol label=" ">
+        <FormCol label=".">
           <FormSelect
             disabled
             value={protocol.drugTreatmentPeriod.split(" ")[1]}
@@ -176,10 +179,10 @@ function StudyDetails() {
 
       <FormRow>
         <FormCol label="LTE">
-          <FormInput readOnly value={protocol.lte} />
+          <FormInput readOnly value={protocol.lte} disabled/>
         </FormCol>
 
-        <FormCol label=" ">
+        <FormCol label=".">
           <FormSelect
             options={timeframes}
             disabled
@@ -193,7 +196,7 @@ function StudyDetails() {
 
       <FormRow>
         <FormCol label="Population">
-          <FormSelect options={populations} value={protocol.population} />
+          <FormSelect options={populations} value={protocol.population} disabled/>
         </FormCol>
       </FormRow>
       {/* <p>Bio-naive</p>

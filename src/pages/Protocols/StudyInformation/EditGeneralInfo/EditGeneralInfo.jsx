@@ -145,6 +145,7 @@ function EditGeneralInfo() {
 									options={sponsors}
 									{...register("sponsorId")}
 									defaultValue={protocol.sponsorId}
+									disabled
 								/>
 							</FormCol>
 						</FormRow>
@@ -259,7 +260,7 @@ function EditGeneralInfo() {
 							/>
 						</FormCol>
 
-						<FormCol label=" " error={errors.drugTreatmentPeriodType}>
+						<FormCol label="." error={errors.drugTreatmentPeriodType}>
 							<FormSelect
 								options={timeframes}
 								{...register("drugTreatmentPeriodType")}
@@ -283,7 +284,7 @@ function EditGeneralInfo() {
 							<FormInput {...register("lte")} defaultValue={protocol.lte} />
 						</FormCol>
 
-						<FormCol label=" " error={errors.lteDurationType}>
+						<FormCol label="." error={errors.lteDurationType}>
 							<FormSelect
 								options={timeframes}
 								{...register("lteDurationType")}
