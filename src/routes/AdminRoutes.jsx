@@ -194,7 +194,7 @@ const router = createBrowserRouter([
                     element: <PDFPage />,
                   },
                   {
-                    path: "other",
+                    path: "videos",
                     element: <PDFPage />,
                   },
                 ],

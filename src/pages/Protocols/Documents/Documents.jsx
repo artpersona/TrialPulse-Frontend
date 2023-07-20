@@ -14,9 +14,9 @@ const tabs = [
     path: "images",
   },
   {
-    id: "other",
-    label: "Other",
-    path: "other",
+    id: "videos",
+    label: "Videos",
+    path: "videos",
   },
 ];
 
