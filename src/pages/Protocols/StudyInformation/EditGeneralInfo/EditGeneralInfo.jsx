@@ -140,7 +140,7 @@ function EditGeneralInfo() {
 							</FormCol>
 						</FormRow>
 						<FormRow>
-							<FormCol label="Sponsor" error={errors.sponsorId}>
+							<FormCol label="Sponsor" >
 								<FormSelect
 									options={sponsors}
 									{...register("sponsorId")}
