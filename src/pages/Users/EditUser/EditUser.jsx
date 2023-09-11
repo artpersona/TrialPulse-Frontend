@@ -271,6 +271,7 @@ function EditUser() {
 											handleCloseBox={closeCityBox}
 											handleSelect={selectCity}
 											required
+											readOnly
 											// {...register("cityId")}
 										/>
 									</FormCol>

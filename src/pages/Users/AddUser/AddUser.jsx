@@ -207,6 +207,7 @@ function AddUser() {
                       handleCloseBox={closeCityBox}
                       handleSelect={selectCity}
                       required
+                      readOnly
                     />
                   </FormCol>
                   <FormCol label="Zip code">
