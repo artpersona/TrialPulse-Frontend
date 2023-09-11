@@ -34,12 +34,12 @@ function GeneralInfo() {
       <GeneralInfoComponent />
       <StudyDetails />
       <div className="w-full flex flex-col space-y-2 items-center justify-center mt-4">
-        <button
+        {/* <button
           onClick={handleEditClick}
           className="button w-64 bg-secondary text-white font-sm py-3 rounded-full hover:bg-secondary-dark"
         >
           Edit Protocol
-        </button>
+        </button> */}
 
         <button
           onClick={() => setShowDeleteCriteriaModal(true)}
