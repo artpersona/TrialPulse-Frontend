@@ -281,7 +281,7 @@ function EditGeneralInfo() {
 
 					<FormRow>
 						<FormCol label="LTE" error={errors.lte}>
-							<FormInput {...register("lte")} defaultValue={protocol.lte} />
+							<FormInput {...register("lte")} defaultValue={protocol.lte} type="number"/>
 						</FormCol>
 
 						<FormCol label="." error={errors.lteDurationType}>

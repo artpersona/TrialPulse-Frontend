@@ -247,7 +247,7 @@ function AddProtocol() {
 
           <FormRow>
             <FormCol label="" error={errors.lte}>
-              <FormInput {...register("lte")} />
+              <FormInput {...register("lte")} type="number"/>
             </FormCol>
 
             <FormCol label=" " error={errors.lteDurationType}>
