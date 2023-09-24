@@ -56,22 +56,24 @@ function SiteInformation() {
   }
 
   return (
-    <div className="pb-20">
+    <div className="pb-20 relative">
       <Site title={site?.name} />
       <Notes />
-      <div className="w-full flex flex-col space-y-2 items-center justify-center mt-4">
-        <button
-          onClick={handleEditClick}
-          className="button w-64 bg-secondary text-white font-sm py-3 rounded-full hover:bg-secondary-dark"
-        >
-          Edit Site
-        </button>
-        <button
-          onClick={() => setShowDeleteCriteriaModal(true)}
-          className="button w-64 bg-red-700 text-white font-sm py-3 rounded-full hover:bg-red-900"
-        >
-          Delete Site
-        </button>
+      <div className="absolute -left-96 top-0 w-full flex items-center">
+        <div className="w-full flex flex-col space-y-2 items-center justify-center mt-4">
+          <button
+            onClick={handleEditClick}
+            className="button w-64 bg-secondary text-white font-sm py-3 rounded-full hover:bg-secondary-dark"
+          >
+            Edit Site
+          </button>
+          <button
+            onClick={() => setShowDeleteCriteriaModal(true)}
+            className="button w-64 bg-red-700 text-white font-sm py-3 rounded-full hover:bg-red-900"
+          >
+            Delete Site
+          </button>
+        </div>
       </div>
 
       {showDeleteCriteriaModal ? (

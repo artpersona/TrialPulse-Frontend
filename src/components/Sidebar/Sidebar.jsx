@@ -69,7 +69,7 @@ function Sidebar(props) {
   // padding-left: 20px;
   return (
     <div
-      className={`fixed left-0 top-0 p-5 pt-[150px] w-[400px] shadow-md shadow-gray h-screen overflow-y-scroll bg-gray-background`}
+      className={`fixed left-0 top-0 p-5 pt-[150px] w-[400px] shadow-md shadow-gray h-screen overflow-y-scroll bg-gray-background z-10`}
     >
       {/* TOP BAR */}
       <div

@@ -130,7 +130,7 @@ function EditUser() {
 	}
 	return (
 		<>
-			<div className="pb-10">
+			<div className="pb-10 relative">
 				<div className="">
 					<img
 						src="https://t4.ftcdn.net/jpg/02/99/97/35/360_F_299973520_rgAKO2BdhNhDArSSm7ikCT03qBCYcumJ.jpg"
@@ -287,7 +287,7 @@ function EditUser() {
 							</div>
 						</div>
 
-						<div className="sticky bottom-4 left-0 w-full flex items-center justify-center mt-4">
+						<div className="absolute -left-80 top-5 w-full flex items-center">
 							<button
 								type="submit"
 								className="button w-64 bg-secondary text-white font-sm py-3 rounded-full hover:bg-secondary-dark"

@@ -30,23 +30,25 @@ function GeneralInfo() {
   }
 
   return (
-    <div className="pb-10">
+    <div className="pb-10 relative">
       <GeneralInfoComponent />
       <StudyDetails />
-      <div className="w-full flex flex-col space-y-2 items-center justify-center mt-4">
-        {/* <button
-          onClick={handleEditClick}
-          className="button w-64 bg-secondary text-white font-sm py-3 rounded-full hover:bg-secondary-dark"
-        >
-          Edit Protocol
-        </button> */}
+      <div className="absolute -left-96 top-0 w-full flex items-center">
+        <div className="w-full flex flex-col space-y-2 items-center justify-center mt-4">
+          {/* <button
+            onClick={handleEditClick}
+            className="button w-64 bg-secondary text-white font-sm py-3 rounded-full hover:bg-secondary-dark"
+          >
+            Edit Protocol
+          </button> */}
 
-        <button
-          onClick={() => setShowDeleteCriteriaModal(true)}
-          className="button w-64 bg-red-700 text-white font-sm py-3 rounded-full hover:bg-red-900"
-        >
-          Delete Protocol
-        </button>
+          <button
+            onClick={() => setShowDeleteCriteriaModal(true)}
+            className="button w-64 bg-red-700 text-white font-sm py-3 rounded-full hover:bg-red-900"
+          >
+            Delete Protocol
+          </button>
+        </div>
       </div>
 
       {showDeleteCriteriaModal ? (

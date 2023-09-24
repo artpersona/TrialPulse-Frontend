@@ -53,7 +53,7 @@ function EditSponsor() {
 	}
 
 	return (
-		<div className="pb-10">
+		<div className="pb-10 relative">
 			{/* <BlackNavbar /> */}
 
 			<form ref={formRef} onSubmit={handleSubmit(handleUpdateSponsor)}>
@@ -130,7 +130,7 @@ function EditSponsor() {
 					</FormRow>
 				</div>
 
-				<div className="sticky bottom-4 left-0 w-full flex items-center justify-center mt-4 gap-4">
+				<div className="absolute -left-80 top-5 w-full flex items-center gap-4">
 					<button
 						type="submit"
 						className="button w-64 bg-secondary text-white font-sm py-3 rounded-full hover:bg-secondary-dark"

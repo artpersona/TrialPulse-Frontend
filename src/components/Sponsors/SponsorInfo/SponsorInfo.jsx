@@ -91,19 +91,21 @@ function SponsorInfo(props) {
             <p>{data?.notes}</p>
           </div>
         </div>
-        <div className="w-full flex flex-col space-y-2 items-center justify-center mt-4">
-          <button
-            onClick={handleEditClick}
-            className="button w-64 bg-secondary text-white font-sm py-3 rounded-full hover:bg-secondary-dark"
-          >
-            Edit Sponsor
-          </button>
-          <button
-            onClick={handleDeleteSponsor}
-            className="button w-64 bg-red-700 text-white font-sm py-3 rounded-full hover:bg-red-900"
-          >
-            Delete Sponsor
-          </button>
+        <div className="absolute -left-48 top-20 w-full flex items-center">
+          <div className="w-full flex flex-col space-y-2 items-center justify-center mt-4">
+            <button
+              onClick={handleEditClick}
+              className="button w-64 bg-secondary text-white font-sm py-3 rounded-full hover:bg-secondary-dark"
+            >
+              Edit Sponsor
+            </button>
+            <button
+              onClick={handleDeleteSponsor}
+              className="button w-64 bg-red-700 text-white font-sm py-3 rounded-full hover:bg-red-900"
+            >
+              Delete Sponsor
+            </button>
+          </div>
         </div>
       </div>
       {showDeleteCriteriaModal ? (
