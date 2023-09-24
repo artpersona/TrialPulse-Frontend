@@ -47,9 +47,7 @@ function AddUser() {
   const adminAllowedPositions = positions.filter((item) => item.id !== 5);
 
   positions =
-    userDetails.roleId === 4
-      ? sponsorAdminAllowedPositions
-      : userDetails.roleId === 5
+    userDetails.roleId === 5
       ? adminAllowedPositions
       : positions;
 
