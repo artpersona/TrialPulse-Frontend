@@ -11,11 +11,6 @@ const tabs = [
 		path: "",
 	},
 	{
-		id: "protocols",
-		label: "Protocols",
-		path: "protocols",
-	},
-	{
 		id: "staff",
 		label: "Staff",
 		path: "staff",

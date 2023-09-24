@@ -232,10 +232,6 @@ const router = createBrowserRouter([
                     element: <EditSite />,
                   },
                   {
-                    path: "protocols",
-                    element: <SiteProtocols />,
-                  },
-                  {
                     path: "staff",
                     element: <SiteStaff />,
                   },
