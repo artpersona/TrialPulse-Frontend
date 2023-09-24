@@ -13,79 +13,10 @@ import FormTextArea from "src/components/Form/FormTextArea";
 
 import protocolSchema from "src/schema/protocolSchema";
 
-import { drugRoutes } from "src/shared/constants";
 import { useNavigate, useParams } from "react-router-dom";
 import useGetProtocol from "../../../../api/protocols/useGetProtocol";
 
-const activeOnApp = [
-	{
-		id: "Active",
-		name: "Active",
-	},
-	{
-		id: "Inactive",
-		name: "Inactive",
-	},
-];
-
-const phases = [
-	{
-		id: "Phase 1",
-		name: "Phase 1",
-	},
-	{
-		id: "Phase 2",
-		name: "Phase 2",
-	},
-	{
-		id: "Phase 3",
-		name: "Phase 3",
-	},
-	{
-		id: "Phase 4",
-		name: "Phase 4",
-	},
-];
-
-const timeframes = [
-	{
-		id: "Days",
-		name: "Days",
-	},
-	{
-		id: "Weeks",
-		name: "Weeks",
-	},
-];
-
-const booleans = [
-	{
-		id: "Yes",
-		name: "Yes",
-	},
-	{
-		id: "No",
-		name: "No",
-	},
-];
-
-const populations = [
-	{
-		id: "18",
-		name: "Mov-Sev CD",
-	},
-];
-
-const bionaives = [
-	{
-		id: "50",
-		name: "50",
-	},
-	{
-		id: "100",
-		name: "100",
-	},
-];
+import { drugRoutes, activeOnApp, phases, timeframes, booleans, populations, bionaives } from "src/shared/constants";
 
 function EditGeneralInfo() {
 	const navigate = useNavigate();

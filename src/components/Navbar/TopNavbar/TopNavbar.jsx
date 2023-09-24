@@ -30,7 +30,7 @@ function TopNavbar() {
     userDetails.roleId === 3
       ? sponsorStaffNav
       : userDetails.roleId === 4
-      ? sponsorAdminNav
+      ? sponsorStaffNav
       : adminNav;
 
   //     width: 100vw;

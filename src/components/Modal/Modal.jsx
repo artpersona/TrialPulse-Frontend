@@ -6,7 +6,7 @@ function Modal(props) {
   const { children } = props;
 
   return (
-    <>{createPortal(<div className="modal">{children}</div>, document.body)}</>
+    <>{createPortal(<div className="modal overflow-y-auto">{children}</div>, document.body)}</>
   );
 }
 

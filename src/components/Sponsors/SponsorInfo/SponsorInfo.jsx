@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import DeleteConfirmation from "../../Modal/DeleteConfirmation/DeleteConfirmation";
 import useDeleteSponsor from "../../../api/sponsors/useDeleteSponsor";
+import { useAuthContext } from "../../../contexts/AuthContext";
 
 function SponsorInfo(props) {
   const { data } = props;
+  const { userDetails } = useAuthContext();
 
   const navigate = useNavigate();
 
@@ -91,6 +93,7 @@ function SponsorInfo(props) {
             <p>{data?.notes}</p>
           </div>
         </div>
+        {userDetails.roleId === 5 &&
         <div className="absolute -left-48 top-20 w-full flex items-center">
           <div className="w-full flex flex-col space-y-2 items-center justify-center mt-4">
             <button
@@ -106,7 +109,7 @@ function SponsorInfo(props) {
               Delete Sponsor
             </button>
           </div>
-        </div>
+        </div>}
       </div>
       {showDeleteCriteriaModal ? (
         <DeleteConfirmation
