@@ -28,7 +28,6 @@ function SponsorProtocols() {
       ))}
       {showAddProtocols ? (
         <AddProtocolModal
-          // onOk={handleAddCriteria}
           onCancel={() => setShowAddProtocols(false)}
         />
       ) : null}
