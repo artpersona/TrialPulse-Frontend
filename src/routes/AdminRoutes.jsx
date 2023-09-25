@@ -50,6 +50,12 @@ import SiteStaff from "../pages/Sites/SiteStaff/SiteStaff";
 import EditSponsor from "../pages/Sponsors/EditSponsor/EditSponsor";
 import EditGeneralInfo from "../pages/Protocols/StudyInformation/EditGeneralInfo/EditGeneralInfo";
 import EditSite from "../pages/Sites/EditSite/EditSite";
+import Alerts from "../pages/Alerts/Alerts";
+import AlertsMain from "../pages/Alerts/AlertsMain/AlertsMain";
+import AddAlert from "../pages/Alerts/AddAlert";
+import AlertDetails from "../pages/Alerts/AlertDetails";
+import AlertInformation from "../pages/Alerts/AlertInfo/AlertInfo";
+import EditAlert from "../pages/Alerts/EditAlert/EditAlert";
 
 const router = createBrowserRouter([
   {
@@ -275,6 +281,44 @@ const router = createBrowserRouter([
           },
         ],
       },
+
+      // END OF USERS
+
+      // START OF ALERTS
+      {
+        path: "alerts",
+        element: <Alerts />,
+        children: [
+          {
+            path: "",
+            element: <AlertsMain />,
+            // children: [],
+            children: [
+              {
+                path: "",
+                element: <AddAlert />,
+              },
+              {
+                path: ":alertId",
+                element: <AlertDetails />,
+                // children: [],
+                children: [
+                  {
+                    path: "",
+                    element: <AlertInformation />,
+                  },
+                  {
+                    path: "edit-alert",
+                    element: <EditAlert />,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+
+      // END OF ALERTS
     ],
   },
 ]);
