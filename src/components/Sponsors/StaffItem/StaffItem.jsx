@@ -1,22 +1,24 @@
-import { ChatBubbleOvalLeftIcon, PhoneIcon } from "@heroicons/react/24/solid";
+import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/solid";
 import colorPalette from "src/utils/styles/colorPalette";
-import { useNavigate, useParams } from "react-router-dom";
-
+// import { useNavigate } from "react-router-dom";
+import { useMessagingContext } from "../../../contexts/MessagingContext";
 function StaffItem(props) {
+  const { onMessagePress } = useMessagingContext();
   const { data } = props;
 
-  const { sponsorId } = useParams();
+  console.log("data is: ", data);
+  // const { sponsorId } = useParams();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  function handleClick() {
-    navigate(`${data.userId}`);
-  }
+  // function handleClick() {
+  //   navigate(`${data.userId}`);
+  // }
 
   return (
     <div
       className={`has-transition flex items-center border py-2 px-4 rounded-full gap-2 w-[350px] mb-2 shadow-md cursor-pointer hover:border-primary`}
-      onClick={handleClick}
+      // onClick={handleClick}
     >
       <img
         src="https://t4.ftcdn.net/jpg/02/99/97/35/360_F_299973520_rgAKO2BdhNhDArSSm7ikCT03qBCYcumJ.jpg"
@@ -43,6 +45,7 @@ function StaffItem(props) {
           width={16}
           height={16}
           color={colorPalette.SECONDARY_COLOR}
+          onClick={() => onMessagePress(data)}
         />
       </div>
     </div>

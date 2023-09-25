@@ -1,5 +1,7 @@
-import "./UserItem.styles.css";
+import "./UserChatItem.style.css";
+
 import { BsFillCircleFill } from "react-icons/bs";
+
 function UserItem(props) {
   const { data, noClick } = props;
 
@@ -7,15 +9,18 @@ function UserItem(props) {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate(`${data.userId}`);
+    navigate(`${data.id}`, {
+      state: { selectedUser: data },
+    });
   }
 
-  const isActive = () => userId == data.userId;
+  console.log("userId", userId);
+  const isActive = () => userId == data.id;
 
   return (
     <div
       className={`has-transition flex items-center border py-2 px-4 rounded-full gap-2 w-[350px] mb-2 shadow-md cursor-pointer hover:border-primary ${
-        userId == data.userId ? "border-primary" : "border-gray-200"
+        userId == data.id ? "border-primary" : "border-gray-200"
       } ${isActive() ? "bg-primary" : "bg-white"} `}
       onClick={noClick ? () => null : handleClick}
     >
@@ -39,7 +44,7 @@ function UserItem(props) {
             isActive() ? "text-white" : "text-primary"
           } text-sm font-medium flex-1 capitalize`}
         >
-          {data.firstName} {data.lastName}
+          {data.name}
         </h4>
         <p
           className={`${

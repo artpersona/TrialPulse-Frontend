@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { UserContextProvider } from "src/contexts/UserContext";
 
-function Users() {
+function Chat() {
   return (
     <UserContextProvider>
       <Outlet />
@@ -9,4 +9,4 @@ function Users() {
   );
 }
 
-export default Users;
+export default Chat;

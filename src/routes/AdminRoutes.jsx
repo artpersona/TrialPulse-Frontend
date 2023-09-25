@@ -30,8 +30,12 @@ import SponsorInfo from "../pages/Sponsors/SponsorInfo";
 import SponsorProtocols from "../pages/Sponsors/SponsorProtocols";
 import SponsorStaff from "../pages/Sponsors/SponsorStaff/SponsorStaff";
 
+// CHAT
+import Chat from "../pages/Chat";
+import ChatLanding from "../pages/Chat/ChatLanding/ChatLanding";
+import EmptyChat from "../pages/Chat/EmptyChat/EmptyChat";
 import Home from "../pages/Home/Home";
-
+import IndividualChat from "../pages/Chat/IndividualChat/IndividualChat";
 // SITES
 import SiteDetails from "../pages/Sites/SiteDetails";
 import SiteInformation from "../pages/Sites/SiteInfo";
@@ -276,6 +280,27 @@ const router = createBrowserRouter([
                     element: <EditUser />,
                   },
                 ],
+              },
+            ],
+          },
+        ],
+      },
+
+      {
+        path: "chat",
+        element: <Chat />,
+        children: [
+          {
+            path: "",
+            element: <ChatLanding />,
+            children: [
+              {
+                path: "",
+                element: <EmptyChat />,
+              },
+              {
+                path: ":userId",
+                element: <IndividualChat />,
               },
             ],
           },

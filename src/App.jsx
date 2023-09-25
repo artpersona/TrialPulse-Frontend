@@ -26,8 +26,9 @@ function App() {
   ]);
 
   function getUser() {
-    if (!user) return loginRouter;
-    if (userDetails.roleId === 4 || userDetails.roleId === 3) return SponsorAdminRoutes;
+    if (!user && !userDetails) return loginRouter;
+    if (userDetails.roleId === 4 || userDetails.roleId === 3)
+      return SponsorAdminRoutes;
     return AdminRoutes;
   }
 

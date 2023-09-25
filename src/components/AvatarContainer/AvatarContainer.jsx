@@ -1,11 +1,15 @@
 import "./AvatarContainer.styles.css";
 
 function AvatarContainer(props) {
-  const { Icon, color } = props;
+  const { Icon, color, onClick = null } = props;
 
   return (
-    <div className="avatarContainer">
-      <Icon height={20} width={20} color={props.color ?`${props.color}`: "#ffffff"} />
+    <div className="avatarContainer" onClick={onClick}>
+      <Icon
+        height={20}
+        width={20}
+        color={props.color ? `${props.color}` : "#ffffff"}
+      />
     </div>
   );
 }

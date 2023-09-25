@@ -10,7 +10,9 @@ import {
 } from "@heroicons/react/24/solid";
 
 import colorPalette from "src/utils/styles/colorPalette";
-
+import { useNavigate } from "react-router-dom";
+import { useMessagingContext } from "../../../contexts/MessagingContext";
+import { useAuthContext } from "../../../contexts/AuthContext";
 import "./User.styles.css";
 import AvatarContainer from "../../AvatarContainer/AvatarContainer";
 
@@ -18,6 +20,31 @@ function User(props) {
   const {
     user: { profile },
   } = props;
+
+  const navigate = useNavigate();
+  const { onAddFriend } = useMessagingContext();
+  const { userDetails } = useAuthContext();
+  const onMessagePress = async (selectedUser) => {
+    if (userDetails && userDetails.friends) {
+      const isFriend = userDetails.friends[selectedUser.userId];
+      if (isFriend) {
+        navigate(`/chat/${selectedUser.userId}`, {
+          state: { selectedUser: isFriend },
+        });
+      } else {
+        let newFriend = await onAddFriend(selectedUser);
+        navigate(`/chat/${selectedUser.userId}`, {
+          state: { selectedUser: newFriend },
+        });
+      }
+    } else {
+      await onAddFriend(selectedUser);
+      let newFriend = await onAddFriend(selectedUser);
+      navigate(`/chat/${selectedUser.userId}`, {
+        state: { selectedUser: newFriend },
+      });
+    }
+  };
 
   return (
     <>
@@ -58,6 +85,7 @@ function User(props) {
           <AvatarContainer
             Icon={ChatBubbleOvalLeftIcon}
             color={colorPalette.SECONDARY_COLOR}
+            onClick={() => onMessagePress(profile)}
           />
           <AvatarContainer
             Icon={StarIcon}

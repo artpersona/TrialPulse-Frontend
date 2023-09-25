@@ -1,0 +1,5 @@
+.send-button {
+  font-size: 18px; /* Adjust the font size to increase the button's size */
+  padding: 10px 20px; /* Adjust padding to increase button size */
+  border-radius: 5px; /* Optional: add rounded corners */
+}
