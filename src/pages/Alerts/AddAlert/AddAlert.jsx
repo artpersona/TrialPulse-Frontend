@@ -41,6 +41,18 @@ function AddAlert() {
               <FormInput {...register("message")} />
             </FormCol>
           </div>
+          <div className="form-row">
+            <FormCol label="Is Active" error={errors.isActive}>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  {...register("isActive")}
+                  defaultChecked={true}
+                />
+                <span className="slider round"></span>
+              </label>
+            </FormCol>
+          </div>
         </div>
         <div className="form-actions">
           <button type="submit" className="modal-proceed mt-4">

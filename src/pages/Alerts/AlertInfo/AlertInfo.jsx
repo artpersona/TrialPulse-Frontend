@@ -63,6 +63,19 @@ function AlertInformation() {
 							<FormInput value={alert?.message} disabled/>
 						</FormCol>
 					</div>
+
+          <div className="form-row">
+            <FormCol label="Is Active">
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={alert?.isActive}
+                  disabled
+                />
+                <span className="slider round"></span>
+              </label>
+            </FormCol>
+          </div>
 				</div>
       <div className="absolute -left-96 top-0 w-full flex items-center">
         <div className="w-full flex flex-col space-y-2 items-center justify-center mt-4">
