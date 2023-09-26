@@ -2,8 +2,12 @@ import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/solid";
 import colorPalette from "src/utils/styles/colorPalette";
 // import { useNavigate } from "react-router-dom";
 import { useMessagingContext } from "../../../contexts/MessagingContext";
+import { useAuthContext } from "../../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 function StaffItem(props) {
-  const { onMessagePress } = useMessagingContext();
+  const navigate = useNavigate();
+  const { userDetails } = useAuthContext();
+  const { onAddFriend } = useMessagingContext();
   const { data } = props;
 
   console.log("data is: ", data);
@@ -14,6 +18,28 @@ function StaffItem(props) {
   // function handleClick() {
   //   navigate(`${data.userId}`);
   // }
+
+  const onMessagePress = async (selectedUser) => {
+    if (userDetails && userDetails.friends) {
+      const isFriend = userDetails.friends[selectedUser.userId];
+      if (isFriend) {
+        navigate(`/chat/${selectedUser.userId}`, {
+          state: { selectedUser: isFriend },
+        });
+      } else {
+        let newFriend = await onAddFriend(selectedUser);
+        navigate(`/chat/${selectedUser.userId}`, {
+          state: { selectedUser: newFriend },
+        });
+      }
+    } else {
+      await onAddFriend(selectedUser);
+      let newFriend = await onAddFriend(selectedUser);
+      navigate(`/chat/${selectedUser.userId}`, {
+        state: { selectedUser: newFriend },
+      });
+    }
+  };
 
   return (
     <div

@@ -4,7 +4,10 @@ function AvatarContainer(props) {
   const { Icon, color, onClick = null } = props;
 
   return (
-    <div className="avatarContainer" onClick={onClick}>
+    <div
+      className="avatarContainer cursor-pointer hover:border-primary"
+      onClick={onClick}
+    >
       <Icon
         height={20}
         width={20}

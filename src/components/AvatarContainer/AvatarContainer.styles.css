@@ -6,3 +6,6 @@
   display: grid;
   place-items: center;
 }
+.avatarContainer:hover {
+  background-color: rgb(86, 255, 165);
+}
