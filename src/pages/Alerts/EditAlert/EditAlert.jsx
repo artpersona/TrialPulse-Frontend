@@ -52,12 +52,12 @@ function EditAlert() {
           </div>
 
           <div className="form-row">
-            <FormCol label="Is Active" error={errors.type}>
+            <FormCol label="Is Active" error={errors.isActive}>
               <label className="switch">
                 <input
                   type="checkbox"
                   {...register("isActive")}
-                  defaultChecked={alert.isActive}
+                  checked={alert.isActive}
                 />
                 <span className="slider round"></span>
               </label>
