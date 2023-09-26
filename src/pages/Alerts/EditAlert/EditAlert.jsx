@@ -57,7 +57,7 @@ function EditAlert() {
                 <input
                   type="checkbox"
                   {...register("isActive")}
-                  defaultChecked={alert.isActive}
+                  checked={alert.isActive}
                 />
                 <span className="slider round"></span>
               </label>
