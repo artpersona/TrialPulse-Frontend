@@ -7,34 +7,17 @@ import useDeleteAlert from "src/api/alerts/useDeleteAlert";
 import DeleteConfirmation from "src/components/Modal/DeleteConfirmation/DeleteConfirmation";
 import FormCol from "src/components/Form/FormCol";
 import FormInput from "src/components/Form/FormInput";
+import useGetAlert from "../../../api/alerts/useGetAlert";
 
 function AlertInformation() {
   const { alertId } = useParams();
 
   const { mutate: deleteAlert } = useDeleteAlert();
+  const { alert, api } = useGetAlert(alertId);
 
-  const [loading, setLoading] = useState(true);
-  const [alert, setAlert] = useState(null);
   const [showDeleteCriteriaModal, setShowDeleteCriteriaModal] = useState(false);
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchAlerts();
-  }, [alertId]);
-
-  async function fetchAlerts() {
-    try {
-      const res = await privateClient({
-        url: `/alerts/${alertId}`,
-        method: "get",
-      });
-      setAlert(res.data);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   function handleEditClick() {
     navigate("edit-alert");
@@ -51,9 +34,13 @@ function AlertInformation() {
     );
   }
 
-  if (loading) {
-    return <div></div>;
+  if (api.isLoading) {
+    return <div>Loading...</div>;
   }
+
+  // if (loading) {
+  //   return <div></div>;
+  // }
 
   return (
     <div className="pb-20 relative">
